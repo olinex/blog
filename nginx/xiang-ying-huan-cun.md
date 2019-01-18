@@ -84,7 +84,7 @@ proxy_cache_methods GET HEAD POST;
 
 ## 限制或禁用缓存
 
-
+默认情况下, Nginx能够缓存无限的响应. 只有在缓存的大小超过了最大限制,
 
 By default, responses remain in the cache indefinitely. They are removed only when the cache exceeds the maximum configured size, and then in order by length of time since they were last requested. You can set how long cached responses are considered valid, or even whether they are used at all, by including directives in the `http {}`, `server {}`, or `location {}` context:
 
