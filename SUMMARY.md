@@ -27,6 +27,7 @@
 * [控制运行中的Nginx进程](nginx/kong-zhi-yun-hang-zhong-de-nginx-jin-cheng.md)
 * [创建Nginx扩展和配置文件](nginx/chuang-jian-nginx-kuo-zhan-he-pei-zhi-wen-jian.md)
 * [HTTP负载均衡](nginx/http-fu-zai-jun-heng.md)
+* [响应缓存](nginx/xiang-ying-huan-cun.md)
 
 ## Python
 
