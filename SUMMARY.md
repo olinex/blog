@@ -28,6 +28,7 @@
 * [创建Nginx扩展和配置文件](nginx/chuang-jian-nginx-kuo-zhan-he-pei-zhi-wen-jian.md)
 * [HTTP负载均衡](nginx/http-fu-zai-jun-heng.md)
 * [响应缓存](nginx/xiang-ying-huan-cun.md)
+* [连接处理方法](nginx/lian-jie-chu-li-fang-fa.md)
 
 ## Python
 

@@ -70,7 +70,7 @@ proxy_cache_path /data/nginx/cache keys_zone=one:10m loader_threshold=300 loader
 proxy_cache_key "$host$request_uri$cookie_user";
 ```
 
-为了使具有相同键值的请求在一次请求次数后才被缓存起来, 可以添加 `proxy_cache_min_uses` 指令:
+为了使具有相同键值的请求在一定请求次数后才被缓存起来, 可以添加 `proxy_cache_min_uses` 指令:
 
 ```text
 proxy_cache_min_uses 5;

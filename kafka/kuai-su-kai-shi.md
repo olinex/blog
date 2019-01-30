@@ -50,7 +50,7 @@ Kafka使用了 [ZooKeeper](https://zookeeper.apache.org/) , 因此你需要先�
 test
 ```
 
-又或者, 你可以配置你的管道, 当向未创建的主题推送数据时, 可以自动创建主题, 而不是手动创建.
+又或者, 你可以通过向未创建的主题推送数据, 可以自动创建主题并配置你的管道, 而不是手动创建.
 
 ## 第四步: 发送消息
 
@@ -104,4 +104,32 @@ config/server-2.properties:
 ```
 
 `broker.id` 是节点在集群内唯一且永久的名称. 我们不得不重写日志目录和端口, 因为我们希望所有地节点都在运行在同一台服务器, 并且我们希望在同一个端口下注册或重写其他数据时, 都能保持管道不变.
+
+现在我们已经有了ZooKeeper和一个单节点, 因此只需要启动另外两个节点:
+
+```bash
+> bin/kafka-server-start.sh config/server-1.properties &
+...
+> bin/kafka-server-start.sh config/server-2.properties &
+...
+```
+
+创建一个名为 `my-replicated-topic` 带有三个副本的主题:
+
+```bash
+> bin/kafka-topics.sh --create --zookeeper localhost:2181 \
+--replication-factor 3 --partitions 1 --topic my-replicated-topic
+```
+
+要想查看集群中, 哪个管道正在做什么, 可以通过 "查看主题" 命令:
+
+```text
+> bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic
+Topic:my-replicated-topic   PartitionCount:1    ReplicationFactor:3 Configs:
+    Topic: my-replicated-topic  Partition: 0    Leader: 1   Replicas: 1,2,0 Isr: 1,2,0
+```
+
+第一行给出了相关主题的所有分区的摘要信息, 后续的每一行代表了一个分区的信息. 在这里我们只有一个分区和 `my-replicated-topic` 相关, 因此只有一行. 
+
+
 
