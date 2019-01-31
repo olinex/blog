@@ -2,7 +2,7 @@
 description: '本文章由olinex翻译, 转载请在页面开头标明出处'
 ---
 
-# 限制访问地址 \( ngx\_http\_access\_module \)
+# 限制访问地址\(ngx\_http\_access\_module\)
 
 `ngx_http_access_module` 模块可以通过指定来源地址, 来限制客户端的访问.
 
