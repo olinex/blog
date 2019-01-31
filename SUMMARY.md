@@ -29,6 +29,9 @@
 * [HTTP负载均衡](nginx/http-fu-zai-jun-heng.md)
 * [响应缓存](nginx/xiang-ying-huan-cun.md)
 * [连接处理方法](nginx/lian-jie-chu-li-fang-fa.md)
+* [指令手册](nginx/zhi-ling-shou-ce/README.md)
+  * [限制访问地址 \( ngx\_http\_access\_module \)](nginx/zhi-ling-shou-ce/xian-zhi-fang-wen-di-zhi-ngxhttpaccessmodule.md)
+* [指令速查](nginx/zhi-ling-su-cha.md)
 
 ## Python
 
