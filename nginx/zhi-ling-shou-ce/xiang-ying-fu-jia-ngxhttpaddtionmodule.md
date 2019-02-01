@@ -2,9 +2,9 @@
 description: '本文章由olinex翻译, 转载请在页面开头标明出处'
 ---
 
-# 响应附加\(ngx\_http\_addtion\_module\)
+# 响应附加
 
-ngx\_http\_addtion\_module 模块是一种过滤器, 可以在响应体的内增加文本. 这个模块并没有默认构建, 你可以通过 --with-http\_addtion\_module 配置参数添加模块.
+`ngx_http_addtion_module` 模块是一种过滤器, 可以在响应体的内增加文本. 这个模块并没有默认构建, 你可以通过 `--with-http_addtion_module` 配置参数添加模块.
 
 ## 示例
 

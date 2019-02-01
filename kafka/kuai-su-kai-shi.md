@@ -131,5 +131,11 @@ Topic:my-replicated-topic   PartitionCount:1    ReplicationFactor:3 Configs:
 
 第一行给出了相关主题的所有分区的摘要信息, 后续的每一行代表了一个分区的信息. 在这里我们只有一个分区和 `my-replicated-topic` 相关, 因此只有一行. 
 
+* leader - 主节点会响应对分区的读写请求. 每个节点将会是某个分区的主节点
+* replicas - 是备份节点id的列表, 包括主节点和当前不可用的节点, 这些节点备份分区的日志
+* isr - 是备份节点id列表的子集. 这些节点当前可用且被主节点控制
 
+{% hint style="info" %}
+在上述示例中, 节点1是仅有的一个分区的主节点
+{% endhint %}
 
