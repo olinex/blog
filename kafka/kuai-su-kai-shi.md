@@ -234,3 +234,24 @@ foo
 bar
 ```
 
+你应该注意到, 数据已经被保存在了Kafka主题 connect-test 内, 因此你可以运行消费者终端来查看主体内的数据:
+
+```bash
+> bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic connect-test --from-beginning
+{"schema":{"type":"string","optional":false},"payload":"foo"}
+{"schema":{"type":"string","optional":false},"payload":"bar"}
+... 
+```
+
+链接会持续处理数据, 因此如果我们向文件内添加数据, 你会看到它被推送至管道:
+
+```bash
+> echo Another line>> test.txt
+```
+
+你会发现这一行数据出现在了消费者终端和接收文件内.
+
+## 第八步: 使用Kafka流来处理数据
+
+Kafka流是为了构建实时业务处理应用和微服务而存在的客户端库, 当输入输出数据保存在Kafka集群后, Kafka流在客户端整合了标准的Java/Scala应用, 使它们受益于Kafka的服务端集群技术, 使得应用可扩展, 有弹性的, 容错的, 分布式的. 
+
