@@ -28,7 +28,7 @@
 * [创建Nginx扩展和配置文件](nginx/chuang-jian-nginx-kuo-zhan-he-pei-zhi-wen-jian.md)
 * [HTTP负载均衡](nginx/http-fu-zai-jun-heng.md)
 * [响应缓存](nginx/xiang-ying-huan-cun.md)
-* [连接处理方法](nginx/lian-jie-chu-li-fang-fa.md)
+* [连接处理机制](nginx/lian-jie-chu-li-fang-fa.md)
 * [指令手册](nginx/zhi-ling-shou-ce/README.md)
   * [限制访问地址](nginx/zhi-ling-shou-ce/xian-zhi-fang-wen-di-zhi-ngxhttpaccessmodule.md)
   * [响应附加](nginx/zhi-ling-shou-ce/xiang-ying-fu-jia-ngxhttpaddtionmodule.md)

@@ -139,3 +139,25 @@ Topic:my-replicated-topic   PartitionCount:1    ReplicationFactor:3 Configs:
 在上述示例中, 节点1是仅有的一个分区的主节点
 {% endhint %}
 
+我们同样可以对 test 主题执行该命令:
+
+```bash
+> bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic test
+Topic:test    PartitionCount:1    ReplicationFactor:1 Configs:
+    Topic: test    Partition: 0    Leader: 0    Replicas: 0    Isr: 0
+```
+
+如我们所料, 这个主题没有备份并且处于服务 0 上, 我们只在集群上创建了这一个服务.
+
+发送一些消息给我们的新主题:
+
+```bash
+> bin/kafka-console-producer.sh --broker-list localhost:9092 --topic my-replicated-topic
+...
+my test message 1
+my test message 2
+^C
+```
+
+
+
