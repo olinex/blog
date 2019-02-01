@@ -159,5 +159,78 @@ my test message 2
 ^C
 ```
 
+现在让我们测试一下错误处理. 管道 1 现在是主节点, 将其进程杀死:
 
+```bash
+> ps aux | grep server-1.properties
+7564 ttys002    0:15.91 /System/Library/Frameworks/JavaVM.framework/Versions/1.8/Home/bin/java...
+> kill -9 7564
+```
+
+在Windows系统下:
+
+```bash
+> wmic process where "caption = 'java.exe' and commandline like '%server-1.properties%'" get processid
+ProcessId
+6016
+> taskkill /pid 6016 /f
+```
+
+其中一个附属节点已经自动切换为主节点, 节点 1 已经不再处于 `Isr` 节点集内了:
+
+```bash
+> bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic
+Topic:my-replicated-topic   PartitionCount:1    ReplicationFactor:3 Configs:
+    Topic: my-replicated-topic  Partition: 0    Leader: 2   Replicas: 1,2,0 Isr: 2,0
+```
+
+虽然主节点已经不再可用, 但是消息依然可以被消费:
+
+```bash
+> bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 \
+--from-beginning --topic my-replicated-topic
+...
+my test message 1
+my test message 2
+^C
+```
+
+## 第七步: 使用Kafka链接来导入/导出数据
+
+在终端输入输出数据在一开始是非常便利的, 但是你更加有可能希望通过其他来源来输入数据, 或导出数据到其他的系统或服务中. 对于很多系统而言, 你可以使用Kafka的链接来导入/导出数据.
+
+Kafka链接工具与Kafka集成. 它易于扩展并且可以执行自定义的逻辑. 在这里我们会示范如何通过Kafka链接工具运行一个简单的链接. 我们会将数据从文件中导入到Kafka主题中, 并将数据从主题中导出到文件内.
+
+首先, 我们创建一些数据来进行测试:
+
+```bash
+> echo -e "foo\nbar" > test.txt
+```
+
+在Windows系统中:
+
+```bash
+> echo foo> test.txt
+> echo bar>> test.txt
+```
+
+ 接着, 我们创建两个单例模式的链接, 这意味着他们将只会运行一个独立的本地进程. 我们提供了三个配置文件的路径作为参数, 第一个文件必须是Kafka链接进程的配置文件, 它包含一些常见配置, 例如需要连接的管道和数据的序列化格式. 后续的配置文件每个都创建一个链接. 这些配置文件包含了一个唯一的连接名, 需要实例化的连接类, 和任何其他的配置信息.
+
+```bash
+> bin/connect-standalone.sh config/connect-standalone.properties \
+config/connect-file-source.properties config/connect-file-sink.properties
+```
+
+ 以下的示例配置文件, 使用了你早先启动的默认本地集群配置, 并创建了两个链接: 
+
+* 第一个连接是输入来源连接, 它会从数据文件中读取每一行数据, 并将数据按行输入到Kafka主题中
+* 第二个连接是输出接收连接, 它会从Kafka主题中读取消息, 并将每一行消息按行输出到文件中.
+
+在执行的时候, 你会看到一些日志消息, 包含了一些链接的实例化信息. 当Kafka链接进程开始时, 来源连接应该从test.txt按行读取数据, 并将它们推送至 connect-test 主题中, 然后接收连接将会从 connect-test 主题中读取消息并将他们写入 test.sink.txt 文件内. 我们可以查看输出文件来检查测试结果:
+
+```bash
+> more test.sink.txt
+foo
+bar
+```
 
