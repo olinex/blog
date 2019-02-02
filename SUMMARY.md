@@ -32,6 +32,7 @@
 * [配置HTTPS服务](nginx/pei-zhi-https-fu-wu.md)
 * [命令行参数](nginx/ming-ling-hang-can-shu.md)
 * [指令手册](nginx/zhi-ling-shou-ce/README.md)
+  * [核心](nginx/zhi-ling-shou-ce/he-xin.md)
   * [限制访问地址](nginx/zhi-ling-shou-ce/xian-zhi-fang-wen-di-zhi-ngxhttpaccessmodule.md)
   * [响应附加](nginx/zhi-ling-shou-ce/xiang-ying-fu-jia-ngxhttpaddtionmodule.md)
 * [指令速查](nginx/zhi-ling-su-cha.md)
