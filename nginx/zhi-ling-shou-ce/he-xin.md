@@ -276,5 +276,113 @@ http, server, location
 
 #### connection\_pool\_size
 
+{% tabs %}
+{% tab title="语法" %}
+**connection\_pool\_size** size;
+{% endtab %}
 
+{% tab title="默认值" %}
+connection\_pool\_size 256 \| 312;
+{% endtab %}
+
+{% tab title="上下文" %}
+http, server
+{% endtab %}
+
+{% tab title="说明" %}
+可以优化每个请求的内存分配. 这个配置对性能的影响很小, 因此不应该被使用. 默认情况下, 32位系统为 256 字节, 64位系统为 512 字节.
+
+对于 1.9.8 之前的版本, 所有的系统均为 256 字节.
+{% endtab %}
+{% endtabs %}
+
+#### default\_type
+
+{% tabs %}
+{% tab title="语法" %}
+default\_type mime-type;
+{% endtab %}
+
+{% tab title="默认值" %}
+default\_type text/plain;
+{% endtab %}
+
+{% tab title="上下文" %}
+http, server, location
+{% endtab %}
+
+{% tab title="说明" %}
+响应的默认 MIME 类型. 可以通过 `types` 命令可以设置文件名的后缀和 MIME 类型的映射.
+{% endtab %}
+{% endtabs %}
+
+#### error\_page
+
+{% tabs %}
+{% tab title="语法" %}
+**error\_page** code... \[=\[response\]\] uri;
+{% endtab %}
+
+{% tab title="默认值" %}
+无
+{% endtab %}
+
+{% tab title="上下文" %}
+http, server, location, if in location
+{% endtab %}
+
+{% tab title="说明" %}
+定义具体错误码所显示的页面. `uri` 参数可以包含 Nginx 变量. 例如:
+
+```text
+error_page 404                    /404.html;
+error_page 500 502 503 504        /50x.html;
+```
+
+这会导致内部重定向到指定的 `uri` ,并且客户端的请求方法将变为 `GET` \( 除了 `GET` 和 `HEAD` 方法以外 \).
+
+我们还能通过 `=response` 语法来修改响应的响应码:
+
+```text
+error_page 404 =200 /empty.gif;
+```
+
+如果错误响应是通过代理服务器或 FastCGI/uwsig/SCGI/gRPC 服务器来处理的, 并且服务器会返回不同的响应码, \(例如 200, 302, 401, 404\), 可以返回真实的响应码:
+
+```text
+error_page 404 = /404.php;
+```
+
+如果不需要在内部重定向的时候修改 URI 和 http, 可以将错误处理传递到指定的命名路径上下文内:
+
+```text
+location / {
+    error_page 404 = @fallback;
+}
+
+location @fallback {
+    proxy_pass http://backend;
+}
+```
+
+{% hint style="info" %}
+如果 uri 处理过程中出现了错误, 最后出现的错误状态码将会返回给客户端.
+{% endhint %}
+
+还可以使用 URL 重定向来处理错误:
+
+```text
+error_page 403            http://example.com/forbidden.html;
+error_page 404 =301       http://example.com/notfound.html;
+```
+
+在这种情况下, 响应码 302 将会被返回给客户端. 响应码只能被修改为重定向状态码 \(301, 302, 303, 308\).
+
+{% hint style="info" %}
+307 状态码在 Nginx 1.1.16 和 1.0.13 之前将不会被重定向, 308 状态码在 Nginx 1.13.0 之前将不会被重定向
+{% endhint %}
+
+如果当前上下文没有定义 error\_page, 将会从上级上下文中继承.
+{% endtab %}
+{% endtabs %}
 

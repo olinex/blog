@@ -19,7 +19,10 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 * [client\_header\_buffer\_size](zhi-ling-shou-ce/he-xin.md#client_header_buffer_size)
 * [client\_header\_timeout](zhi-ling-shou-ce/he-xin.md#client_header_timeout)
 * [client\_max\_body\_size](zhi-ling-shou-ce/he-xin.md#client_max_body_size)
+* [connection\_pool\_size](zhi-ling-shou-ce/he-xin.md#connection_pool_size)
+* [default\_type](zhi-ling-shou-ce/he-xin.md#default_type)
 * [deny](zhi-ling-shou-ce/xian-zhi-fang-wen-di-zhi-ngxhttpaccessmodule.md#deny)
+* [error\_page](zhi-ling-shou-ce/he-xin.md#error_page)
 
 
 
