@@ -26,6 +26,9 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 * [error\_page](zhi-ling-shou-ce/he-xin.md#error_page)
 * [etag](zhi-ling-shou-ce/he-xin.md#etag)
 * [http](zhi-ling-shou-ce/he-xin.md#http)
+* [if\_modified\_since](zhi-ling-shou-ce/he-xin.md#if_modified_since)
+* [ignore\_invalid\_headers](zhi-ling-shou-ce/he-xin.md#ignore_invalid_headers)
+* [internal](zhi-ling-shou-ce/he-xin.md#internal)
 
 
 

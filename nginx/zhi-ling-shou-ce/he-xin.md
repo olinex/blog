@@ -450,7 +450,7 @@ http, server, location
 
 {% tabs %}
 {% tab title="语法" %}
-http {...}
+**http** {...}
 {% endtab %}
 
 {% tab title="默认值" %}
@@ -462,9 +462,90 @@ main
 {% endtab %}
 
 {% tab title="说明" %}
-创建一个http虚拟服务器的上下文环境
+创建一个http虚拟服务器的上下文环境.
 {% endtab %}
 {% endtabs %}
 
+#### if\_modified\_since
 
+{% tabs %}
+{% tab title="语法" %}
+**if\_modified\_since** off \| exact \| before;
+{% endtab %}
+
+{% tab title="默认值" %}
+if\_modified\_since exact;
+{% endtab %}
+
+{% tab title="上下文" %}
+http, server, location
+{% endtab %}
+
+{% tab title="说明" %}
+定义了如何比较请求头内的 `If-Modified-Since` 设置的时间和响应的修改时间:
+
+* off - 不进行比较\(0.7.34+\)
+* exact - 需要完全比配
+* before - 响应的修改时间必须小于等于请求头内 `If-Modified-Since` 设置的时间.
+
+ 
+{% endtab %}
+{% endtabs %}
+
+#### ignore\_invalid\_headers
+
+{% tabs %}
+{% tab title="语法" %}
+**ignore\_invalid\_headers** on \| off;
+{% endtab %}
+
+{% tab title="默认值" %}
+ignore\_invalid\_headers on;
+{% endtab %}
+
+{% tab title="上下文" %}
+http, server
+{% endtab %}
+
+{% tab title="说明" %}
+控制是否忽略名称无效的请求头, 有效的请求头名称必须为英文字符/数字/连字符/下划线\(下划线需要通过 `underscores_in_headers` 指令来控制\).
+{% endtab %}
+{% endtabs %}
+
+#### internal
+
+{% tabs %}
+{% tab title="语法" %}
+**internal**;
+{% endtab %}
+
+{% tab title="默认值" %}
+无
+{% endtab %}
+
+{% tab title="上下文" %}
+location
+{% endtab %}
+
+{% tab title="" %}
+控制指定的路径是否只能被内部请求访问. 对于外部请求, 客户端会收到 404 错误, 内部请求为:
+
+* 通过 `error_page`, `index`, `random_index`, `try_files` 指令重定向的请求
+* 通过 来自上游服务器的 `X-Accel-Redirect` 响应头重定向的请求
+* 通过 `rewrite` 指令导向的请求
+* 通过 `mirror` 指令, 响应附加, 请求验证, include virtual 发起的子请求
+
+例如:
+
+```text
+error_page 404 /404.html;
+
+location = /404.html {
+    internal;
+}
+```
+
+为了防止循环重定向, 每个请求只能有10次的内部重定向. 如果超过了这个限制, 将会返回 500 错误. 在这种情况下, "rewrite or internal redirection cycle" 信息将会被打印到错误日志中. 
+{% endtab %}
+{% endtabs %}
 
