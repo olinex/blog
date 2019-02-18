@@ -316,6 +316,46 @@ http, server, location
 {% endtab %}
 {% endtabs %}
 
+#### disable\_symlinks
+
+{% tabs %}
+{% tab title="语法" %}
+**disable\_symlinks** on \| off \| if\_not\_owner \[from=part\];
+{% endtab %}
+
+{% tab title="默认值" %}
+disable\_symlinks off;
+{% endtab %}
+
+{% tab title="上下文" %}
+http, server, location
+{% endtab %}
+
+{% tab title="说明" %}
+设置当 Nginx 打开文件时, 遇到符号链接的处理方式:
+
+* off - 允许读取符号链接所代表的文件, 并不会检查权限
+* on - 在打开文件时, 路径上有任何一个文件或文件夹为符号链接, 则拒绝访问文件
+* if\_not\_owner - 再打开文件时, 路径上有任何一个文件或文件夹为符号链接, 且符号链接文件的所有者和所代表的文件的所有者不同时, 则拒绝访问文件
+
+当我们将符号链接的处理方式设置为 `on` 或者 `if_not_owner` 的时候, 文件路径上所有的文件或文件夹都将会被检查. 若我们希望不要从路径的起始路径开始检查, 可以通过设置 `from=part` 参数来实现.
+
+在这种情况下, 符号链接只会从指定的文件或文件夹处开始检查. 如果设置的值不是符号链接的起始路径, 则会检查整个路径. 如果设置的值匹配整个路径, 则不会进行检查. 起始路径的值可以包含 Nginx 变量:
+
+```text
+disable_symlinks on from=$document_root;
+```
+
+这个指令只会在拥有 openat\(\) 和 fstatat\(\) 接口的系统上有效. 例如 FreeBSD, Linux, Solaris.
+
+on 和 if\_not\_owner 会增加进程的开销.
+
+{% hint style="info" %}
+在没有所需接口的系统上使用这个命令, 需要工作进程拥有指定文件的读权限.
+{% endhint %}
+{% endtab %}
+{% endtabs %}
+
 #### error\_page
 
 {% tabs %}
@@ -385,4 +425,46 @@ error_page 404 =301       http://example.com/notfound.html;
 如果当前上下文没有定义 error\_page, 将会从上级上下文中继承.
 {% endtab %}
 {% endtabs %}
+
+#### etag
+
+{% tabs %}
+{% tab title="语法" %}
+**etag** on \| off;
+{% endtab %}
+
+{% tab title="默认值" %}
+etag on;
+{% endtab %}
+
+{% tab title="上下文" %}
+http, server, location
+{% endtab %}
+
+{% tab title="说明" %}
+开启或关闭静态资源自动添加 ETag 响应头的功能\(1.3.3+\).
+{% endtab %}
+{% endtabs %}
+
+#### http
+
+{% tabs %}
+{% tab title="语法" %}
+http {...}
+{% endtab %}
+
+{% tab title="默认值" %}
+无
+{% endtab %}
+
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+创建一个http虚拟服务器的上下文环境
+{% endtab %}
+{% endtabs %}
+
+
 
