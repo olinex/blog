@@ -5,6 +5,8 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 # 指令速查
 
 * [absolute\_redirect](zhi-ling-shou-ce/he-xin.md#zhi-ling)
+* [accept\_mutex](zhi-ling-shou-ce/he-xin-gong-neng.md#accept_mutex)
+* [accept\_mutex\_delay](zhi-ling-shou-ce/he-xin-gong-neng.md#accept_mutex_delay)
 * [alias](zhi-ling-shou-ce/he-xin.md#alias)
 * [allow](zhi-ling-shou-ce/xian-zhi-fang-wen-di-zhi-ngxhttpaccessmodule.md#allow)
 * [addition\_types](zhi-ling-shou-ce/xiang-ying-fu-jia-ngxhttpaddtionmodule.md#addition_types)
@@ -20,6 +22,9 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 * [client\_header\_timeout](zhi-ling-shou-ce/he-xin.md#client_header_timeout)
 * [client\_max\_body\_size](zhi-ling-shou-ce/he-xin.md#client_max_body_size)
 * [connection\_pool\_size](zhi-ling-shou-ce/he-xin.md#connection_pool_size)
+* [daemon](zhi-ling-shou-ce/he-xin-gong-neng.md#daemon)
+* [debug\_connection](zhi-ling-shou-ce/he-xin-gong-neng.md#debug_connection)
+* [debug\_point](zhi-ling-shou-ce/he-xin-gong-neng.md#debug_point)
 * [default\_type](zhi-ling-shou-ce/he-xin.md#default_type)
 * [deny](zhi-ling-shou-ce/xian-zhi-fang-wen-di-zhi-ngxhttpaccessmodule.md#deny)
 * [disable\_symlinks](zhi-ling-shou-ce/he-xin.md#disable_symlinks)
