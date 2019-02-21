@@ -85,7 +85,7 @@ main
 events
 {% endtab %}
 
-{% tab title="" %}
+{% tab title="说明" %}
 可以开启指定客户端连接的调试日志记录功能. 其他的连接将会按照 `error_log` 指令配置的日志等级来记录日志. 调试连接为 IPv4 或 IPv6 \(1.3.0+, 1.2.1+\) 的网络地址, 还可以为域名地址. 对于 UNIX 套接字的连接 \(1.3.0+, 1.2.1+\) , 调试日志可以通过 `unix:` 参数来开启.
 
 ```text
@@ -106,15 +106,25 @@ events {
 {% endtab %}
 {% endtabs %}
 
-#### debug\_point
+#### debug\_points
 
 {% tabs %}
-{% tab title="First Tab" %}
-
+{% tab title="语法" %}
+**debug\_points** abort \| stop;
 {% endtab %}
 
-{% tab title="Second Tab" %}
+{% tab title="默认值" %}
+无
+{% endtab %}
 
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+这个命令用于调试. 当内部错误发生的时候, 例如在重启工作进程时套接字泄露, 将 `debug_points` 设置为 `abort` 会创建一个核心文件, 设置为 `stop` 会停止进程, 以便系统调试器进行进一步的分析.
 {% endtab %}
 {% endtabs %}
+
+
 

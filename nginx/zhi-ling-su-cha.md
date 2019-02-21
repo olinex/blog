@@ -24,7 +24,7 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 * [connection\_pool\_size](zhi-ling-shou-ce/he-xin.md#connection_pool_size)
 * [daemon](zhi-ling-shou-ce/he-xin-gong-neng.md#daemon)
 * [debug\_connection](zhi-ling-shou-ce/he-xin-gong-neng.md#debug_connection)
-* [debug\_point](zhi-ling-shou-ce/he-xin-gong-neng.md#debug_point)
+* [debug\_points](zhi-ling-shou-ce/he-xin-gong-neng.md#debug_points)
 * [default\_type](zhi-ling-shou-ce/he-xin.md#default_type)
 * [deny](zhi-ling-shou-ce/xian-zhi-fang-wen-di-zhi-ngxhttpaccessmodule.md#deny)
 * [disable\_symlinks](zhi-ling-shou-ce/he-xin.md#disable_symlinks)
