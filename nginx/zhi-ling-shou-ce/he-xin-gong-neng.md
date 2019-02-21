@@ -126,5 +126,39 @@ main
 {% endtab %}
 {% endtabs %}
 
+#### env
 
+{% tabs %}
+{% tab title="语法" %}
+**env** variable\[=value\];
+{% endtab %}
+
+{% tab title="默认值" %}
+env TZ;
+{% endtab %}
+
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+默认情况下, 除了 `TZ` 之外, Nginx 会将从父进程继承来的环境变量全部移除. 这个命令运行保留一些变量, 修改他们的值, 或者创建新的环境变量. 这些变量将会:
+
+* 将会在动态更新可执行文件的时候继承
+* 用于 Perl 模块
+* 用于工作进程. 我们需要记住的是, 通过这种方式控制系统库并不是总是有效的, 因为通常情况下, 库只会在初始化的时候检查这些变量, 而此时变量尚未被指令设置. 除了上面提到的动态更新可执行文件
+
+TZ 变量总是被继承并可用于 Perl 模块, 除非这个变量被显示定义不再使用. 例如:
+
+```text
+env  MALLOC_OPTIONS;
+env PERL5LIB=/data/site/modules;
+env OPENSSL_ALLOW_PROXY_CERTS=1;
+```
+
+{% hint style="info" %}
+Nginx 环境变量应该只在 Nginx 内部使用, 不应该被用户直接设置.
+{% endhint %}
+{% endtab %}
+{% endtabs %}
 

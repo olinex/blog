@@ -28,6 +28,7 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 * [default\_type](zhi-ling-shou-ce/he-xin.md#default_type)
 * [deny](zhi-ling-shou-ce/xian-zhi-fang-wen-di-zhi-ngxhttpaccessmodule.md#deny)
 * [disable\_symlinks](zhi-ling-shou-ce/he-xin.md#disable_symlinks)
+* [env](zhi-ling-shou-ce/he-xin-gong-neng.md#env)
 * [error\_page](zhi-ling-shou-ce/he-xin.md#error_page)
 * [etag](zhi-ling-shou-ce/he-xin.md#etag)
 * [http](zhi-ling-shou-ce/he-xin.md#http)
