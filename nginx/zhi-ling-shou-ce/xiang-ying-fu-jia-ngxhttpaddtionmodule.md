@@ -18,7 +18,7 @@ location / {
 
 ## 指令
 
-#### add\_before\_body
+### add\_before\_body
 
 {% tabs %}
 {% tab title="语法" %}
@@ -38,7 +38,7 @@ http, server, location
 {% endtab %}
 {% endtabs %}
 
-#### add\_after\_body
+### add\_after\_body
 
 {% tabs %}
 {% tab title="语法" %}
@@ -58,7 +58,7 @@ http, server, location
 {% endtab %}
 {% endtabs %}
 
-#### addition\_types
+### addition\_types
 
 {% tabs %}
 {% tab title="语法" %}

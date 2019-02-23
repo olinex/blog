@@ -6,7 +6,7 @@ description: '本文章由olinex翻译, 转载请在页面开头标明出处'
 
 ## 指令
 
-**absolute\_redirect**
+### **absolute\_redirect**
 
 {% tabs %}
 {% tab title="语法" %}
@@ -26,7 +26,7 @@ http, server, location
 {% endtab %}
 {% endtabs %}
 
-#### alias
+### alias
 
 {% tabs %}
 {% tab title="语法" %}
@@ -80,7 +80,7 @@ location /images/ {
 {% endtab %}
 {% endtabs %}
 
-####  **chunked\_transfer\_encoding**
+###  **chunked\_transfer\_encoding**
 
 {% tabs %}
 {% tab title="语法" %}
@@ -100,7 +100,7 @@ http, server, location
 {% endtab %}
 {% endtabs %}
 
-####  **client\_body\_buffer\_size**
+###  **client\_body\_buffer\_size**
 
 {% tabs %}
 {% tab title="语法" %}
@@ -120,7 +120,7 @@ http, server, location
 {% endtab %}
 {% endtabs %}
 
-#### client\_body\_in\_file\_only
+### client\_body\_in\_file\_only
 
 {% tabs %}
 {% tab title="语法" %}
@@ -144,7 +144,7 @@ http, server, location
 {% endtab %}
 {% endtabs %}
 
-#### client\_body\_in\_single\_buffer
+### client\_body\_in\_single\_buffer
 
 {% tabs %}
 {% tab title="语法" %}
@@ -164,7 +164,7 @@ http, server, location
 {% endtab %}
 {% endtabs %}
 
-#### client\_body\_temp\_path
+### client\_body\_temp\_path
 
 {% tabs %}
 {% tab title="语法" %}
@@ -194,7 +194,7 @@ client_body_temp_path /spool/nginx/client_temp 1 2;
 {% endtab %}
 {% endtabs %}
 
-#### client\_body\_timeout
+### client\_body\_timeout
 
 {% tabs %}
 {% tab title="语法" %}
@@ -214,7 +214,7 @@ http, server, location
 {% endtab %}
 {% endtabs %}
 
-#### client\_header\_buffer\_size
+### client\_header\_buffer\_size
 
 {% tabs %}
 {% tab title="语法" %}
@@ -234,7 +234,7 @@ http, server
 {% endtab %}
 {% endtabs %}
 
-#### client\_header\_timeout
+### client\_header\_timeout
 
 {% tabs %}
 {% tab title="语法" %}
@@ -254,7 +254,7 @@ http, server
 {% endtab %}
 {% endtabs %}
 
-#### client\_max\_body\_size
+### client\_max\_body\_size
 
 {% tabs %}
 {% tab title="语法" %}
@@ -274,7 +274,7 @@ http, server, location
 {% endtab %}
 {% endtabs %}
 
-#### connection\_pool\_size
+### connection\_pool\_size
 
 {% tabs %}
 {% tab title="语法" %}
@@ -296,7 +296,7 @@ http, server
 {% endtab %}
 {% endtabs %}
 
-#### default\_type
+### default\_type
 
 {% tabs %}
 {% tab title="语法" %}
@@ -316,7 +316,7 @@ http, server, location
 {% endtab %}
 {% endtabs %}
 
-#### disable\_symlinks
+### disable\_symlinks
 
 {% tabs %}
 {% tab title="语法" %}
@@ -356,7 +356,7 @@ on 和 if\_not\_owner 会增加进程的开销.
 {% endtab %}
 {% endtabs %}
 
-#### error\_page
+### error\_page
 
 {% tabs %}
 {% tab title="语法" %}
@@ -426,7 +426,7 @@ error_page 404 =301       http://example.com/notfound.html;
 {% endtab %}
 {% endtabs %}
 
-#### etag
+### etag
 
 {% tabs %}
 {% tab title="语法" %}
@@ -446,7 +446,7 @@ http, server, location
 {% endtab %}
 {% endtabs %}
 
-#### http
+### http
 
 {% tabs %}
 {% tab title="语法" %}
@@ -466,7 +466,7 @@ main
 {% endtab %}
 {% endtabs %}
 
-#### if\_modified\_since
+### if\_modified\_since
 
 {% tabs %}
 {% tab title="语法" %}
@@ -492,7 +492,7 @@ http, server, location
 {% endtab %}
 {% endtabs %}
 
-#### ignore\_invalid\_headers
+### ignore\_invalid\_headers
 
 {% tabs %}
 {% tab title="语法" %}
@@ -512,7 +512,7 @@ http, server
 {% endtab %}
 {% endtabs %}
 
-#### internal
+### internal
 
 {% tabs %}
 {% tab title="语法" %}
@@ -527,7 +527,7 @@ http, server
 location
 {% endtab %}
 
-{% tab title="" %}
+{% tab title="说明" %}
 控制指定的路径是否只能被内部请求访问. 对于外部请求, 客户端会收到 404 错误, 内部请求为:
 
 * 通过 `error_page`, `index`, `random_index`, `try_files` 指令重定向的请求

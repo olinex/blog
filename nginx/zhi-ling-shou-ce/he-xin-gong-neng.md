@@ -6,7 +6,7 @@ description: '本文章由olinex翻译, 转载请在页面开头标明出处'
 
 ## 指令
 
-#### accept\_mutex
+### accept\_mutex
 
 {% tabs %}
 {% tab title="语法" %}
@@ -30,7 +30,7 @@ events
 {% endtab %}
 {% endtabs %}
 
-#### accept\_mutex\_delay
+### accept\_mutex\_delay
 
 {% tabs %}
 {% tab title="语法" %}
@@ -50,7 +50,7 @@ events
 {% endtab %}
 {% endtabs %}
 
-#### daemon
+### daemon
 
 {% tabs %}
 {% tab title="语法" %}
@@ -70,7 +70,7 @@ main
 {% endtab %}
 {% endtabs %}
 
-#### debug\_connection
+### debug\_connection
 
 {% tabs %}
 {% tab title="语法" %}
@@ -106,7 +106,7 @@ events {
 {% endtab %}
 {% endtabs %}
 
-#### debug\_points
+### debug\_points
 
 {% tabs %}
 {% tab title="语法" %}
@@ -126,7 +126,7 @@ main
 {% endtab %}
 {% endtabs %}
 
-#### env
+### env
 
 {% tabs %}
 {% tab title="语法" %}
@@ -162,7 +162,7 @@ Nginx 环境变量应该只在 Nginx 内部使用, 不应该被用户直接设�
 {% endtab %}
 {% endtabs %}
 
-#### error\_log
+### error\_log
 
 {% tabs %}
 {% tab title="语法" %}
@@ -190,7 +190,7 @@ main, http, mail, stream, server, location
 {% endtab %}
 {% endtabs %}
 
-#### events
+### events
 
 {% tabs %}
 {% tab title="语法" %}
@@ -210,7 +210,7 @@ main
 {% endtab %}
 {% endtabs %}
 
-#### include
+### include
 
 {% tabs %}
 {% tab title="语法" %}
@@ -237,7 +237,7 @@ include vhosts/*.conf;
 {% endtab %}
 {% endtabs %}
 
-#### load\_module
+### load\_module
 
 {% tabs %}
 {% tab title="语法" %}
@@ -261,7 +261,7 @@ load_module modules/ngx_mail_module.so;
 {% endtab %}
 {% endtabs %}
 
-#### lock\_file
+### lock\_file
 
 {% tabs %}
 {% tab title="语法" %}
@@ -281,7 +281,7 @@ Nginx 使用锁定机制来实现 `accept_mutex` 和从共享内存中获取数�
 {% endtab %}
 {% endtabs %}
 
-#### master\_process
+### master\_process
 
 {% tabs %}
 {% tab title="语法" %}
@@ -301,7 +301,7 @@ main
 {% endtab %}
 {% endtabs %}
 
-#### multi\_accept
+### multi\_accept
 
 {% tabs %}
 {% tab title="语法" %}
@@ -325,7 +325,7 @@ events
 {% endtab %}
 {% endtabs %}
 
-#### pcre\_jit
+### pcre\_jit
 
 {% tabs %}
 {% tab title="语法" %}
@@ -351,5 +351,15 @@ main
 {% endtab %}
 {% endtabs %}
 
+### pid
 
+{% tabs %}
+{% tab title="语法" %}
+
+{% endtab %}
+
+{% tab title="默认值" %}
+
+{% endtab %}
+{% endtabs %}
 

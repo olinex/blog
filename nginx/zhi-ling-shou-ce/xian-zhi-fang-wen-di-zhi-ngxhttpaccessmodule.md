@@ -24,7 +24,7 @@ location / {
 
 ## 指令
 
-#### allow
+### allow
 
 {% tabs %}
 {% tab title="语法" %}
@@ -44,7 +44,7 @@ http, server, location, limit\_except
 {% endtab %}
 {% endtabs %}
 
-#### deny
+### deny
 
 {% tabs %}
 {% tab title="语法" %}
