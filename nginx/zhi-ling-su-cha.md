@@ -40,6 +40,9 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 * [internal](zhi-ling-shou-ce/he-xin.md#internal)
 * [load\_module](zhi-ling-shou-ce/he-xin-gong-neng.md#load_module)
 * [lock\_file](zhi-ling-shou-ce/he-xin-gong-neng.md#lock_file)
+* [master\_process](zhi-ling-shou-ce/he-xin-gong-neng.md#master_process)
+* [multi\_accept](zhi-ling-shou-ce/he-xin-gong-neng.md#multi_accept)
+* [pcre\_jit](zhi-ling-shou-ce/he-xin-gong-neng.md#pcre_jit)
 
 
 

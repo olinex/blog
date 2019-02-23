@@ -253,7 +253,7 @@ main
 {% endtab %}
 
 {% tab title="说明" %}
-加载动态模块:
+加载动态模块\(1.9.11+\):
 
 ```text
 load_module modules/ngx_mail_module.so;
@@ -280,4 +280,76 @@ main
 Nginx 使用锁定机制来实现 `accept_mutex` 和从共享内存中获取数据并序列化. 在大多数系统中, 锁是通过原子操作实现的, 这个命令将会被忽视. 而在其他系统中, 则使用"锁文件"实现. 这个指令制定了锁文件的前缀.
 {% endtab %}
 {% endtabs %}
+
+#### master\_process
+
+{% tabs %}
+{% tab title="语法" %}
+**master\_process** on \| off;
+{% endtab %}
+
+{% tab title="默认值" %}
+master\_process on;
+{% endtab %}
+
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+决定是否启动工作进程. 这个命令适用于开发人员.
+{% endtab %}
+{% endtabs %}
+
+#### multi\_accept
+
+{% tabs %}
+{% tab title="语法" %}
+**multi\_accept** on \| off;
+{% endtab %}
+
+{% tab title="默认值" %}
+multi\_accept off;
+{% endtab %}
+
+{% tab title="上下文" %}
+events
+{% endtab %}
+
+{% tab title="说明" %}
+如果 multi\_accept 被关闭了, 工作进程会一次接受一个新连接. 否则, 一个工作进程将会一次接收所有的新连接.
+
+{% hint style="info" %}
+如果连接处理机制 kqueue 被启用, 这个指令将会被忽略, 因为它会向主进程报告有多少新连接等待连接.
+{% endhint %}
+{% endtab %}
+{% endtabs %}
+
+#### pcre\_jit
+
+{% tabs %}
+{% tab title="语法" %}
+**pcre\_jit** on \| off;
+{% endtab %}
+
+{% tab title="默认值" %}
+pcre\_jit off;
+{% endtab %}
+
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+开启或关闭对配置文件分析时, 正则表达式的"实时编译"\(PCRE JIT\).
+
+这个配置可以显著提高正则表达式的处理速度\(1.1.12+\).
+
+{% hint style="info" %}
+从 8.20 开始, 通过 --enable-jit 构建参数, 可以使 PCRE 库生效并开启实时编译. 构建好 PCRE 库后\(--with-pcre=\), 通过 --with-pcre-jet 构建参数开启.
+{% endhint %}
+{% endtab %}
+{% endtabs %}
+
+
 
