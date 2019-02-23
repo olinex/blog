@@ -415,3 +415,35 @@ main
 {% endtab %}
 {% endtabs %}
 
+### timer\_resolution
+
+{% tabs %}
+{% tab title="语法" %}
+**timer\_resolution** interval;
+{% endtab %}
+
+{% tab title="默认值" %}
+无
+{% endtab %}
+
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+减少工作进程内计时器的分辨率, 从而减少系统调用 `gettimeofday()` 的次数. 默认情况下每当收到内核事件, `gettimeofday()` 会被调用一次. 通过减少分辨率, `gettimeofday()` 只会在特定周期 `interval` 内调用一次
+
+例如:
+
+```text
+timer_resolution 100ms;
+```
+
+间隔的实现方式取决于连接处理机制:
+
+* 当连接处理机制为 `kqueue` 时, 为 `EVFILT_TIMER`
+* 当连接处理机制为 `eventport` 时, 为 `timer_create()`
+* 其他情况下, 为 `setitimer()`
+{% endtab %}
+{% endtabs %}
+

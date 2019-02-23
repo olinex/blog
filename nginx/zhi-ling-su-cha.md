@@ -46,6 +46,7 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 * [pid](zhi-ling-shou-ce/he-xin-gong-neng.md#pid)
 * [ssl\_engine](zhi-ling-shou-ce/he-xin-gong-neng.md#ssl_engine)
 * [thread\_pool](zhi-ling-shou-ce/he-xin-gong-neng.md#thread_pool)
+* [timer\_resolution](zhi-ling-shou-ce/he-xin-gong-neng.md#timer_resolution)
 
 
 
