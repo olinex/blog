@@ -190,5 +190,76 @@ main, http, mail, stream, server, location
 {% endtab %}
 {% endtabs %}
 
+#### events
+
+{% tabs %}
+{% tab title="语法" %}
+**events** {...}
+{% endtab %}
+
+{% tab title="默认值" %}
+无
+{% endtab %}
+
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+提供配置文件的上下文, 其中包含了影响连接处理的指令.
+{% endtab %}
+{% endtabs %}
+
+#### include
+
+{% tabs %}
+{% tab title="语法" %}
+**include** file \| mask;
+{% endtab %}
+
+{% tab title="默认值" %}
+无
+{% endtab %}
+
+{% tab title="上下文" %}
+any
+{% endtab %}
+
+{% tab title="说明" %}
+包含其他的文件, 或者和 `mask` 匹配的文件. 包含的文件内必须包括语法正确的指令和块.
+
+例如:
+
+```text
+include mime.types;
+include vhosts/*.conf;
+```
+{% endtab %}
+{% endtabs %}
+
+#### load\_module
+
+{% tabs %}
+{% tab title="语法" %}
+**load\_module** file;
+{% endtab %}
+
+{% tab title="默认值" %}
+无
+{% endtab %}
+
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+加载动态模块:
+
+```text
+load_module modules/ngx_mail_module.so;
+```
+{% endtab %}
+{% endtabs %}
+
 
 

@@ -32,10 +32,13 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 * [error\_log](zhi-ling-shou-ce/he-xin-gong-neng.md#error_log)
 * [error\_page](zhi-ling-shou-ce/he-xin.md#error_page)
 * [etag](zhi-ling-shou-ce/he-xin.md#etag)
+* [events](zhi-ling-shou-ce/he-xin-gong-neng.md#events)
 * [http](zhi-ling-shou-ce/he-xin.md#http)
 * [if\_modified\_since](zhi-ling-shou-ce/he-xin.md#if_modified_since)
 * [ignore\_invalid\_headers](zhi-ling-shou-ce/he-xin.md#ignore_invalid_headers)
+* [include](zhi-ling-shou-ce/he-xin-gong-neng.md#include)
 * [internal](zhi-ling-shou-ce/he-xin.md#internal)
+* [load\_module](zhi-ling-shou-ce/he-xin-gong-neng.md#load_module)
 
 
 
