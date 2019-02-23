@@ -355,11 +355,63 @@ main
 
 {% tabs %}
 {% tab title="语法" %}
-
+**pid** file;
 {% endtab %}
 
 {% tab title="默认值" %}
+pid logs/nginx.pid;
+{% endtab %}
 
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+设置保存主进程id的文件位置.
+{% endtab %}
+{% endtabs %}
+
+### ssl\_engine
+
+{% tabs %}
+{% tab title="语法" %}
+**ssl\_engine** device;
+{% endtab %}
+
+{% tab title="默认值" %}
+无
+{% endtab %}
+
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+定义了 SSL 硬件加速器的名称
+{% endtab %}
+{% endtabs %}
+
+### thread\_pool
+
+{% tabs %}
+{% tab title="语法" %}
+**thread\_pool** name threads=number \[max\_queue=number\];
+{% endtab %}
+
+{% tab title="默认值" %}
+thread\_pool default threads=32 max\_queue=65536;
+{% endtab %}
+
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+定义一个线程池及其名称, 使工作进程能够无阻塞地在多个线程间读写文件.
+
+`threads` 参数定义了线程池内线程的数量.
+
+当所有的线程都处于忙碌状态, 新的任务会在队列内等待. max\_queue 参数限制了队列内最多能等待多少任务. 默认情况下, 最多有 65536 个任务可以在队列内. 当队列满载时, 任务会结束并返回错误.
 {% endtab %}
 {% endtabs %}
 
