@@ -39,6 +39,7 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 * [include](zhi-ling-shou-ce/he-xin-gong-neng.md#include)
 * [internal](zhi-ling-shou-ce/he-xin.md#internal)
 * [load\_module](zhi-ling-shou-ce/he-xin-gong-neng.md#load_module)
+* [lock\_file](zhi-ling-shou-ce/he-xin-gong-neng.md#lock_file)
 
 
 

@@ -261,5 +261,23 @@ load_module modules/ngx_mail_module.so;
 {% endtab %}
 {% endtabs %}
 
+#### lock\_file
 
+{% tabs %}
+{% tab title="语法" %}
+**lock\_file** file;
+{% endtab %}
+
+{% tab title="默认值" %}
+lock\_file logs/nginx.lock;
+{% endtab %}
+
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+Nginx 使用锁定机制来实现 `accept_mutex` 和从共享内存中获取数据并序列化. 在大多数系统中, 锁是通过原子操作实现的, 这个命令将会被忽视. 而在其他系统中, 则使用"锁文件"实现. 这个指令制定了锁文件的前缀.
+{% endtab %}
+{% endtabs %}
 
