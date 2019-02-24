@@ -2,7 +2,7 @@
 description: '本文章由olinex翻译, 转载请在页面开头标明出处'
 ---
 
-# 新手手册
+# 基础
 
 ## 概念定义
 
@@ -29,9 +29,9 @@ Docker 提供给开发人员和系统管理员, 利用容器来开发/部署/运
 
 相比之下, 虚拟机\(VM\)将会运行一个完整的子操作系统, 并通过虚拟机管理程序访问主机资源. 一般来说, 虚拟机会提供给应用不必要的资源.
 
-![&#x6765;&#x6E90;&#x4E8E;&#x5B98;&#x65B9;&#x6587;&#x6863;\(https://docs.docker.com/get-started/\)](../.gitbook/assets/container-2x.png)
+![&#x6765;&#x6E90;&#x4E8E;&#x5B98;&#x65B9;&#x6587;&#x6863;\(https://docs.docker.com/get-started/\)](../../.gitbook/assets/container-2x.png)
 
-![&#x6765;&#x6E90;&#x4E8E;&#x5B98;&#x65B9;&#x6587;&#x6863;\(https://docs.docker.com/get-started/\)](../.gitbook/assets/vm-2x.png)
+![&#x6765;&#x6E90;&#x4E8E;&#x5B98;&#x65B9;&#x6587;&#x6863;\(https://docs.docker.com/get-started/\)](../../.gitbook/assets/vm-2x.png)
 
 ## 准备你的 Docker 环境
 
