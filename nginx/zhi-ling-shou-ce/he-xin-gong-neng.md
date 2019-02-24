@@ -447,3 +447,87 @@ timer_resolution 100ms;
 {% endtab %}
 {% endtabs %}
 
+### use
+
+{% tabs %}
+{% tab title="语法" %}
+**use** method;
+{% endtab %}
+
+{% tab title="默认值" %}
+无
+{% endtab %}
+
+{% tab title="上下文" %}
+events
+{% endtab %}
+
+{% tab title="说明" %}
+设置了 Nginx 使用何种连接处理机制, 一般情况下不需要显式声明, 因为 Nginx 会自动使用最有效的机制.
+{% endtab %}
+{% endtabs %}
+
+### user
+
+{% tabs %}
+{% tab title="语法" %}
+**user** user group;
+{% endtab %}
+
+{% tab title="默认值" %}
+user nobody nobody;
+{% endtab %}
+
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+设置了启用工作进程的用户和用户组, 如果用户组被忽略, 则会使用和用户同名的用户组.
+{% endtab %}
+{% endtabs %}
+
+### worker\_aio\_requests
+
+{% tabs %}
+{% tab title="语法" %}
+**worker\_aio\_requests** number;
+{% endtab %}
+
+{% tab title="默认值" %}
+worker\_aio\_requests 32;
+{% endtab %}
+
+{% tab title="上下文" %}
+events
+{% endtab %}
+
+{% tab title="说明" %}
+当开启了 `aio` 并且连接处理机制为 `epoll` , 可以设置单个工作进程的异步 I/O 操作的最大未完成数.
+{% endtab %}
+{% endtabs %}
+
+### worker\_connections
+
+{% tabs %}
+{% tab title="语法" %}
+**worker\_connections** number;
+{% endtab %}
+
+{% tab title="默认值" %}
+worker\_connections 512;
+{% endtab %}
+
+{% tab title="上下文" %}
+events
+{% endtab %}
+
+{% tab title="说明" %}
+设置工作进程能够同时开启的最大连接数.
+
+你一定要牢记, 这个连接数影响了所有的连接\(包括与被代理服务器的连接\), 而不是只与客户端的. 另外, 真正能够同时开启的最大连接数, 不能超过当前开启文件的最大数量, 这个数量能够通过 `worker_rlimit_nofile` 配置
+{% endtab %}
+{% endtabs %}
+
+
+
