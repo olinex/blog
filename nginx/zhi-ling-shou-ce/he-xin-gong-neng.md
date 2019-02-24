@@ -503,7 +503,7 @@ events
 {% endtab %}
 
 {% tab title="说明" %}
-当开启了 `aio` 并且连接处理机制为 `epoll` , 可以设置单个工作进程的异步 I/O 操作的最大未完成数.
+当开启了 `aio` 并且连接处理机制为 `epoll` , 可以设置单个工作进程的异步 I/O 操作的最大未完成数\(1.1.4+, 1.0.7+\).
 {% endtab %}
 {% endtabs %}
 
@@ -529,5 +529,190 @@ events
 {% endtab %}
 {% endtabs %}
 
+### worker\_cpu\_affinity
 
+{% tabs %}
+{% tab title="语法" %}
+**worker\_cpu\_affinity** cpumask ...;
+
+**worker\_cpu\_affinity** auto \[cpumask\];
+{% endtab %}
+
+{% tab title="默认值" %}
+无
+{% endtab %}
+
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+将工作进程与指定的 CPU 集合绑定. 每个 CPU 集合由位掩码指定. 每个工作进应该通过定义一个单独的集合. 默认情况下, 工作进程不与任何特定的 CPU 集合绑定.
+
+例如:
+
+```text
+worker_processes    4;
+worker_cpu_affinity 0001 0010 0100 1000;
+```
+
+将每个工作进程和不同的 CPU 绑定:
+
+```text
+worker_processes    2;
+worker_cpu_affinity 0101 1010;
+```
+
+将第一个工作进程和 CPU0/CPU2 绑定, 将第二个工作进程和CPU1/CPU3 绑定. 
+
+以下示例适用于超线程. 特殊的值 auto 允许自动地将可用的 CPU 与工作进程绑定:
+
+```text
+worker_processes auto;
+worker_cpu_affinity auto;
+```
+
+可选的 mask 参数可以限制哪些 CPU 用于自动绑定:
+
+```text
+worker_cpu_affinity auto 01010101;
+```
+
+{% hint style="info" %}
+这个命令只能用与 FreeBSD 和 Linux 系统.
+{% endhint %}
+{% endtab %}
+{% endtabs %}
+
+### worker\_priority
+
+{% tabs %}
+{% tab title="语法" %}
+**worker\_priority** number;
+{% endtab %}
+
+{% tab title="默认值" %}
+worker\_priority 0;
+{% endtab %}
+
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+定义了工作进程的计划优先级, 如同 `nice` 命令实现的一样: 负数的 `number` 代表了更高的优先级. 数字只允许从 -20 到 20. 例如:
+
+```text
+worker_priority -10;
+```
+{% endtab %}
+{% endtabs %}
+
+### worker\_processes
+
+{% tabs %}
+{% tab title="语法" %}
+**worker\_processes** number \| auto;
+{% endtab %}
+
+{% tab title="默认值" %}
+worker\_processes 1;
+{% endtab %}
+
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+定义了工作进程的数量. 最合适的数量取决于很多因素, 包括但不限于:
+
+* CPU 的核心数
+* 存储数据的硬盘数量
+* 负载模式
+
+当有疑问的时候, 设置为 可用的 CPU 核心数会是一个好的选择.
+
+auto 会尝试自动选择一个合适的值\(1.3.8+ , 1.2.5+\).
+{% endtab %}
+{% endtabs %}
+
+### worker\_rlimit\_core
+
+{% tabs %}
+{% tab title="语法" %}
+**worker\_rlimit\_core** size;
+{% endtab %}
+
+{% tab title="默认值" %}
+无
+{% endtab %}
+
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+更改工作进程的核心文件 \(RLIMIT\_CORE\) 的最大大小的限制. 用于在不重新启动主进程的情况下增加限制. 
+{% endtab %}
+{% endtabs %}
+
+### worker\_rlimit\_nofile
+
+{% tabs %}
+{% tab title="语法" %}
+**worker\_rlimit\_nofile** number;
+{% endtab %}
+
+{% tab title="默认值" %}
+无
+{% endtab %}
+
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+更改工作进程打开文件的最大数量 \(RLIMIT\_nofile\) 的限制。用于在不重新启动主进程的情况下增加限制.
+{% endtab %}
+{% endtabs %}
+
+### worker\_shutdown\_timeout
+
+{% tabs %}
+{% tab title="语法" %}
+**worker\_shutdown\_timeout** time;
+{% endtab %}
+
+{% tab title="默认值" %}
+无
+{% endtab %}
+
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+设置软关闭工作进程的超时值. 当超过了 time 设置的值, Nginx 会尝试主动关闭所有当前开启了的连接\(1.11.11+\).
+{% endtab %}
+{% endtabs %}
+
+### worker\_directory
+
+{% tabs %}
+{% tab title="语法" %}
+**worker\_directory** directory;
+{% endtab %}
+
+{% tab title="默认值" %}
+无
+{% endtab %}
+
+{% tab title="上下文" %}
+main
+{% endtab %}
+
+{% tab title="说明" %}
+定义了工作进程的当前工作目录. 这个指令主要用于开发核心文件时, 工作进程拥有指定目录的写入权限.
+{% endtab %}
+{% endtabs %}
 

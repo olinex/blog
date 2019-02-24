@@ -51,6 +51,13 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 45. [user](zhi-ling-shou-ce/he-xin-gong-neng.md#user)
 46. [worker\_aio\_requests](zhi-ling-shou-ce/he-xin-gong-neng.md#worker_aio_requests)
 47. [worker\_connections](zhi-ling-shou-ce/he-xin-gong-neng.md#worker_connections)
+48. [worker\_cpu\_affinity](zhi-ling-shou-ce/he-xin-gong-neng.md#worker_cpu_affinity)
+49. [worker\_priority](zhi-ling-shou-ce/he-xin-gong-neng.md#worker_priority)
+50. [worker\_processes](zhi-ling-shou-ce/he-xin-gong-neng.md#worker_processes)
+51. [worker\_rlimit\_core](zhi-ling-shou-ce/he-xin-gong-neng.md#worker_rlimit_core)
+52. [worker\_rlimit\_nofile](zhi-ling-shou-ce/he-xin-gong-neng.md#worker_rlimit_nofile)
+53. [worker\_shutdown\_timeout](zhi-ling-shou-ce/he-xin-gong-neng.md#worker_shutdown_timeout)
+54. [worker\_directory](zhi-ling-shou-ce/he-xin-gong-neng.md#worker_directory)
 
 
 
