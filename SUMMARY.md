@@ -2,11 +2,9 @@
 
 * [Initial page](README.md)
 
-## redis
+## docker
 
-## mongodb
-
-## elasticsearch
+* [新手手册](docker/xin-shou-shou-ce.md)
 
 ## Postgresql
 
@@ -41,4 +39,10 @@
 ## Python
 
 ## machine learning
+
+## redis
+
+## mongodb
+
+## elasticsearch
 
