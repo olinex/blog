@@ -122,3 +122,17 @@ Dockerfile    app.py    requirements.txt
 docker build --tag=friendlyhello
 ```
 
+那么刚创建的镜像在哪里呢? 他在你的本地 Docker 镜像资源库内:
+
+```bash
+docker image ls
+REPOSITORY            TAG                 IMAGE ID
+friendlyhello         latest              326387cea398
+```
+
+镜像的标签默认为 `lastest` , 完整定义镜像名称和标签的语法为 `--tag=friendlyhello:v0.0.1` 
+
+{% hint style="info" %}
+Linux 用户的常见问题:
+{% endhint %}
+
