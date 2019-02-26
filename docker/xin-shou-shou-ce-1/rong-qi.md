@@ -172,5 +172,27 @@ sudo service docker restart
 docker run -p 4000:80 friendlyhello
 ```
 
-你可以看到一条信息, 表明 Python 已经在 `0.0.0.0:80` 端口上运行了应用. 但这个信息来自于容器内部, 
+你可以看到一条信息, 表明 Python 已经在 `http://0.0.0.0:80` 端口上运行了应用. 但这个信息来自于容器内部, 因为内部并不知道应用接口 80 已经映射到本地主机的 4000, 你需要通过 `http://localhost:4000` 接口访问.
+
+通过浏览器你可以看到网页内容:
+
+![&#x6765;&#x6E90;&#x4E8E;&#x5B98;&#x65B9;&#x6587;&#x6863;\(https://docs.docker.com/get-started/part2/\)](../../.gitbook/assets/app-in-browser.png)
+
+{% hint style="info" %}
+如果你使用了Docker Toolbox on Windows 7, 需要使用 Docker 机器的 IP 来替代 localhost, 通过 docker-machine ip 可以查看 IP
+{% endhint %}
+
+你可以在命令行终端通过 `curl` 命令查看相同的内容:
+
+```bash
+$ curl http://localhost:4000
+
+<h3>Hello World!</h3>
+<b>Hostname:</b> 8fc990912a14<br/>
+<b>Visits:</b> <i>cannot connect to Redis, counter disabled</i>
+```
+
+接口映射 `4000:80` 表示了 Dockerfile 内 `EXPOSE` 与开放接口的区别, 开放接口通过 `docker run -p` 命令设置. 
+
+在终端内输入 CTRL+C 来停止应用.
 
