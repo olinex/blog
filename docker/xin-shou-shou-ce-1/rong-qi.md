@@ -132,7 +132,45 @@ friendlyhello         latest              326387cea398
 
 镜像的标签默认为 `lastest` , 完整定义镜像名称和标签的语法为 `--tag=friendlyhello:v0.0.1` 
 
-{% hint style="info" %}
-Linux 用户的常见问题:
-{% endhint %}
+### Linux 用户的常见问题:
+
+#### 代理服务器设置
+
+代理服务器可能会导致连接应用时被阻塞, 如果网络存在代理服务, 添加以下内容到 `Dockerfile` 内, 通过 `ENV` 设置代理服务器的主机和端口:
+
+```text
+# 设置代理服务器
+ENV http_proxy host:port
+ENV https_proxy host:port
+```
+
+#### DNS 设置
+
+错误的 DNS 配置可能导致 `pip` 工具出现故障. 你可以设置你自己的 DNS 服务器地址来使 `pip` 能够正常工作. 通过创建或修改配置文件 `/etc/docker/daemon.json 的 dns` 值, 可以改变 Docker 守护进程的 DNS 配置:
+
+```javascript
+{
+    "dns" : ["your_dns_address", "8.8.8.8"]
+}
+```
+
+列表内, 第一个元素是 DNS 的服务器地址, 第二个参数是作为备份的 Google DNS 服务器地址.
+
+保存 daemon.json 配置文件并重启 Docker 服务:
+
+```bash
+sudo service docker restart
+```
+
+重启后, 尝试重新运行构建命令.
+
+## 运行应用
+
+运行应用, 通过 `-p` 参数, 将本地机器的 4000 端口和容器的 80 端口绑定建立映射:
+
+```bash
+docker run -p 4000:80 friendlyhello
+```
+
+你可以看到一条信息, 表明 Python 已经在 `0.0.0.0:80` 端口上运行了应用. 但这个信息来自于容器内部, 
 
