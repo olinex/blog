@@ -196,3 +196,81 @@ $ curl http://localhost:4000
 
 在终端内输入 CTRL+C 来停止应用.
 
+{% hint style="info" %}
+在 windows 系统中, CTRL + C 并不会停止容器的进程, 因此先要输入 CTRL + C 来获取输入管道\(或者重新打来一个新的\), 接着输入 docker container ls 来打印正在运行中的容器, 接着输入 docker container stop &lt;Container Name or ID&gt; 来停止指定的容器. 否则, 当你尝试重新运行容器时, 你会从守护进程收到一个错误响应.
+{% endhint %}
+
+现在让我们在后台运行运行应用:
+
+```bash
+docker run -d -p 4000:80 friendlyhello
+```
+
+你会获得容器的长 ID , 随后应用将会进入后台运行. 你的容器将会在后台运行. 你还可以通过 `docker container ls` 查看容器的缩写 ID \(两个 ID 在命令中都可以正常使用\)
+
+```bash
+$ docker container ls
+CONTAINER ID        IMAGE               COMMAND             CREATED
+1fa4ab2cf395        friendlyhello       "python app.py"     28 seconds ago
+```
+
+使用 CONTAINER ID 可以停止指定的进程:
+
+```bash
+docker container stop 1fa4ab2cf395
+```
+
+## 分享镜像
+
+为了展示可移植性, 让我们将刚刚构建的镜像上传并在别的地方运行. 当你想要将容器部署在产品环境中时, 你需要知道如何将其推送到注册表内.
+
+注册表是仓库的集合, 仓库是镜像的集合, 类似 GitHub 仓. 一个账号可以在注册表内可以创建多个仓库. docker 命令默认使用 Docker 的公开注册表.
+
+### 通过 Docker ID 登录
+
+如果你还没有 Docker 帐号, 可以在 [hub.docker.com](http://hub.docker.com) 注册.
+
+在你的本地电脑登录到 Docker 的公开注册表:
+
+```bash
+docker login
+```
+
+### 标注镜像
+
+将本地镜像与注册表内的仓库对应的表示方法为: `username/repository:tag` . `tag` 标签是可选的, 但建议使用, 因为注册表将根据标签对镜像进行版本管理. 建议为仓库和标签选取语义化的名称, 例如 `get-started:part2` . 这会将镜像推送至 get-started 仓库, 并且标注为 part2.
+
+```bash
+docker tag image username/repository:tag
+```
+
+例如:
+
+```bash
+docker tag friendlyhello gordon/get-started:part2
+```
+
+运行 `docker image ls` 来查看我们新标注的镜像:
+
+```bash
+$ docker image ls
+
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+friendlyhello            latest              d9e555c53008        3 minutes ago       195MB
+gordon/get-started         part2               d9e555c53008        3 minutes ago       195MB
+python                   2.7-slim            1c7128a655f6        5 days ago          183MB
+...
+```
+
+### 推送镜像
+
+上传你的镜像到注册表:
+
+```text
+docker push username/repository:tag
+```
+
+上传完毕后, 你的镜像将会公开生效, 如果你登录到 Docker Hub , 你会看到新的镜像已经创建.
+
+
+
