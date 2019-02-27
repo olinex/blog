@@ -5,8 +5,9 @@
 ## docker
 
 * [新手手册](docker/xin-shou-shou-ce-1/README.md)
-  * [第一部分 - 基础](docker/xin-shou-shou-ce-1/xin-shou-shou-ce.md)
+  * [第一部分 - 基础](docker/xin-shou-shou-ce-1/ji-chu.md)
   * [第二部分 - 容器](docker/xin-shou-shou-ce-1/rong-qi.md)
+  * [第三部分 - 服务](docker/xin-shou-shou-ce-1/fu-wu.md)
 
 ## Postgresql
 

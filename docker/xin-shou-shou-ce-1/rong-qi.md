@@ -272,5 +272,31 @@ docker push username/repository:tag
 
 上传完毕后, 你的镜像将会公开生效, 如果你登录到 Docker Hub , 你会看到新的镜像已经创建.
 
+### 从远程仓库获取镜像并运行
 
+你现在可以通过 `docker run` 命令运行你的应用在任何主机上:
+
+```text
+docker run -p 4000:80 username/repository:tag
+```
+
+如果镜像不在本地主机上, Docker会从仓库拉取
+
+```text
+$ docker run -p 4000:80 gordon/get-started:part2
+Unable to find image 'gordon/get-started:part2' locally
+part2: Pulling from gordon/get-started
+10a267c67f42: Already exists
+f68a39a6a5e4: Already exists
+9beaffc0cf19: Already exists
+3c1fe835fb6b: Already exists
+4c9f1fa8fcb8: Already exists
+ee7d8f576a14: Already exists
+fbccdcced46e: Already exists
+Digest: sha256:0601c866aab2adcc6498200efd0f754037e909e5fd42069adeff72d1e2439068
+Status: Downloaded newer image for gordon/get-started:part2
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+```
+
+无论 d`ocker run` 在何处执行, 它会拉取你的镜像, 包括 Python 和 `requirements.txt` 内的依赖, 并运行你的代码. 它会将一切都放在一个简介的包内, 你不需要安装任何其他的东西\(除了 Docker 本身之外\).
 
