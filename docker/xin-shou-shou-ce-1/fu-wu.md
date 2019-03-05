@@ -7,11 +7,11 @@ description: '本文章由olinex翻译, 转载请在页面开头标明出处'
 ## 前提条件
 
 * 已安装 Docker \(1.13+\)
-* 已安装 [Docker Compose](https://docs.docker.com/compose/overview/). [Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/) 和 [Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/) 已经预先安装了, 你可以安心使用. 在 Linux 系统中, 你需要 [手动安装](https://github.com/docker/compose/releases) . 在 Windows 10 以前的系统, 并且 CPU 没有 Hyper-v 功能, 请使用 [Docker Toolbox](https://docs.docker.com/toolbox/overview/) .
+* 已安装 [Docker Compose](https://docs.docker.com/compose/overview/). [Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/) 和 [Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/) 已经预先安装了, 你可以安心使用. 在 Linux 系统中, 你需要 [手动安装](https://github.com/docker/compose/releases) . 在 Windows 10 以前的系统, 并且 CPU 没有 Hyper-v 功能, 请使用 [Docker Toolbox](https://docs.docker.com/toolbox/overview/) 
 * 已完成 第一部分 的阅读
-* 已成 第二部分 的阅读
+* 已完成 第二部分 的阅读
 * 已将 friendlyhello 镜像上传至仓库. 我们在后续需要使用这个共享镜像
-* 已将镜像作为已部署的容器运行.
+* 已将镜像作为已部署的容器运行
 
 ## 简介
 

@@ -8,6 +8,7 @@
   * [第一部分 - 基础](docker/xin-shou-shou-ce-1/ji-chu.md)
   * [第二部分 - 容器](docker/xin-shou-shou-ce-1/rong-qi.md)
   * [第三部分 - 服务](docker/xin-shou-shou-ce-1/fu-wu.md)
+  * [第四部分 - 集群](docker/xin-shou-shou-ce-1/ji-qun.md)
 
 ## Postgresql
 
