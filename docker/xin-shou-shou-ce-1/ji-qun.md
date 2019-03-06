@@ -17,7 +17,20 @@ description: '本文章由olinex翻译, 转载请在页面开头标明出处'
 
 ## 简介
 
-在 第四部分 , 你将学会如何将应用部署为集群, 并在不同的计算机上运行. 通过
+在 第四部分 , 你将学会如何将应用部署为集群, 并在不同的计算机上运行. 通过将多个计算机加入到集群, 使得多容器, 多计算机的应用成为可能.
 
-Here in part 4, you deploy this application onto a cluster, running it on multiple machines. Multi-container, multi-machine applications are made possible by joining multiple machines into a “Dockerized” cluster called a **swarm**.
+## 集群
+
+群是一组运行 Docker 的计算机集合. 当它们加入集群后, 你可以继续运行 Docker 命令, 但命令将会在 **群管理器** 当中运行. 加入群的计算机可以是物理机或是虚拟机, 每个加入群的计算机都将视为一个 **节点** .
+
+群管理器可以以不同的策略运行容器:
+
+* 空节点 - 仅使用最少数量的计算机来运行容器
+* 全局 - 确保每台计算机都拥有指定容器的实例
+
+你可以通过 `docker-compose.yml` 文件来指定集群的策略.
+
+群管理器是集群中唯一能运行你的命令的计算机, 且能对其他将要作为工作机器加入群的计算机进行验证. 工作机器只负责提供服务, 但不能对其他机器进行管理.
+
+现在, 你已经在本地机器上架设了一个单机模式的 Docker . 但是 Docker 运行 集群模式 . 立即启用集群模式会使当前计算机成为群管理器. 从现在开始, Docker 将会在集群中运行命令, 而不是只在当前计算机上.
 
