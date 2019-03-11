@@ -166,7 +166,7 @@ sudo service docker restart
 
 ## 运行应用
 
-运行应用, 通过 `-p` 参数, 将本地机器的 4000 端口和容器的 80 端口绑定建立映射:
+运行应用, 通过 `-p` 参数, 将本地主机的 4000 端口和容器的 80 端口绑定建立映射:
 
 ```bash
 docker run -p 4000:80 friendlyhello
@@ -179,7 +179,7 @@ docker run -p 4000:80 friendlyhello
 ![&#x6765;&#x6E90;&#x4E8E;&#x5B98;&#x65B9;&#x6587;&#x6863;\(https://docs.docker.com/get-started/part2/\)](../../.gitbook/assets/app-in-browser.png)
 
 {% hint style="info" %}
-如果你使用了Docker Toolbox on Windows 7, 需要使用 Docker 机器的 IP 来替代 localhost, 通过 docker-machine ip 可以查看 IP
+如果你使用了Docker Toolbox on Windows 7, 需要使用 Docker 主机的 IP 来替代 localhost, 通过 docker-machine ip 可以查看 IP
 {% endhint %}
 
 你可以在命令行终端通过 `curl` 命令查看相同的内容:

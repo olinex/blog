@@ -82,7 +82,7 @@ This message shows that your installation appears to be working correctly.
 ...
 ```
 
-显示已经下载到你的机器上的 `hello-world` 镜像:
+显示已经下载到你的主机上的 `hello-world` 镜像:
 
 ```bash
 docker image ls
