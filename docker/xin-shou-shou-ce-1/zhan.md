@@ -109,7 +109,7 @@ docker stack ps getstartedlab
 
 ## 保存数据
 
-让我们再次按照刚才的流程增加一个 Redis 数据库, 用来保存应用的数据.
+* 让我们再次按照刚才的流程增加一个 Redis 数据库, 用来保存应用的数据.
 
 打开 `docker-compose.yml` 并按如下内容修改. 注意将 username/repo:tag 替换为你的镜像.
 
@@ -173,6 +173,54 @@ Redis 服务配置有以下两个参数:
 * volumes - 使容器内访问 `/data` 可以直接访问 主机的 `/home/docker/data` . 当容器发生变化的时候, 保存在容器内的文件可以被持久化保存在主机上
 
 你现在已经部署了一个使用 Redis 服务的栈了.
+
+* 在集群管理器内创建 `./data` 目录
+
+```bash
+docker-machine ssh myvm1 "mkdir ./data"
+```
+
+* 确保你当前的终端已配置为与 `myvm1` 通讯.
+  * 运行 `docker-machine ls` 来罗列所有的机器, 并且确保你已经连接上 `myvm1` .
+  * 如果有必要, 可以重新运行 `docker-machine env myvm1` , 并运行打印出的命令来配置终端.
+
+{% tabs %}
+{% tab title="Mac/Linux" %}
+```bash
+eval $(docker-machine env myvm1)
+```
+{% endtab %}
+
+{% tab title="Windows" %}
+```bash
+& "C:\Program Files\Docker\Docker\Resources\bin\docker-machine.exe" env myvm1 | Invoke-Expression
+```
+{% endtab %}
+{% endtabs %}
+
+* 再一次运行 `docker stack deploy` 
+
+```bash
+docker stack deploy -c docker-compose.yml getstartedlab
+```
+
+* 运行 `docker service ls` 来验证三个服务是否正在按期望地运行.
+
+```bash
+$ docker service ls
+ID                  NAME                       MODE                REPLICAS            IMAGE                             PORTS
+x7uij6xb4foj        getstartedlab_redis        replicated          1/1                 redis:latest                      *:6379->6379/tcp
+n5rvhm52ykq7        getstartedlab_visualizer   replicated          1/1                 dockersamples/visualizer:stable   *:8080->8080/tcp
+mifd433bti1d        getstartedlab_web          replicated          5/5                 gordon/getstarted:latest        *:80->80/tcp
+```
+
+* 检查其中一个节点的网页, 例如 `http://192.168.99.101` , 可以看到访问者的计数已经实时更新并且保存至 Redis 内了. 
+
+![&#x6765;&#x6E90;&#x4E8E;&#x5B98;&#x65B9;&#x6587;&#x6863;\(https://docs.docker.com/get-started/part5/\)](../../.gitbook/assets/app-in-browser-redis.png)
+
+ 同时, 检查任意节点 8080 端口上的 `visualizer` 服务, 可以发现 `redis` 服务已经和 `web` 以及 `visualizer` 服务 一起运行了. 
+
+![&#x6765;&#x6E90;&#x4E8E;&#x5B98;&#x65B9;&#x6587;&#x6863;\(https://docs.docker.com/get-started/part5/\)](../../.gitbook/assets/visualizer-with-redis.png)
 
 
 
