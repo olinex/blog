@@ -12,6 +12,8 @@
   * [第五部分 - 栈](docker/xin-shou-shou-ce/zhan.md)
   * [第六部分 - 部署](docker/xin-shou-shou-ce/bu-shu.md)
 * [框架搭建](docker/kuang-jia-da-jian.md)
+* [参考手册](docker/can-kao-shou-ce/README.md)
+  * [Docker File](docker/can-kao-shou-ce/docker-file.md)
 
 ## Postgresql
 
