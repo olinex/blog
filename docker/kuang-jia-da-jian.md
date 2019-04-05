@@ -87,6 +87,18 @@ sudo systemctl start docker
 sudo docker run hello-world
 ```
 
+### 初始化集群
+
+Docker 的集群创建是非常简单的, 我们现在只需要创建一个可以后续扩展的单节点集群:
+
+```text
+sudo docker swarm init
+```
+
+{% hint style="info" %}
+若集群已经创建, 可以通过sudo docker swarm leave \[--force\] 来让节点离开这个集群, 若管理节点离开了集群, 且集群内再也没有别的节点, 则集群将会被废弃, 集群内的secret 文件将会被删除
+{% endhint %}
+
 ### 生成TLS证书
 
 * 先让我们暂且在 /home 下创建一个工作环境, 并在工作环境下创建一个 TLS 证书的存储文件
@@ -100,7 +112,7 @@ cd /home && mkdir docker && cd docker && mkdir certs
 ```bash
 openssl req \
 -newkey rsa:4096 -nodes -sha256 -keyout certs/<docker.domain.com>.key \
--x509 -days 365 -out certs/<docker.domain.com>.crt
+-x509 -days <天数> -out certs/<docker.domain.com>.crt
 ```
 
 * 运行脚本并生成证书
