@@ -90,7 +90,7 @@ myvm2   -        virtualbox   Running   tcp://192.168.99.101:2376           v17.
 
 第一个主机将作为管理器, 它会运行管理命令并验证加入到集群的工作主机, 第二个主机是工作主机.
 
-你可以通过 docker-machine ssh 命令来向你的虚拟机发送命令. 通过 `docker swarm init` 命令指定 `myvm1` 为群管理器:
+你可以通过 `docker-machine ssh` 命令来向你的虚拟机发送命令. 通过 `docker swarm init` 命令指定 `myvm1` 为群管理器:
 
 ```bash
 $ docker-machine ssh myvm1 "docker swarm init --advertise-addr <myvm1 ip>"
@@ -103,9 +103,9 @@ To add a worker to this swarm, run the following command:
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
 
-务必在运行 docker swarm init 和 docker swarm join 的时候, 使用 2377 接口 \(群管理接口\) , 或不指定接口来使用默认接口.
+务必在运行 `docker swarm init` 和 `docker swarm join` 的时候, 使用 2377 接口 \(群管理接口\) , 或不指定接口来使用默认接口.
 
-通过 docker-machine ls 命令返回的IP地址包括了 2376 接口, 这是 Docker 守护进程接口, 请不要使用该接口, 否则会[报错](https://forums.docker.com/t/docker-swarm-join-with-virtualbox-connection-error-13-bad-certificate/31392/2)
+通过 `docker-machine ls` 命令返回的IP地址包括了 2376 接口, 这是 Docker 守护进程接口, 请不要使用该接口, 否则会[报错](https://forums.docker.com/t/docker-swarm-join-with-virtualbox-connection-error-13-bad-certificate/31392/2)
 
 Docker 允许你 使用系统自身的SSH , 如果因为一些原因不能通过群管理器发送命令, 可以在运行 ssh 命令时使用 `--native-ssh` :
 
