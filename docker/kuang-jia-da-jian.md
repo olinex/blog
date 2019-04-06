@@ -130,23 +130,6 @@ openssl req \
 sh generate-ssl.sh
 ```
 
-* 将证书写入 `docker secret`
-
-```bash
-docker secret create domain.crt certs/<docker.domain.com>.crt
-docker secret create domain.crt certs/<docker.domain.com>.key
-```
-
-### 设置仓库标签
-
-集群中需要一个单一节点来安装仓库镜像, 因此需要为其中一个节点设置标签来区分:
-
-```bash
-docker node update --label-add registry=true <node>
-```
-
-其中, `<node>` 为节点的 ID , 我们的集群中只有当前的节点, 可以通过 docker node ls 命令来查看, 该命令为当前节点增加了一个 `registry` 标签.
-
 ### 生成帐号密码
 
 对于 Docker 的仓库服务, 我们希望能够从公网访问, 这便于我们在本地机器上进行开发, 但是在公网环境下是非常不安全的, 我们希望我们的镜像不会被公开, 也不希望任何未知人士都能修改我们的镜像. 因此我们需要为仓库服务添加鉴权机制, 注意当前的目录一定要在我们的工作环境 `/home/docker` 下, 为了将来能够更加方便地增加帐号密码, 可以将以下代码封装为一个脚本 `create-user.sh` :
@@ -159,7 +142,6 @@ read -p "Enter your username: " USERNAME
 read -p "Enter your password: " -s PASSWORD
 
 docker run --rm --entrypoint htpasswd registry:2 -Bbn $USERNAME $PASSWORD >> auth/htpasswd
-mkdir auth && docker run --rm --entrypoint htpasswd registry:2 -Bbn testuser testpassword > auth/htpasswd
 ```
 
 在 /home/docker 下创建一个 auth 文件夹用于保存帐号密码文件:
@@ -178,31 +160,106 @@ sh create-user.sh
 
 ### 运行仓库服务
 
-非常好, 我们现在距离目标只剩下最后一步, 创建一个 run-registry.sh 脚本, 用于创建仓库:
+非常好, 我们现在距离目标只剩下最后一步, 让我们通过 Compose 编排工具来部署仓库, 在 `/home/docker` 下创建一个 `docker-compose.yml` 文件, 用于创建仓库:
 
-```bash
-docker service create \
---name registry \
---secret <docker.domain.com>.crt \
---secret <docker.domain.com>.key \
---constraint 'node.labels.registry==true' \
---mount type=bind,src=/mnt/registry,dst=/var/lib/registry \
--e REGISTRY_HTTP_ADDR=0.0.0.0:5000 \
--e REGISTRY_HTTP_TLS_CERTIFICATE=/run/secrets/<docker.domain.com>.crt \
--e REGISTRY_HTTP_TLS_KEY=/run/secrets/<docker.domain.com>.key \
--e REGISTRY_AUTH=htpasswd \
--e REGISTRY_AUTH_HTPASSWD_REALM="Registry Realm" \
--e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \
---publish published=5000,target=5000 \
---replicas 1 \
-registry:2
+```yaml
+# docker-compose 的语法有多种版本, 从 1.x 到最近的 3.7
+version: "3.7"
+services:
+  # 声明了服务的名称为 registry
+  registry:
+    image: registry:2
+    # 将容器内仓库的端口与主机的端口绑定, 可以绑定多对接口
+    ports:
+      # 主机端口:服务端口
+      - 5000:5000
+    deploy:
+      # 只运行一个任务实例
+      replicas: 1
+      restart_policy:
+        # 重新运行仓库任务的条件
+        condition: on-failure
+      placement:
+        constraints:
+          # 对部署的主机进行约束, 只允许任务实例部署在管理节点上
+          - node.role == manager
+    environment:
+      REGISTRY_HTTP_TLS_CERTIFICATE: "/certs/<docker.domain.com>.crt"
+      REGISTRY_HTTP_TLS_KEY: "/certs/<docker.domain.com>.key"
+      REGISTRY_AUTH: "htpasswd"
+      REGISTRY_AUTH_HTPASSWD_PATH: "/auth/htpasswd"
+      REGISTRY_AUTH_HTPASSWD_REALM: "Registry Realm"
+    volumes:
+      # 将当前的 registry 文件夹和容器内的 /var/lib/registry 绑定
+      - ./registry:/var/lib/registry
+      # 将当前的 certs 文件夹和容器内的 /certs 绑定
+      - ./certs:/certs
+      # 将当前的 auth 文件夹和容器内的 /auth 绑定
+      - ./auth:/auth
+    # 将服务加入 manager 网络
+    networks:
+      - manager
+# 创建一个网络
+networks:
+  manager:
 ```
 
-* `--name registry` 声明了服务的名称为 registry
-* `--secret <docker.domain.com>.crt` 声明了仓库将会加载 TLS 证书文件
-* `--secret <docker.domain.com>.key` 声明了仓库将会加载 TLS 密钥文件
-* `--constraint 'node.labels.registry==true'` 声明了仓库只会在含有 registry 标签的节点部署
-* `--mount type=bind,src=/mnt/registry,dst=/var/lib/registry` 将镜像内的位置和主机的真实位置绑定, `src` 为主机的真实位置, `dst` 为镜像内的位置
-* `-e REGISTRY_HTTP_ADDR=0.0.0.0:5000` 声明了仓库服务开放的 IP 和端口
-* -e REGISTRY\_HTTP\_TLS\_CERTIFICATE=/run/secret/&lt;docker.domain.com&gt;.crt 声明了仓库将会使用的 TLS 证书文件
-* 
+最后, 执行以下命令便可以将仓库服务部署在集群内了:
+
+```bash
+docker stack deploy -c docker-compose.yml manager
+```
+
+{% hint style="info" %}
+初次部署可能需要比较长的时间
+{% endhint %}
+
+## 验证
+
+仓库部署完成后, 我们可以验证一下, 仓库是否工作正常
+
+### 运行 hello-world
+
+```bash
+docker run hello-world
+```
+
+通过 `docker image ls` 可以看见, 我们已经从官方仓库下载了一个 `hello-world` 镜像
+
+### 创建标签
+
+```bash
+docker tag hello-world <docker.domain.com>:5000/hello-world
+```
+
+### 登录仓库
+
+```bash
+docker login <docker.domain.com>
+```
+
+### 推送镜像
+
+```bash
+docker push <docker.domain.com>:5000/hello-world
+```
+
+### 删除镜像
+
+```bash
+docker image rm hello-world
+docker image rm <docker.domain.com>:5000/hello-world
+```
+
+{% hint style="info" %}
+删除 hello-world 镜像时, Docker 会提示有容器依赖这个镜像, 而导致无法删除, 可以通过 docker container rm 命令先移除容器
+{% endhint %}
+
+### 拉取镜像
+
+```bash
+docker pull <docker.domain.com>:5000/hello-world
+```
+
+拉取成功, 即代表我们的仓库已经部署成功了, 万岁!
+
