@@ -87,6 +87,14 @@ sudo systemctl start docker
 sudo docker run hello-world
 ```
 
+### 安装 Docker 编排工具
+
+Docker Compose 是 Docker 官方的服务编排工具, 它的使用非常简单, 只需要编写好 `docker-compose.yml` 文件就可以通过命令行控制服务的各个细节. 我们通过 `pip` 工具能够轻松安装编排工具:
+
+```bash
+pip install docker-compose
+```
+
 ### 初始化集群
 
 Docker 的集群创建是非常简单的, 我们现在只需要创建一个可以后续扩展的单节点集群:
