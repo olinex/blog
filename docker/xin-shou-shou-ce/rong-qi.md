@@ -298,5 +298,5 @@ Status: Downloaded newer image for gordon/get-started:part2
  * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
 ```
 
-无论 d`ocker run` 在何处执行, 它会拉取你的镜像, 包括 Python 和 `requirements.txt` 内的依赖, 并运行你的代码. 它会将一切都放在一个简介的包内, 你不需要安装任何其他的东西\(除了 Docker 本身之外\).
+无论 `docker run` 在何处执行, 它会拉取你的镜像, 包括 Python 和 `requirements.txt` 内的依赖, 并运行你的代码. 它会将一切都放在一个简介的包内, 你不需要安装任何其他的东西\(除了 Docker 本身之外\).
 

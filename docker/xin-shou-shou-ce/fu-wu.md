@@ -18,7 +18,7 @@ description: '本文章由olinex翻译, 转载请在页面开头标明出处'
 在第三部分, 我们将扩展我们的分布式应用并且开启负载均衡的功能. 为了实现这些功能, 我们必须在应用的层次关系上更进一步, 进入 **服务** 层面.
 
 * 栈
-* 服务\(我们现在在这里\)
+* **服务**\(我们现在在这里\)
 * 容器\(在 第二部分 已经介绍\)
 
 ## 关于服务
@@ -94,7 +94,7 @@ docker service ls
 
 查看 `web` 服务的输出, 其包含了应用的名称作为前缀. 如果应用如同示例一样的命名, 服务的名称为 `getstartedlab_web` . 同时显示的还有容器副本的数量, 镜像的名称和暴露的接口.
 
-或者你可以运行 `docker stack services` 命令, 并以栈名作为参数. 下面示例的命令可以产看所有与栈 `getstartedlab` 相关的服务:
+或者你可以运行 `docker stack services` 命令, 并以栈名作为参数. 下面示例的命令可以查看所有与栈 `getstartedlab` 相关的服务:
 
 ```bash
 docker stack services getstartedlab
