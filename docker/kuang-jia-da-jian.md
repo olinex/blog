@@ -110,6 +110,7 @@ cd /home && mkdir docker && cd docker && mkdir certs
 * 创建一个生成 TLS 证书的脚本 `generate-ssl.sh`
 
 ```bash
+#!/usr/bin/env bash
 openssl req \
 -newkey rsa:4096 -nodes -sha256 -keyout certs/<docker.domain.com>.key \
 -x509 -days <天数> -out certs/<docker.domain.com>.crt
@@ -128,5 +129,72 @@ docker secret create domain.crt certs/<docker.domain.com>.crt
 docker secret create domain.crt certs/<docker.domain.com>.key
 ```
 
+### 设置仓库标签
 
+集群中需要一个单一节点来安装仓库镜像, 因此需要为其中一个节点设置标签来区分:
 
+```bash
+docker node update --label-add registry=true <node>
+```
+
+其中, `<node>` 为节点的 ID , 我们的集群中只有当前的节点, 可以通过 docker node ls 命令来查看, 该命令为当前节点增加了一个 `registry` 标签.
+
+### 生成帐号密码
+
+对于 Docker 的仓库服务, 我们希望能够从公网访问, 这便于我们在本地机器上进行开发, 但是在公网环境下是非常不安全的, 我们希望我们的镜像不会被公开, 也不希望任何未知人士都能修改我们的镜像. 因此我们需要为仓库服务添加鉴权机制, 注意当前的目录一定要在我们的工作环境 `/home/docker` 下, 为了将来能够更加方便地增加帐号密码, 可以将以下代码封装为一个脚本 `create-user.sh` :
+
+```bash
+#!/usr/bin/env bash
+
+# get username and password
+read -p "Enter your username: " USERNAME
+read -p "Enter your password: " -s PASSWORD
+
+docker run --rm --entrypoint htpasswd registry:2 -Bbn $USERNAME $PASSWORD >> auth/htpasswd
+mkdir auth && docker run --rm --entrypoint htpasswd registry:2 -Bbn testuser testpassword > auth/htpasswd
+```
+
+在 /home/docker 下创建一个 auth 文件夹用于保存帐号密码文件:
+
+```bash
+mkdir /home/docker/auth
+```
+
+运行我们刚才创建的 `create-user.sh` 脚本创建用户:
+
+```bash
+sh create-user.sh
+```
+
+我们在 `/home/docker/auth/` 下创建了 `htpasswd` 文件, 该文件会以 `帐号:密码哈希值` 的形式保存帐号密码.
+
+### 运行仓库服务
+
+非常好, 我们现在距离目标只剩下最后一步, 创建一个 run-registry.sh 脚本, 用于创建仓库:
+
+```bash
+docker service create \
+--name registry \
+--secret <docker.domain.com>.crt \
+--secret <docker.domain.com>.key \
+--constraint 'node.labels.registry==true' \
+--mount type=bind,src=/mnt/registry,dst=/var/lib/registry \
+-e REGISTRY_HTTP_ADDR=0.0.0.0:5000 \
+-e REGISTRY_HTTP_TLS_CERTIFICATE=/run/secrets/<docker.domain.com>.crt \
+-e REGISTRY_HTTP_TLS_KEY=/run/secrets/<docker.domain.com>.key \
+-e REGISTRY_AUTH=htpasswd \
+-e REGISTRY_AUTH_HTPASSWD_REALM="Registry Realm" \
+-e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \
+--publish published=5000,target=5000 \
+--replicas 1 \
+registry:2
+```
+
+* `--name registry` 声明了服务的名称为 registry
+* `--secret <docker.domain.com>.crt` 声明了仓库将会加载 TLS 证书文件
+* `--secret <docker.domain.com>.key` 声明了仓库将会加载 TLS 密钥文件
+* `--constraint 'node.labels.registry==true'` 声明了仓库只会在含有 registry 标签的节点部署
+* `--mount type=bind,src=/mnt/registry,dst=/var/lib/registry` 将镜像内的位置和主机的真实位置绑定, `src` 为主机的真实位置, `dst` 为镜像内的位置
+* `-e REGISTRY_HTTP_ADDR=0.0.0.0:5000` 声明了仓库服务开放的 IP 和端口
+* -e REGISTRY\_HTTP\_TLS\_CERTIFICATE=/run/secret/&lt;docker.domain.com&gt;.crt 声明了仓库将会使用的 TLS 证书文件
+* 
