@@ -190,8 +190,8 @@ services:
       REGISTRY_AUTH_HTPASSWD_PATH: "/auth/htpasswd"
       REGISTRY_AUTH_HTPASSWD_REALM: "Registry Realm"
     volumes:
-      # 将当前的 registry 文件夹和容器内的 /var/lib/registry 绑定
-      - ./registry:/var/lib/registry
+      # 将卷 registry 和容器内的 /var/lib/registry 绑定
+      - registry:/var/lib/registry
       # 将当前的 certs 文件夹和容器内的 /certs 绑定
       - ./certs:/certs
       # 将当前的 auth 文件夹和容器内的 /auth 绑定
@@ -199,6 +199,8 @@ services:
     # 将服务加入 manager 网络
     networks:
       - manager
+volumes:
+  registry:
 # 创建一个网络
 networks:
   manager:
@@ -262,4 +264,12 @@ docker pull <docker.domain.com>:5000/hello-world
 ```
 
 拉取成功, 即代表我们的仓库已经部署成功了, 万岁!
+
+## Portainer 安装
+
+{% hint style="info" %}
+以下内容并非必须了解的, 如果你对 Portainer 并不了解, 可以通过 [官网](https://www.portainer.io/) 获得更多的信息
+{% endhint %}
+
+
 
