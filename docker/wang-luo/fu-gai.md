@@ -63,9 +63,40 @@ docker network create -d overlay --attachable my-attachable-overlay
 
 大部分用户永远不需要配置 `ingress` 网络, 不过 17.05+ 的 Docker 允许你这么做. 如果自动选择的子网络和网络上已经存在的子网络冲突, 或者你需要自定义其他低级网络设置 \(如MTU\) , 这个功能将非常有用.
 
-自定义 `ingress` 网络需要删除并重新创建它. 而 `ingress` 网络通常在你创建服务之间就已经被创建了. 如果你已经创建了服务并且开放了端口, 你需要在删除 `ingress` 网络前删除这些服务.
+自定义 `ingress` 网络需要删除并重新创建它. 而 `ingress` 网络通常在你创建服务之间就已经被创建了. 如果你已经创建了服务并且开放了端口, 你需要在删除 `ingress` 网络前停止这些服务.
 
 当 ingress 网络不存在时, 没有开放端口的服务会继续运行, 但不会进行负载均衡. 而开放了端口的服务会受到影响, 例如开放 80 端口的 WordPress 服务.
+
+* 通过 `docker network inspect ingress` 命令检查 `ingress` 网络, 然后停止所有连接到这个网络的服务. 这些服务应该开放了端口, 例如开放了 80 端口的 WordPress 服务. 如果这些服务没有停止, 下一步操作将会报错.
+* 删除已经存在 ingress 网络:
+
+```bash
+docker network rm ingress
+
+WARNING! Before removing the routing-mesh network, make sure all the nodes
+in your swarm run the same docker engine version. Otherwise, removal may not
+be effective and functionality of newly created ingress networks will be
+impaired.
+Are you sure you want to continue? [y/N]
+```
+
+* 通过 `--ingress` 参数创建一个新的覆盖网络, 包括你想要的自定义选项. 以下实例设置了一个 MTU 为 1200 字节, 子网络为 `10.11.0.0/16` , 并且将网关设置为 `10.11.0.2`
+
+```bash
+docker network create \
+--driver overlay \
+--ingress \
+--subnet=10.11.0.0/16 \
+--gateway=10.11.0.2 \
+--opt com.docker.network.driver.mtu=1200 \
+my-ingress
+```
+
+{% hint style="info" %}
+你可以为你的创建的 ingress 网络命名, 但是你只能拥有一个 ingress 网络.
+{% endhint %}
+
+* 重新启动刚才停止的服务
 
 
 
