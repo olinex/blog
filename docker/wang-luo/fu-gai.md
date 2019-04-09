@@ -98,5 +98,35 @@ my-ingress
 
 * 重新启动刚才停止的服务
 
+### 自定义 docker\_gwbridge 接口
 
+`docker_gwbridge` 是一个虚拟网桥, 它将覆盖网络 \(包括 ingress 网络\) 链接到了各个 Docker 守护进程主机的物理网络. 当你为 Docker 主机初始化集群或者加入集群的时候, 它会被自动创建, 但它不是一个 Docker 的设备, 而是存在于 Docker 主机的内核中. 如果你需要对其进行设置, 你必须在将 Docker 主机加入到群中之前或从群中临时删除主机之后进行自定义.
+
+* 停止 Docker
+* 删除已存在的 `docker_gwbridge` 接口
+
+```bash
+sudo ip link set docker_gwbridge down
+sudo ip link del dev docker_gwbridge
+```
+
+* 启动 Docker, 但不要初始化或加入集群
+* 通过 `docker network create` 命令和自定义的配置, 创建或重建 `docker_gwbridge` . 以下的示例使用了子网络 `10.11.0.0/16` . 
+
+```bash
+docker network create \
+--subnet 10.11.0.0/16 \
+--opt com.docker.network.bridge.name=docker_gwbridge \
+--opt com.docker.network.bridge.enable_icc=false \
+--opt com.docker.network.bridge.enable_ip_masquerade=true \
+docker_gwbridge
+```
+
+* 初始化或加入集群, 这时 `docker_gwbridge`已经存在, Docker 不会再自动创建它.
+
+## 适用于集群服务的操作
+
+### 在覆盖网络上开放端口
+
+连接到同一个覆盖网络的集群服务只会为彼此开放所有的端口. 为了让服务外部能够访问某个端口, 这个端口必须在 `docker service create` 或 `docker service update` 命令上通过 `-p` 或 `--publish` 参数开放. 
 
