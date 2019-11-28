@@ -53,6 +53,8 @@
 
 ## machine learning
 
+* [一些约定](machine-learning/yi-xie-yue-ding.md)
+
 ## redis
 
 ## mongodb
