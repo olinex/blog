@@ -128,5 +128,48 @@ docker_gwbridge
 
 ### 在覆盖网络上开放端口
 
-连接到同一个覆盖网络的集群服务只会为彼此开放所有的端口. 为了让服务外部能够访问某个端口, 这个端口必须在 `docker service create` 或 `docker service update` 命令上通过 `-p` 或 `--publish` 参数开放. 
+连接到同一个覆盖网络的集群服务只会为彼此开放所有的端口. 为了让服务外部能够访问某个端口, 这个端口必须在 `docker service create` 或 `docker service update` 命令上通过 `-p` 或 `--publish` 参数开放. 该参数支持冒号分隔的旧语法和逗号分隔的新语法, 但逗号分隔的语法有更加好的语义性.
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">&#x53C2;&#x6570;&#x503C;</th>
+      <th style="text-align:left">&#x63CF;&#x8FF0;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">
+        <p>-p 8080:80
+          <br />&#x6216;&#x8005;</p>
+        <p>-p published=8080,target=80</p>
+      </td>
+      <td style="text-align:left">&#x5C06;&#x670D;&#x52A1;&#x7684; 80/tcp &#x7AEF;&#x53E3;&#x6620;&#x5C04;&#x5230;&#x8DEF;&#x7531;&#x7F51;&#x683C;&#x7684;
+        8080/tcp</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p>-p 8080:80/udp
+          <br />&#x6216;&#x8005;</p>
+        <p>-p published=8080,target=80,protocol=udp</p>
+      </td>
+      <td style="text-align:left">&#x5C06;&#x670D;&#x52A1;&#x7684; 80/udp &#x7AEF;&#x53E3;&#x6620;&#x5C04;&#x5230;&#x8DEF;&#x7531;&#x7F51;&#x683C;&#x7684;
+        8080/udp</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p>-p 8080:80/tcp -p 8080:80/udp
+          <br />&#x6216;&#x8005;</p>
+        <p>-p published=8080,target=80,protocol=tcp -p published=8080,target=80,protocol=udp</p>
+      </td>
+      <td style="text-align:left">&#x5C06;&#x670D;&#x52A1;&#x7684; 80/tcp &#x7AEF;&#x53E3;&#x6620;&#x5C04;&#x5230;&#x8DEF;&#x7531;&#x7F51;&#x683C;&#x7684;
+        8080/tcp, &#x5E76;&#x4E14;&#x5C06;&#x670D;&#x52A1;&#x7684; 80/udp &#x7AEF;&#x53E3;&#x6620;&#x5C04;&#x5230;&#x8DEF;&#x7531;&#x7F51;&#x683C;&#x7684;
+        8080/udp</td>
+    </tr>
+  </tbody>
+</table>### 集群服务绕过路由网格
+
+默认情况下, 集群服务通过路由网格开放端口. 当你连接到任何一个集群节点的开放端口时 \(无论这个端口上是否正在运行服务\) , 你都会被重定向到正在运行这个服务的工作节点. 实际上, Docker 充当了集群服务的负载均衡器. 使用路由网格的服务在虚拟 IP \(VIP\) 模式下运行. 即使服务在每个节点都运行了实例 \(通过 --mode global 参数\) 也会使用路由网格. 使用路由网格时, 不能明确是哪个 Docker 节点在为客户端请求提供服务.
+
+
 
