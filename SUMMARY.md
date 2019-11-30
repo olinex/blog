@@ -54,6 +54,7 @@
 ## machine learning
 
 * [一些约定](machine-learning/yi-xie-yue-ding.md)
+* [损失函数 \(Cost Function\)](machine-learning/sun-shi-han-shu-cost-function.md)
 
 ## redis
 
