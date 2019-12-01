@@ -4,8 +4,6 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 
 # 一些约定
 
-### 一些符号的含义
-
 #### m
 
  代表样本的数量
@@ -71,7 +69,7 @@ $$
 代表了目标函数h的损失函数, 注意其自变量是目标函数的参数θ:
 
 $$
-J(\theta_0, \theta_1, \theta_2, ..., \theta_n) = \frac{1}{2m}\sum_{i=1}^m(h(X^{(i)}) - y^{i})^2
+J(\theta_0, \theta_1, \theta_2, ..., \theta_n) = \frac{1}{2m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})^2
 $$
 
 
