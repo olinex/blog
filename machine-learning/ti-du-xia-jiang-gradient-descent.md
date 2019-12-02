@@ -50,5 +50,50 @@ temp1 := \theta_1 - \alpha\frac{\partial}{\partial\theta_1}J(\Theta)\\
 \theta_1 := temp1\\
 $$
 
+我们假设我们的目标函数h为二元一次函数:
 
+$$
+h(X) = \theta_0 + \theta_1x_1 + \theta_2x_2
+$$
+
+对其进行偏微分, 则:
+
+$$
+\frac{\partial}{\partial\theta_0}J(\Theta) = 
+\frac{1}{2m}\sum_{i=1}^m
+\frac{\partial(h(X^{(i)}) - y^{(i)})^2}{\partial(h(X^{(i)}))}
+\frac{\partial(h(X^{(i)}))}{\partial\theta_0}\\
+ = \frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})
+$$
+
+$$
+\frac{\partial}{\partial\theta_1}J(\Theta) = 
+\frac{1}{2m}\sum_{i=1}^m
+\frac{\partial(h(X^{(i)}) - y^{(i)})^2}{\partial(h(X^{(i)}))}
+\frac{\partial(h(X^{(i)}))}{\partial\theta_1}\\
+ = \frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})x_1
+$$
+
+由此我们非常自然地可以得到结论, 对于n元一次函数而言, 梯度下降算法为:
+
+$$
+\theta_0 :=\theta_0 - \alpha\frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})\\
+\theta_n := \theta_n - \alpha\frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})x_n
+$$
+
+### 梯度下降的类型
+
+根据我们在进行梯度下降时, 每次更新参数集Θ时使用的样本数量m, 以及样本的选取方式, 我们可以获得不同类型的梯度下降算法, 这些算法在本质上相同, 但是会因为具体的细节而影响梯度下降的效果.
+
+#### 批量梯度下降 \(Batch Gradient Descent\)
+
+每次更新参数集Θ, 批量使用全部的训练集D, 这种算法能够保证每次更新都能得到更好的结果, 但是计算开销大, 速度慢.
+
+#### 随机梯度下降 \(Random Gradient Descent\)
+
+每使用一样样本, 更新一次参数集Θ, 优点是速度快, 但不能保证每次更新都能有更好的结果, 有时甚至两次更新相互抵消
+
+#### 小批量梯度下降 \(Mini-Batch Gradient Descent\)
+
+把样本集合D分为若干部分, 分批来计算损失函数和更新参数集Θ, 这是一种折中方案, 计算开销不大, 且能保证大部分情况下每次更新都能有更好的结果
 
