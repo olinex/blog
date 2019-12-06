@@ -71,14 +71,14 @@ $$
 \frac{1}{2m}\sum_{i=1}^m
 \frac{\partial(h(X^{(i)}) - y^{(i)})^2}{\partial(h(X^{(i)}))}
 \frac{\partial(h(X^{(i)}))}{\partial\theta_1}\\
- = \frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})x_1
+ = \frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})x_1^{(i)}
 $$
 
 由此我们非常自然地可以得到结论, 对于n元一次函数而言, 梯度下降算法为:
 
 $$
 \theta_0 :=\theta_0 - \alpha\frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})\\
-\theta_n := \theta_n - \alpha\frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})x_n
+\theta_n := \theta_n - \alpha\frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})x_n^{(i)}
 $$
 
 ### 梯度下降的类型
