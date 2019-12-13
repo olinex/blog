@@ -60,9 +60,9 @@
 ## machine learning
 
 * [一些约定](machine-learning/yi-xie-yue-ding.md)
-* [损失函数 \(Cost Function\)](machine-learning/sun-shi-han-shu-cost-function.md)
-* [梯度下降 \(Gradient Descent\)](machine-learning/ti-du-xia-jiang-gradient-descent/README.md)
-  * [特征归一化 \(Feature Scaling\)](machine-learning/ti-du-xia-jiang-gradient-descent/te-zheng-gui-yi-hua-feature-scaling.md)
-* [线性回归 \(Line Regression\)](machine-learning/xian-xing-hui-gui-line-regression.md)
+* [梯度下降 \(Gradient Descent\)](machine-learning/ti-du-xia-jiang-gradient-descent.md)
+* [线性回归 \(Line Regression\)](machine-learning/xian-xing-hui-gui-line-regression/README.md)
+  * [损失函数 \(Cost Function\)](machine-learning/xian-xing-hui-gui-line-regression/sun-shi-han-shu-cost-function.md)
+  * [特征归一化 \(Feature Scaling\)](machine-learning/xian-xing-hui-gui-line-regression/te-zheng-gui-yi-hua-feature-scaling.md)
 * [逻辑回归 \(Logic Regression\)](machine-learning/luo-ji-hui-gui-logic-regression.md)
 
