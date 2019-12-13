@@ -64,5 +64,6 @@
   * [特征归一化 \(Feature Scaling\)](machine-learning/ti-du-xia-jiang-gradient-descent/te-zheng-gui-yi-hua-feature-scaling.md)
 * [线性回归 \(Line Regression\)](machine-learning/xian-xing-hui-gui-line-regression/README.md)
   * [损失函数 \(Cost Function\)](machine-learning/xian-xing-hui-gui-line-regression/sun-shi-han-shu-cost-function.md)
-* [逻辑回归 \(Logic Regression\)](machine-learning/luo-ji-hui-gui-logic-regression.md)
+* [逻辑回归 \(Logic Regression\)](machine-learning/luo-ji-hui-gui-logic-regression/README.md)
+  * [损失函数 \(Cost Function\)](machine-learning/luo-ji-hui-gui-logic-regression/sun-shi-han-shu-cost-function.md)
 
