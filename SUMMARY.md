@@ -22,6 +22,7 @@
 ## ZooKeeper
 
 * [简介](zookeeper/jian-jie.md)
+* [入门](zookeeper/ru-men.md)
 
 ## redis
 
