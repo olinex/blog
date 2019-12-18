@@ -72,3 +72,7 @@
 * [线性回归 \(Line Regression\)](machine-learning/xian-xing-hui-gui-line-regression.md)
 * [逻辑回归 \(Logic Regression\)](machine-learning/luo-ji-hui-gui-logic-regression.md)
 
+## JAVA
+
+* [安装](java/an-zhuang.md)
+
