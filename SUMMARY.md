@@ -23,6 +23,7 @@
 
 * [简介](zookeeper/jian-jie.md)
 * [入门](zookeeper/ru-men.md)
+* [ACL权限](zookeeper/acl-quan-xian.md)
 
 ## redis
 
