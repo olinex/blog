@@ -105,13 +105,49 @@ $$
 
 我们尝试对损失函数J计算其对Θ的二阶偏微分可以发现, 方差形式的损失函数并不是一个凸函数. 因此无法使用梯度下降来计算参数集Θ的最优解.
 
-现在我们需要寻找一个新的损失函数. 这个函数需要满足以下几个条件:
+现在我们需要寻找一个新的损失函数J:
 
 $$
-if\ y=1,\ h(X) \to 1,\ then\ Cost()
+J(\Theta) = \frac{1}{m}\sum_{i=1}^mCost(h_\theta(X^{(i)}), y^{(i)})\\
 $$
 
+当y = 1时:
 
+$$
+h(X) \to 1,\ then\ Cost(X, y) \to 0\\
+h(X) \to 0,\ then\ Cost(X, y) \to +\infty\\
+$$
+
+这个函数我们很熟悉:
+
+$$
+Cost(X, y) = - y \times log(h(X)) = - log(h(X))
+$$
+
+同样的, 当y = 0时:
+
+$$
+h(X) \to 1,\ then\ Cost(X, y) \to +\infty\\
+h(X) \to 0,\ then\ Cost(X, y) \to 0\\
+$$
+
+这个函数也同样容易找到:
+
+$$
+Cost(X, y) = (y - 1) \times log(1 - h(X)) = - log(1 - h(X))
+$$
+
+y非1即0, 因此可以将两个情况的公式直接相加:
+
+$$
+J(\Theta) = 
+\frac{1}{m}
+\sum_{i=1}^m
+(
+(1 - y^{(i)})
+log(h_\theta(X^{(i)}))
+)
+$$
 
 
 
