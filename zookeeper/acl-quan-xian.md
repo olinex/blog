@@ -28,7 +28,7 @@ Zookeeper具有以下内置方案:
 
 * world - 仅具有一个aclid: world:anyone, 代表任何人都可以
 * auth - 没有使用任何id, 代表了已经通过认证的用户
-* digest - 使用digest:username:password格式的aclid. 作为ACL表达式时, 按照格式:username:base64\(sha1\(password\)\)来书写
+* digest - 使用digest:username:password格式的aclid. 作为ACL表达式时, 按照格式:username:base64\(sha1\(username:password\)\)来书写
 * ip - 使用客户端主机IP作为aclid. 作为ACL表达式时, 按照格式ip:address/bits来书写
 
 ## 设置权限
@@ -41,6 +41,12 @@ getAcl /
 ```
 
 ### 设置权限
+
+#### 密码hash
+
+```text
+echo -n username:password | openssl dgst -binary -sha1 | openssl base64
+```
 
 ```text
 # setAcl <path> scheme:expression:perm
