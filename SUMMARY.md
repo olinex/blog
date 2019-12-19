@@ -76,3 +76,7 @@
 
 * [安装](java/an-zhuang.md)
 
+## tools
+
+* [tmux](tools/tmux.md)
+
