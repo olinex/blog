@@ -56,28 +56,35 @@ temp1 := \theta_1 - \alpha\frac{\partial}{\partial\theta_1}J(\Theta)\\
 \theta_1 := temp1\\
 $$
 
-我们假设我们的目标函数h为二元一次函数:
-
-$$
-h(X) = \theta_0 + \theta_1x_1 + \theta_2x_2
-$$
-
 对其进行偏微分, 则:
 
 $$
-\frac{\partial}{\partial\theta_0}J(\Theta) = 
+\frac{\partial}{\partial\theta_n}J(\Theta) = 
 \frac{1}{2m}\sum_{i=1}^m
-\frac{\partial(h(X^{(i)}) - y^{(i)})^2}{\partial(h(X^{(i)}))}
-\frac{\partial(h(X^{(i)}))}{\partial\theta_0}\\
- = \frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})
+\frac{\partial((h(X^{(i)}) - y^{(i)})^2)}
+{\partial\theta_n}\\
 $$
 
 $$
-\frac{\partial}{\partial\theta_1}J(\Theta) = 
-\frac{1}{2m}\sum_{i=1}^m
-\frac{\partial(h(X^{(i)}) - y^{(i)})^2}{\partial(h(X^{(i)}))}
-\frac{\partial(h(X^{(i)}))}{\partial\theta_1}\\
- = \frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})x_1^{(i)}
+= \frac{1}{2m}\sum_{i=1}^m
+\frac{\partial((h(X^{(i)}) - y^{(i)})^2)}
+{\partial(h(X^{(i)}) - y^{(i)})}
+\frac{\partial(h(X^{(i)}) - y^{(i)})}
+{\partial\theta_n}\\
+$$
+
+$$
+= \frac{1}{m}\sum_{i=1}^m
+(h(X^{(i)}) - y^{(i)})
+\frac{\partial(h(X^{(i)}) - y^{(i)})}
+{\partial\theta_n}\\
+$$
+
+$$
+= \frac{1}{m}\sum_{i=1}^m
+(h(X^{(i)}) - y^{(i)})
+\frac{\partial h(X^{(i)})}
+{\partial\theta_n}\\
 $$
 
 由此我们非常自然地可以得到结论, 对于n元一次函数而言, 梯度下降算法为:
