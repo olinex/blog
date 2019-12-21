@@ -1,6 +1,18 @@
 # Table of contents
 
-* [Initial page](README.md)
+* [导游](README.md)
+
+## mongodb
+
+## redis
+
+* [入门](redis/ru-men.md)
+
+## Postgresql
+
+* [Postgresql-10安装](postgresql/postgresql10-an-zhuang.md)
+
+## elasticsearch
 
 ## docker
 
@@ -25,25 +37,6 @@
 * [入门](zookeeper/ru-men.md)
 * [ACL权限](zookeeper/acl-quan-xian.md)
 
-## redis
-
-## mongodb
-
-## Postgresql
-
-* [Postgresql-10安装](postgresql/postgresql10-an-zhuang.md)
-
-## elasticsearch
-
-## kafka
-
-* [简介](kafka/jian-jie.md)
-* [快速开始](kafka/kuai-su-kai-shi.md)
-
-## vue
-
-* [权限架构](vue/quan-xian-jia-gou.md)
-
 ## nginx
 
 * [新手手册](nginx/xin-shou-shou-ce.md)
@@ -61,7 +54,24 @@
   * [响应附加](nginx/zhi-ling-shou-ce/xiang-ying-fu-jia-ngxhttpaddtionmodule.md)
 * [指令速查](nginx/zhi-ling-su-cha.md)
 
+## tools
+
+* [tmux](tools/tmux.md)
+
+## kafka
+
+* [简介](kafka/jian-jie.md)
+* [快速开始](kafka/kuai-su-kai-shi.md)
+
 ## Python
+
+## JAVA
+
+* [安装](java/an-zhuang.md)
+
+## vue
+
+* [权限架构](vue/quan-xian-jia-gou.md)
 
 ## machine learning
 
@@ -72,12 +82,4 @@
   * [特征归一化 \(Feature Scaling\)](machine-learning/ti-du-xia-jiang-gradient-descent/te-zheng-gui-yi-hua-feature-scaling.md)
 * [线性回归 \(Line Regression\)](machine-learning/xian-xing-hui-gui-line-regression.md)
 * [逻辑回归 \(Logic Regression\)](machine-learning/luo-ji-hui-gui-logic-regression.md)
-
-## JAVA
-
-* [安装](java/an-zhuang.md)
-
-## tools
-
-* [tmux](tools/tmux.md)
 
