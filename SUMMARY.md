@@ -61,7 +61,7 @@
 ## kafka
 
 * [简介](kafka/jian-jie.md)
-* [快速开始](kafka/kuai-su-kai-shi.md)
+* [快速开始](kafka/kuai-su-kai-shi/README.md)
   * [配置Windows服务](kafka/kuai-su-kai-shi/pei-zhi-windows-fu-wu.md)
 
 ## Python
@@ -78,11 +78,15 @@
 
 * [前言](machine-learning/qian-yan.md)
 * [一些约定](machine-learning/yi-xie-yue-ding.md)
-* [损失函数 \(Cost Function\)](machine-learning/sun-shi-han-shu-cost-function.md)
-* [梯度下降 \(Gradient Descent\)](machine-learning/ti-du-xia-jiang-gradient-descent/README.md)
-  * [特征归一化 \(Feature Scaling\)](machine-learning/ti-du-xia-jiang-gradient-descent/te-zheng-gui-yi-hua-feature-scaling.md)
-* [线性回归 \(Line Regression\)](machine-learning/xian-xing-hui-gui-line-regression.md)
-* [逻辑回归 \(Logic Regression\)](machine-learning/luo-ji-hui-gui-logic-regression.md)
+* [损失函数\(Cost Function\)](machine-learning/sun-shi-han-shu-cost-function.md)
+* [损失函数最小化\(Minimize J\)](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/README.md)
+  * [梯度下降\(Gradient Descent\)](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/ti-du-xia-jiang-gradient-descent/README.md)
+    * [特征归一化\(Feature Scaling\)](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/ti-du-xia-jiang-gradient-descent/te-zheng-gui-yi-hua-feature-scaling.md)
+  * [共轭梯度\(Conjugate Gradient\)](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/gongeti-du-conjugate-gradient.md)
+  * [BFGS](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/bfgs.md)
+  * [L-BFGS](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/l-bfgs.md)
+* [线性回归\(Line Regression\)](machine-learning/xian-xing-hui-gui-line-regression.md)
+* [逻辑回归\(Logic Regression\)](machine-learning/luo-ji-hui-gui-logic-regression.md)
 
 ## algorithm
 

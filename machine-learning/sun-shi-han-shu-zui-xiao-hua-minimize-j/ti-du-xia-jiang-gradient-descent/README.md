@@ -2,7 +2,7 @@
 description: '本文章由olinex原创, 转载请在页面开头标明出处'
 ---
 
-# 梯度下降 \(Gradient Descent\)
+# 梯度下降\(Gradient Descent\)
 
 机器学习, 在本质上是要在我们设定的一个函数集合H中, 找到一个函数h, 这个函数h能够很好地拟当前的训练集D, 并能够很好地拟合未来的数据. 而要找到这个函数, 就需要借助损失函数J. 所谓的损失函数量化了训练集D与函数的拟合情况, 损失函数值越小, 说明函数对训练数据的拟合情况越好. 因此, 寻找拟合效果好的函数的问题, 被转变成了寻找参数集Θ, 使得损失函数值最小.
 
@@ -56,28 +56,35 @@ temp1 := \theta_1 - \alpha\frac{\partial}{\partial\theta_1}J(\Theta)\\
 \theta_1 := temp1\\
 $$
 
-我们假设我们的目标函数h为二元一次函数:
-
-$$
-h(X) = \theta_0 + \theta_1x_1 + \theta_2x_2
-$$
-
 对其进行偏微分, 则:
 
 $$
-\frac{\partial}{\partial\theta_0}J(\Theta) = 
+\frac{\partial}{\partial\theta_n}J(\Theta) = 
 \frac{1}{2m}\sum_{i=1}^m
-\frac{\partial(h(X^{(i)}) - y^{(i)})^2}{\partial(h(X^{(i)}))}
-\frac{\partial(h(X^{(i)}))}{\partial\theta_0}\\
- = \frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})
+\frac{\partial((h(X^{(i)}) - y^{(i)})^2)}
+{\partial\theta_n}\\
 $$
 
 $$
-\frac{\partial}{\partial\theta_1}J(\Theta) = 
-\frac{1}{2m}\sum_{i=1}^m
-\frac{\partial(h(X^{(i)}) - y^{(i)})^2}{\partial(h(X^{(i)}))}
-\frac{\partial(h(X^{(i)}))}{\partial\theta_1}\\
- = \frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})x_1^{(i)}
+= \frac{1}{2m}\sum_{i=1}^m
+\frac{\partial((h(X^{(i)}) - y^{(i)})^2)}
+{\partial(h(X^{(i)}) - y^{(i)})}
+\frac{\partial(h(X^{(i)}) - y^{(i)})}
+{\partial\theta_n}\\
+$$
+
+$$
+= \frac{1}{m}\sum_{i=1}^m
+(h(X^{(i)}) - y^{(i)})
+\frac{\partial(h(X^{(i)}) - y^{(i)})}
+{\partial\theta_n}\\
+$$
+
+$$
+= \frac{1}{m}\sum_{i=1}^m
+(h(X^{(i)}) - y^{(i)})
+\frac{\partial h(X^{(i)})}
+{\partial\theta_n}\\
 $$
 
 由此我们非常自然地可以得到结论, 对于n元一次函数而言, 梯度下降算法为:

@@ -2,7 +2,7 @@
 description: '本文章由olinex原创, 转载请在页面开头标明出处'
 ---
 
-# 逻辑回归 \(Logic Regression\)
+# 逻辑回归\(Logic Regression\)
 
 ## 什么是逻辑回归
 
@@ -144,8 +144,14 @@ J(\Theta) =
 \frac{1}{m}
 \sum_{i=1}^m
 (
-(1 - y^{(i)})
-log(h_\theta(X^{(i)}))
+- y^{(i)} \times log(h_\theta(X^{(i)}))
++ (y^{(i)} - 1) \times log(1 - h(X^{(i)}))
+)\\
+= - \frac{1}{m}
+\sum_{i=1}^m
+(
+y^{(i)} \times log(h_\theta(X^{(i)}))
++ (1 - y^{(i)}) \times log(1 - h(X^{(i)}))
 )
 $$
 
