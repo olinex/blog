@@ -61,7 +61,7 @@
 ## kafka
 
 * [简介](kafka/jian-jie.md)
-* [快速开始](kafka/kuai-su-kai-shi/README.md)
+* [快速开始](kafka/kuai-su-kai-shi.md)
   * [配置Windows服务](kafka/kuai-su-kai-shi/pei-zhi-windows-fu-wu.md)
 
 ## Python
@@ -83,4 +83,9 @@
   * [特征归一化 \(Feature Scaling\)](machine-learning/ti-du-xia-jiang-gradient-descent/te-zheng-gui-yi-hua-feature-scaling.md)
 * [线性回归 \(Line Regression\)](machine-learning/xian-xing-hui-gui-line-regression.md)
 * [逻辑回归 \(Logic Regression\)](machine-learning/luo-ji-hui-gui-logic-regression.md)
+
+## algorithm
+
+* [排序](algorithm/pai-xu/README.md)
+  * [插入排序](algorithm/pai-xu/cha-ru-pai-xu.md)
 
