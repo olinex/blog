@@ -34,7 +34,10 @@
 ## ZooKeeper
 
 * [简介](zookeeper/jian-jie.md)
-* [入门](zookeeper/ru-men.md)
+* [入门](zookeeper/ru-men/README.md)
+  * [设置超级管理员](zookeeper/ru-men/she-zhi-chao-ji-guan-li-yuan.md)
+  * [配置为CentOS服务](zookeeper/ru-men/pei-zhi-wei-centos-fu-wu.md)
+  * [配置为Windows服务](zookeeper/ru-men/pei-zhi-wei-windows-fu-wu.md)
 * [ACL权限](zookeeper/acl-quan-xian.md)
 
 ## nginx
@@ -62,7 +65,7 @@
 
 * [简介](kafka/jian-jie.md)
 * [快速开始](kafka/kuai-su-kai-shi/README.md)
-  * [配置Windows服务](kafka/kuai-su-kai-shi/pei-zhi-windows-fu-wu.md)
+  * [配置为Windows服务](kafka/kuai-su-kai-shi/pei-zhi-windows-fu-wu.md)
 
 ## Python
 

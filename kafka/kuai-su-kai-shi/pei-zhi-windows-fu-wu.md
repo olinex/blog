@@ -2,7 +2,7 @@
 description: '本文章由olinex原创, 转载请在页面开头标明出处'
 ---
 
-# 配置Windows服务
+# 配置为Windows服务
 
 * 下载[prunsrv.zip](http://archive.apache.org/dist/commons/daemon/binaries/windows/%20)
 * 将`prunsrv.exe`复制到`kafka\bin\windows`目录, 若系统为64位, 则需要使用`amd64/prunsrv.exe`, 这是服务的执行程序
