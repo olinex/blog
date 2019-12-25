@@ -24,8 +24,7 @@ ZooKeeper依赖Java环境, 需要安装相应版本的java-openjdk
 
 ```bash
 tickTime=2000
-dataDir=/var/zookeeper
-dataLogDir=/var/log/zookeeper
+dataDir=/var/lib/zookeeper
 clientPort=2181
 ```
 
@@ -55,8 +54,7 @@ ZooKeeper使用log4j记录日志.
 
 ```bash
 tickTime=2000
-dataDir=/var/zookeeper
-dataLogDir=/var/log/zookeeper
+dataDir=/var/lib/zookeeper
 clientPort=2181
 initLimit=5
 syncLimit=2
