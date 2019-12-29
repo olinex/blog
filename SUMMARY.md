@@ -64,8 +64,9 @@
 ## kafka
 
 * [简介](kafka/jian-jie.md)
-* [快速开始](kafka/kuai-su-kai-shi.md)
+* [快速开始](kafka/kuai-su-kai-shi/README.md)
   * [配置为Windows服务](kafka/kuai-su-kai-shi/pei-zhi-windows-fu-wu.md)
+* [配置](kafka/pei-zhi.md)
 
 ## Python
 

@@ -103,7 +103,7 @@ config/server-2.properties:
     log.dirs=/tmp/kafka-logs-2
 ```
 
-`broker.id` 是节点在集群内唯一且永久的名称. 我们不得不重写日志目录和端口, 因为我们希望所有地节点都在运行在同一台服务器, 并且我们希望在同一个端口下注册或重写其他数据时, 都能保持管道不变.
+`broker.id` 是节点在集群内唯一且永久的名称. 我们不得不重写日志目录和端口, 因为我们希望所有的节点都在运行在同一台服务器, 并且我们希望在同一个端口下注册或重写其他数据时, 都能保持管道不变.
 
 现在我们已经有了ZooKeeper和一个单节点, 因此只需要启动另外两个节点:
 
@@ -114,7 +114,7 @@ config/server-2.properties:
 ...
 ```
 
-创建一个名为 `my-replicated-topic` 带有三个副本的主题:
+创建一个名为 `my-replicated-topic` 带有三个副本一个分区的主题, 并通过zookeeper管理领导者选举:
 
 ```bash
 > bin/kafka-topics.sh --create --zookeeper localhost:2181 \
