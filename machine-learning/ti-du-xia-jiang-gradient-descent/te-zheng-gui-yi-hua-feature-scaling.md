@@ -2,13 +2,13 @@
 description: '本文章由olinex原创, 转载请在页面开头标明出处'
 ---
 
-# 特征归一化\(Feature Scaling\)
+# 特征归一化 \(Feature Scaling\)
 
 ## 为什么要归一化
 
 当我们在进行梯度下降时, 我们会发现在某些情况下, 我们需要循环很多次才能得到想要的结果. 原因是每一次梯度下降的循环后, 新的参数集Θ内总有很大一部分的参数并没有得到优化. 如果我们画出等值线图, 就会发现, 参数集的更新方向并不总是指向最低点, 而是存在一种"来回震荡"的现象.
 
-![&#x6765;&#x81EA;Andrew Ng&#x6559;&#x6388;&#x7684;PPT](../../../.gitbook/assets/ahr0cdovl2ltzy5ibg9nlmnzzg4ubmv0lziwmtcwnzezmtq0mdi1mdqx.jpeg)
+![&#x6765;&#x81EA;Andrew Ng&#x6559;&#x6388;&#x7684;PPT](../../.gitbook/assets/ahr0cdovl2ltzy5ibg9nlmnzzg4ubmv0lziwmtcwnzezmtq0mdi1mdqx.jpeg)
 
 并且这类情况都有一个显著的特点: X内的某些特征值的取值范围远大于另外一些特征值. 从梯度下降的公式来看:
 
