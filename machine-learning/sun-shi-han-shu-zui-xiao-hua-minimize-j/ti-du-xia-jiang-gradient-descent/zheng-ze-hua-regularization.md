@@ -8,7 +8,7 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 
 ## 线性回归正则化
 
-我们知道, 梯度下降为:
+我们知道, 线性回归的梯度下降为:
 
 $$
 \theta_n := \theta_n - \alpha\frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})
@@ -20,22 +20,23 @@ $$
 
 $$
 J(\Theta) = 
-\frac{1}{2m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})^2
- + \lambda\sum_{j=1}^n\theta_j^2\\
+\frac{1}{2m}(\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})^2
+ + \lambda\sum_{j=1}^n\theta_j^2)\\
 \frac{\partial}{\partial\theta_n}J(\Theta) = 
-\frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})
+\frac{1}{m}(\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})
 \frac{\partial h(X^{(i)})}
 {\partial\theta_n}
-+ 2\lambda\theta_n
++ \lambda\theta_n)
 $$
 
-其中λ为正则化参数. 它是个人为选择的参数, 因此它可以和2合并视为同一个参数λ. 则线性回归的梯度下降:
+其中λ为正则化参数. 它是个人为选择的参数, 因此它可以和m相除视为同一个参数λ. 则线性回归的梯度下降:
 
 $$
-\theta_n := (1 - \lambda)\theta_n - \alpha\frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})
+\theta_0 :=\theta_0 - \alpha\frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})\\
+\theta_n := (1 - \alpha\frac{\lambda}{m})\theta_n - \alpha\frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})
 \frac{\partial h(X^{(i)})}
 {\partial\theta_n}\\
 $$
 
-
+需要注意的是, θ0不需要进行抑制, 因为它的特征值永远为1, 无论次数多高.
 
