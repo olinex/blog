@@ -34,7 +34,7 @@
 ## ZooKeeper
 
 * [简介](zookeeper/jian-jie.md)
-* [入门](zookeeper/ru-men.md)
+* [入门](zookeeper/ru-men/README.md)
   * [设置超级管理员](zookeeper/ru-men/she-zhi-chao-ji-guan-li-yuan.md)
   * [配置为CentOS服务](zookeeper/ru-men/pei-zhi-wei-centos-fu-wu.md)
   * [配置为Windows服务](zookeeper/ru-men/pei-zhi-wei-windows-fu-wu.md)
@@ -66,7 +66,6 @@
 * [简介](kafka/jian-jie.md)
 * [快速开始](kafka/kuai-su-kai-shi/README.md)
   * [配置为Windows服务](kafka/kuai-su-kai-shi/pei-zhi-windows-fu-wu.md)
-* [配置](kafka/pei-zhi.md)
 
 ## Python
 
@@ -84,8 +83,8 @@
 * [一些约定](machine-learning/yi-xie-yue-ding.md)
 * [损失函数\(Cost Function\)](machine-learning/sun-shi-han-shu-cost-function.md)
 * [损失函数最小化\(Minimize J\)](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/README.md)
-  * [梯度下降\(Gradient Descent\)](machine-learning/ti-du-xia-jiang-gradient-descent/README.md)
-    * [特征归一化\(Feature Scaling\)](machine-learning/ti-du-xia-jiang-gradient-descent/te-zheng-gui-yi-hua-feature-scaling.md)
+  * [梯度下降\(Gradient Descent\)](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/ti-du-xia-jiang-gradient-descent/README.md)
+    * [特征归一化\(Feature Scaling\)](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/ti-du-xia-jiang-gradient-descent/te-zheng-gui-yi-hua-feature-scaling.md)
   * [共轭梯度\(Conjugate Gradient\)](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/gongeti-du-conjugate-gradient.md)
   * [BFGS](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/bfgs.md)
   * [L-BFGS](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/l-bfgs.md)
