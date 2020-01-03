@@ -83,7 +83,7 @@
 * [一些约定](machine-learning/yi-xie-yue-ding.md)
 * [损失函数\(Cost Function\)](machine-learning/sun-shi-han-shu-cost-function.md)
 * [损失函数最小化\(Minimize J\)](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/README.md)
-  * [梯度下降\(Gradient Descent\)](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/ti-du-xia-jiang-gradient-descent/README.md)
+  * [梯度下降\(Gradient Descent\)](machine-learning/ti-du-xia-jiang-gradient-descent/README.md)
     * [特征归一化\(Feature Scaling\)](machine-learning/ti-du-xia-jiang-gradient-descent/te-zheng-gui-yi-hua-feature-scaling.md)
     * [正则化\(Regularization\)](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/ti-du-xia-jiang-gradient-descent/zheng-ze-hua-regularization.md)
   * [共轭梯度\(Conjugate Gradient\)](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/gongeti-du-conjugate-gradient.md)
