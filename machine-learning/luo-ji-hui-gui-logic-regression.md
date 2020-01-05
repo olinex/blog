@@ -65,8 +65,8 @@ $$
 这个函数我们称之为逻辑函数, 或Sigmoid函数. 将其与n元一次函数复合, 就成为了逻辑回归的目标函数h:
 
 $$
-z = \vec{\Theta}^T\vec{X}\\
-h(\vec{X}) = \sigma(\vec{X}) = \frac{1}{1 + e^{-\vec{\Theta}^T\vec{X}}}\\
+z = \vec{\Theta}^T \cdot \vec{X}\\
+h(\vec{X}) = \sigma(\vec{X}) = \frac{1}{1 + e^{-\vec{\Theta}^T \cdot \vec{X}}}\\
 $$
 
 Sigmoid有以下特点:
@@ -93,7 +93,7 @@ $$
 由此可以推导出决策边界方程:
 
 $$
-0 = \vec{\Theta}^T\vec{X}
+0 = \vec{\Theta}^T \cdot \vec{X}
 $$
 
 只要我们能够通过某种方式求的参数集Θ的最优解, 我们就能够通过一个函数来判断逻辑回归问题.
@@ -104,7 +104,7 @@ $$
 
 $$
 J(\vec{\Theta}) = \frac{1}{2m}\sum_{i=1}^m(\sigma(\vec{X}^{(i)}) - y^{(i)})^2\\
-J(\vec{\Theta}) = \frac{1}{2m}\sum_{i=1}^m(\frac{1}{1 + e^{-\vec{\Theta}^T\vec{X}^{(i)}}} - y^{(i)})^2\\
+J(\vec{\Theta}) = \frac{1}{2m}\sum_{i=1}^m(\frac{1}{1 + e^{-\vec{\Theta}^ \cdot T\vec{X}^{(i)}}} - y^{(i)})^2\\
 $$
 
 我们尝试对损失函数J计算其对Θ的二阶偏微分可以发现, 方差形式的损失函数并不是一个凸函数. 因此无法使用梯度下降来计算参数集Θ的最优解.

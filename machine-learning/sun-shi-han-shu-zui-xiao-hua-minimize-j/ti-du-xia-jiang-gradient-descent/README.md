@@ -40,7 +40,7 @@ $$
 在这里, 我们先给出这个方法的结论, 也就是梯度下降的核心算法:
 
 $$
-\theta_n := \theta_n - \alpha\frac{\partial}{\partial\theta_n}J(\Theta)
+\theta_n := \theta_n - \alpha\frac{\partial}{\partial\theta_n}J(\vec{\Theta})
 $$
 
 这个算法有以下几个细节需要强调:
