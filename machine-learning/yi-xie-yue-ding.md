@@ -18,7 +18,7 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 
 ## X
 
-代表了样本的特征向量或输入值的集合, 一般以以下形式表示:
+代表了样本的特征向量或输入值的集合, 一般以向量形式表示:
 
 $$
 X = \{x_0, x_1, x_2, x_3, ..., x_n\}
@@ -68,7 +68,7 @@ $$
 7 & 8 & 9
 \end{matrix}
 \right ]\\
-D_{11} = 1, D_{21} = 4
+\vec{D}_{11} = 1, \vec{D}_{21} = 4
 $$
 
 ## h \(hypothesis\)
@@ -84,27 +84,38 @@ $$
 代表了目标函数内输入值x的参数, 一般至少有 n + 1 个, 与X一起构建了目标函数h \(假设为n元一次函数, 且不存在交叉影响\):
 
 $$
-h(X) = \theta_0 + \theta_1x_1 + \theta_2x_2 + ... + \theta_nx_n
+h(\vec{X}) = \theta_0 + \theta_1x_1 + \theta_2x_2 + ... + \theta_nx_n
 $$
 
 为了使X与θ能够对称, 我们假设存在一个永远等于1的自变量x0, 表达式子如下:
 
 $$
-h(X) = \theta_0x_0 + \theta_1x_1 + \theta_2x_2 + ... + \theta_nx_n
+h(\vec{X}) = \theta_0x_0 + \theta_1x_1 + \theta_2x_2 + ... + \theta_nx_n
 $$
 
 当目标函数代入了样本后, 其表达式如下:
 
 $$
-h(X^{(i)}) = \theta_0x_0^{(i)} + \theta_1x_1^{(i)} + \theta_2x_2^{(i)} + ... + \theta_nx_n^{(i)}
+h(\vec{X}^{(i)}) = \theta_0x_0^{(i)} + \theta_1x_1^{(i)} + \theta_2x_2^{(i)} + ... + \theta_nx_n^{(i)}
 $$
 
 ## Θ \(Theta\)
 
-这是θ的大写形式, 代表了目标函数内参数的集合:
+这是θ的大写形式, 代表了目标函数内参数的集合和向量:
 
 $$
 \Theta = \{ \theta_0, \theta_1, \theta_2, ..., \theta_n  \}
+$$
+
+$$
+\vec{\Theta} = \left [
+\begin{matrix}
+\theta_0\\
+\theta_1\\
+...\\
+\theta_n
+\end{matrix}
+\right ]\\
 $$
 
 ## H \(Hypothesis set\)
@@ -112,13 +123,13 @@ $$
 代表了所有可能的目标函数的集合, 在实践中, 我们通过经验或理论, 总是能对目标函数h提出一种或多种假设, 例如假设目标函数为n元n次函数, 则会得到函数集H1:
 
 $$
-H_1 = \{h | h(X) = \theta_0 + \theta_1x_1 + \theta_2x_1^2 + ... + \theta_nx_n^n \}
+H_1 = \{h | h(\vec{X}) = \theta_0 + \theta_1x_1 + \theta_2x_1^2 + ... + \theta_nx_n^n \}
 $$
 
 或者我们假设目标函数为n元二次函数, 则会得到函数集H2:
 
 $$
-H_2 = \{h | h(X) = \theta_0 + \theta_1x_1^2 + \theta_2x_1^2 + ... + \theta_nx_n^2 \}
+H_2 = \{h | h(\vec{X}) = \theta_0 + \theta_1x_1^2 + \theta_2x_1^2 + ... + \theta_nx_n^2 \}
 $$
 
 ## J
@@ -126,8 +137,8 @@ $$
 代表了目标函数h的损失函数, 注意其自变量是目标函数的参数θ:
 
 $$
-J(\Theta) = \frac{1}{m}\sum_{i=1}^mCost(h_\theta(X^{(i)}), y^{(i)})
+J(\vec{\Theta}) = \frac{1}{m}\sum_{i=1}^mCost(h_\theta(\vec{X}^{(i)}), y^{(i)})
 $$
 
-其中, 线性回归和逻辑回归的损失函数在Cost部分并不相同
+其中, 线性回归和逻辑回归的损失函数在Cost部分并不相同.
 

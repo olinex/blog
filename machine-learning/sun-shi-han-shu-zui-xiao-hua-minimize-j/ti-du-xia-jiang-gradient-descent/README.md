@@ -50,8 +50,8 @@ $$
 3. 每次调整参数θ时, 每个参数θ都需要进行同步调整:
 
 $$
-temp0 := \theta_0 - \alpha\frac{\partial}{\partial\theta_0}J(\Theta)\\
-temp1 := \theta_1 - \alpha\frac{\partial}{\partial\theta_1}J(\Theta)\\
+temp0 := \theta_0 - \alpha\frac{\partial}{\partial\theta_0}J(\vec{\Theta})\\
+temp1 := \theta_1 - \alpha\frac{\partial}{\partial\theta_1}J(\vec{\Theta})\\
 \theta_0 := temp0\\
 \theta_1 := temp1\\
 $$

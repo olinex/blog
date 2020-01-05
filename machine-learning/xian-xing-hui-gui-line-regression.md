@@ -19,7 +19,7 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 对于线性回归, 其目标函数h通常为n元函数, 因为任意其他函数都可以通过泰勒展开为n元高次函数.
 
 $$
-h(X) = \theta_0x_0 + \theta_1x_1 + \theta_2x_2 + ... + \theta_nx_n
+h(\vec{X}) = \theta_0x_0 + \theta_1x_1 + \theta_2x_2 + ... + \theta_nx_n
 $$
 
 ## 损失函数最小化
@@ -27,38 +27,38 @@ $$
 我们使用梯度下降来进行损失函数最小化, 对目标函数h进行偏微分:
 
 $$
-\frac{\partial}{\partial\theta_n}J(\Theta) = 
+\frac{\partial}{\partial\theta_n}J(\vec{\Theta}) = 
 \frac{1}{2m}\sum_{i=1}^m
-\frac{\partial((h(X^{(i)}) - y^{(i)})^2)}
+\frac{\partial((h(\vec{X}^{(i)}) - y^{(i)})^2)}
 {\partial\theta_n}\\
 $$
 
 $$
 = \frac{1}{2m}\sum_{i=1}^m
-\frac{\partial((h(X^{(i)}) - y^{(i)})^2)}
-{\partial(h(X^{(i)}) - y^{(i)})}
-\frac{\partial(h(X^{(i)}) - y^{(i)})}
+\frac{\partial((h(\vec{X}^{(i)}) - y^{(i)})^2)}
+{\partial(h(\vec{X}^{(i)}) - y^{(i)})}
+\frac{\partial(h(\vec{X}^{(i)}) - y^{(i)})}
 {\partial\theta_n}\\
 $$
 
 $$
 = \frac{1}{m}\sum_{i=1}^m
-(h(X^{(i)}) - y^{(i)})
-\frac{\partial(h(X^{(i)}) - y^{(i)})}
+(h(\vec{X}^{(i)}) - y^{(i)})
+\frac{\partial(h(\vec{X}^{(i)}) - y^{(i)})}
 {\partial\theta_n}\\
 $$
 
 $$
 = \frac{1}{m}\sum_{i=1}^m
-(h(X^{(i)}) - y^{(i)})
-\frac{\partial h(X^{(i)})}
+(h(\vec{X}^{(i)}) - y^{(i)})
+\frac{\partial h(\vec{X}^{(i)})}
 {\partial\theta_n}\\
 $$
 
 由此我们非常自然地可以得到结论, 对于n元一次函数而言, 梯度下降算法为:
 
 $$
-\theta_0 :=\theta_0 - \alpha\frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})\\
-\theta_n := \theta_n - \alpha\frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})x_n^{(i)}
+\theta_0 :=\theta_0 - \alpha\frac{1}{m}\sum_{i=1}^m(h(\vec{X}^{(i)}) - y^{(i)})\\
+\theta_n := \theta_n - \alpha\frac{1}{m}\sum_{i=1}^m(h(\vec{X}^{(i)}) - y^{(i)})x_n^{(i)}
 $$
 
