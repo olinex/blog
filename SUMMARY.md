@@ -95,7 +95,10 @@
   * [欠拟合\(underfitting\)](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/qian-ni-he-underfitting.md)
 * [线性回归\(Line Regression\)](machine-learning/xian-xing-hui-gui-line-regression.md)
 * [逻辑回归\(Logic Regression\)](machine-learning/luo-ji-hui-gui-logic-regression.md)
-* [神经网络\(Neural Network\)](machine-learning/shen-jing-wang-luo-neural-network.md)
+* [神经网络\(Neural Network\)](machine-learning/shen-jing-wang-luo-neural-network/README.md)
+  * [基础知识](machine-learning/shen-jing-wang-luo-neural-network/ji-chu-zhi-shi.md)
+  * [一些约定](machine-learning/shen-jing-wang-luo-neural-network/yi-xie-yue-ding.md)
+  * [神经网络的表示](machine-learning/shen-jing-wang-luo-neural-network/shen-jing-wang-luo-de-biao-shi.md)
 
 ## algorithm
 
