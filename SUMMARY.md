@@ -99,6 +99,7 @@
   * [基础知识](machine-learning/shen-jing-wang-luo-neural-network/ji-chu-zhi-shi.md)
   * [一些约定](machine-learning/shen-jing-wang-luo-neural-network/yi-xie-yue-ding.md)
   * [神经网络的表示](machine-learning/shen-jing-wang-luo-neural-network/shen-jing-wang-luo-de-biao-shi.md)
+  * [损失函数](machine-learning/shen-jing-wang-luo-neural-network/sun-shi-han-shu.md)
 
 ## algorithm
 
