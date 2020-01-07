@@ -166,6 +166,10 @@ $$
 重新定义损失函数J后, 我们使用梯度下降来进行损失函数最小化:
 
 $$
+\frac{\partial}{\partial\theta}J(\vec{\Theta}) =
+$$
+
+$$
 \theta_n := \theta_n + \alpha\frac{1}{m}
 $$
 

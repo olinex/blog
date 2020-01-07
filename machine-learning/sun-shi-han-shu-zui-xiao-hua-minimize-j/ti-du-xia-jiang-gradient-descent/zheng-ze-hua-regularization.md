@@ -52,7 +52,7 @@ J(\vec{\Theta}) =
 (
 y^{(i)} \times log(h(\vec{X}^{(i)}))
 + (1 - y^{(i)}) \times log(1 - h(\vec{X}^{(i)})))
-+  \lambda\sum_{j=1}^n\theta_j^2
++  \frac{\lambda}{2}\sum_{j=1}^n\theta_j^2
 )
 $$
 
