@@ -166,7 +166,61 @@ $$
 重新定义损失函数J后, 我们使用梯度下降来进行损失函数最小化:
 
 $$
-\theta_n := \theta_n + \alpha\frac{1}{m}
+\frac{\partial}{\partial\theta_n}J(\vec{\Theta}) = 
+- \frac{1}{m} \sum_{i=1}^m
+(
+y^{(i)}
+\frac{1}{h(\vec{X}^{(i)})}
+\frac{\partial h(\vec{X}^{(i)})}{\partial
+ \theta_n}
+-
+(1 - y^{(i)})
+\frac{1}{1- h(\vec{X}^{(i)})}
+\frac{\partial h(\vec{X}^{(i)})}{\partial
+ \theta_n}
+)
+$$
+
+$$
+= - \frac{1}{m} \sum_{i=1}^m
+\frac{y^{(i)} - h(\vec{X}^{(i)})}
+{h(\vec{X}^{(i)})(1- h(\vec{X}^{(i)}))}
+\frac{\partial h(\vec{X}^{(i)})}{\partial
+ \theta_n}
+$$
+
+$$
+\frac{\partial h(\vec{X})}
+{\partial\theta_n} = 
+\frac{-1}{(1 + e^{-\vec{\Theta}^T \cdot \vec{X}})^2}
+\frac{\partial(e^{-\vec{\Theta}^T \cdot \vec{X}})}{\partial\theta_n}
+$$
+
+$$
+= \frac
+{e^{-\vec{\Theta}^T \cdot \vec{X}}}
+{(1 + e^{-\vec{\Theta}^T \cdot \vec{X}})^2}
+\frac{\partial (\vec{\Theta}^T \cdot \vec{X})}{\partial\theta_n}
+$$
+
+$$
+= h(\vec{X})(1- h(\vec{X}))
+\frac{\partial (\vec{\Theta}^T \cdot \vec{X})}{\partial\theta_n}
+$$
+
+$$
+\frac{\partial}{\partial\theta_n}J(\vec{\Theta}) = 
+- \frac{1}{m} \sum_{i=1}^m
+((y^{(i)} - h(\vec{X}^{(i)}))
+\frac{\partial (\vec{\Theta}^T \cdot \vec{X}^{(i)})}{\partial\theta_n})
+$$
+
+从上面的推导, 是不是感觉特别经验? 线性回归和逻辑回归的梯度下降表达式, 竟然是一模一样的!
+
+$$
+\theta_0 :=\theta_0 - \alpha\frac{1}{m}\sum_{i=1}^m(h(\vec{X}^{(i)}) - y^{(i)})\\
+\theta_n := \theta_n - \alpha\frac{1}{m}\sum_{i=1}^m((h(\vec{X}^{(i)}) - y^{(i)})
+\frac{\partial (\vec{\Theta}^T \cdot \vec{X}^{(i)})}{\partial\theta_n})
 $$
 
 
