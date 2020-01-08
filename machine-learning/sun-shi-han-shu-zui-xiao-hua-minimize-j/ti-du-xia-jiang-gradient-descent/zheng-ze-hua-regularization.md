@@ -52,13 +52,15 @@ J(\vec{\Theta}) =
 (
 y^{(i)} \times log(h(\vec{X}^{(i)}))
 + (1 - y^{(i)}) \times log(1 - h(\vec{X}^{(i)})))
-+  \lambda\sum_{j=1}^n\theta_j^2
++  \frac{\lambda}{2}\sum_{j=1}^n\theta_j^2
 )
 $$
 
 同样地代入梯度下降后:
 
 $$
-\theta_0 := \theta_0
+\theta_0 :=\theta_0 - \alpha\frac{1}{m}\sum_{i=1}^m(h(\vec{X}^{(i)}) - y^{(i)})\\
+\theta_n := (1 - \alpha\frac{\lambda}{m})\theta_n - \alpha\frac{1}{m}\sum_{i=1}^m(h(\vec{X}^{(i)}) - y^{(i)})
+\frac{\partial (\vec{\Theta}^T \cdot \vec{X})}{\partial\theta_n}
 $$
 
