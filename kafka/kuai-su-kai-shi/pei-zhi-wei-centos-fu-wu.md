@@ -30,7 +30,7 @@ After=syslog.target
 [Service]
 SyslogIdentifier=kafka
 
-Type=forking
+Type=simpleforking
 User=kafka
 Group=kafka
 ExecStart=/opt/kafka_2.13-2.4.0/bin/kafka-server-start.sh /opt/kafka_2.13-2.4.0/config/server.properties
