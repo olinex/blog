@@ -68,12 +68,14 @@ $$
 则我们可以将各个层次嵌套的目标函数h表达为:
 
 $$
-h(\vec{X}) = g(
-\vec{W}^{(j)} \cdot
-g(\vec{W}^{(j -1)} \cdot
+h(\vec{X}) = 
+g(\vec{W}_{K \times (S_{(L - 1)} + 1)}^{(L)} \cdot
 ... \cdot
-g(\vec{W}^{(1)} \cdot 
-\vec{X}
-)))
+g(\vec{W}_{S_3 \times (S_2 + 1)}^{(3)} \cdot 
+g(\vec{W}_{S_2 \times (n + 1)}^{(2)} \cdot 
+\vec{X}_{(n + 1) \times 1}
+))))_{K \times 1}
 $$
+
+
 
