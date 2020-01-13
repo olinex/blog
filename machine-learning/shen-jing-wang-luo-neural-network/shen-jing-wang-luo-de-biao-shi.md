@@ -40,7 +40,7 @@ a_i^{(j)} = g(\vec{W}_{i}^{(j)} \cdot \vec{A}^{(j-1)})
 $$
 
 $$
-\vec{A}^{(j)} = g(\vec{W}^{(j)} \cdot \vec{A}^{(j-1)} )
+\vec{A}^{(j)} = g(\vec{W}^{(j)} \cdot \vec{A}^{(j-1)})
 $$
 
 $$
