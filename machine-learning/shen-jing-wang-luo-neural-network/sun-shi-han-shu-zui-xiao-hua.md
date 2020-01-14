@@ -56,21 +56,83 @@ $$
 
 对于神经网络而言, 无论是线性回归还是逻辑回归, 梯度下降的核心问题依然是损失函数J的求导. 而神经网络的嵌套结构虽然使得其能够表征具有复杂多项式的目标函数, 但若不能有效地优化梯度下降的效率, 那神经网络依然不具备优势. 
 
-而幸好地是, 神经网络的复杂层次嵌套结构使得梯度下降的效率大大提高, 为了简化问题, 我们假设神经网络为二项分布的逻辑回归问题或线性回归问题, 输出层有且仅有一个单元, 且仅有一个样本集, 假设我们对第l层第j个单元的第i个权重求取损失函数的偏微分:
+而幸好地是, 神经网络的复杂层次嵌套结构使得梯度下降的效率大大提高, **为了简化问题, 我们假设神经网络为二项分布的逻辑回归问题或线性回归问题, 输出层有且仅有一个单元, 且仅有一个样本集**, 假设我们某个权重w求取损失函数的偏微分:
 
 $$
 \frac
 {\partial J(\vec{W})}
-{\partial w_{ji}^{(l)}}
+{\partial w}
+$$
+
+我们假设一个中间向量Z:
+
+$$
+\vec{Z}^{(j)} = 
+\vec{W}^{(j)} \cdot \vec{A}^{(j - 1)}\\
+z^{(j)} = 
+\sum_{i=0}^{S_{(j-1)}}w_{i}^{(j)}a_i^{(j-1)}
 $$
 
 由线性回归和逻辑回归的梯度下降求导可以得知, 无论是二项分布的逻辑回归问题或线性回归问题, 他们的偏微分都表示为:
 
 $$
-\frac{\partial J(\vec{W})}{\partial w_{ji}^{(l)}}
+\frac{\partial J(\vec{W})}{\partial w}
 = 
-(g(\vec{W}^{(L)} \cdot \vec{A}^{(L - 1)}) - y)
-\frac{\partial (\vec{W}^{(L)} \cdot \vec{A}^{(L - 1)})}{\partial w_{ji}^{(l)}}
+(a^{(L)} - y)
+\frac{\partial z^{(L)}}{\partial w}
+$$
+
+$$
+\frac{\partial z^{(L)}}{\partial w} =
+\frac{\partial}{\partial w}
+\sum_{i=0}^{S_{(L-1)}}w_{i}^{(L)}a_i^{(L-1)}
+$$
+
+$$
+= 
+\sum_{i=0}^{S_{(L-1)}}
+w_i^{(L)}
+\frac
+{\partial a_i^{(L-1)}}
+{\partial w}
+$$
+
+$$
+= \sum_{i=0}^{S_{(L-1)}}
+w_i^{(L)}
+\frac{\partial a_i^{(L-1)}}{\partial z_i^{(L-1)}}
+\frac{\partial z_i^{(L-1)}}{\partial w}
+$$
+
+因此:
+
+$$
+\frac{\partial J(\vec{W})}{\partial w}
+= 
+(a^{(L)} - y)
+(
+\sum_{i=0}^{S_{(L-1)}}
+w_i^{(L)}
+a_i^{(L-1)}
+(1-a_i^{(L-1)})
+\frac{\partial z_i^{(L-1)}}{\partial w})
+$$
+
+由以上推导可以得知, 神经网络的损失函数求导也存在嵌套结构:
+
+$$
+\frac{\partial z^{(j)}}{\partial w}
+=
+\sum_{i=0}^{S_{(j-1)}}
+w_i^{(j)}
+\frac{\partial a_i^{(j-1)}}{\partial z_i^{(j-1)}}
+\frac{\partial z_i^{(j-1)}}{\partial w}\\
+= 
+\sum_{i=0}^{S_{(j-1)}}
+w_i^{(j)}
+a_i^{(j-1)}
+(1-a_i^{(j-1)})
+\frac{\partial z_i^{(j-1)}}{\partial w}
 $$
 
 ## 正向传播
