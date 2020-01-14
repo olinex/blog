@@ -69,8 +69,8 @@ $$
 $$
 \frac{\partial J(\vec{W})}{\partial w_{ji}^{(l)}}
 = 
-(h(\vec{A}^{(L)}) - y)
-\frac{\partial (\vec{W}^{L} \cdot \vec{A}^{(L - 1)})}{\partial w_{ji}^{(l)}}
+(g(\vec{W}^{(L)} \cdot \vec{A}^{(L - 1)}) - y)
+\frac{\partial (\vec{W}^{(L)} \cdot \vec{A}^{(L - 1)})}{\partial w_{ji}^{(l)}}
 $$
 
 ## 正向传播
