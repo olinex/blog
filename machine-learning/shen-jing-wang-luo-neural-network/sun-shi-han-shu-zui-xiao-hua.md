@@ -19,16 +19,11 @@ h(\vec{X}^{(i)})
 - y^{(i)}
 )^2 + 
 \lambda
-\sum_{j=2}^L
-\Vert \vec{W}^{(j)} \Vert ^2
-)
-$$
-
-$$
-\Vert \vec{W}^{(j)} \Vert ^2 = 
+\sum_{l=2}^L
 \sum_{i=1}^{S_j}
-\sum_{j=0}^{S_{(j - 1)}}
-w_{ij}^{(j)}
+\sum_{j=1}^{S_{(j - 1)}}
+(w_{ij}^{(l)})^2
+)
 $$
 
 ## 逻辑回归
@@ -45,14 +40,16 @@ y_k^{(i)} \times log(h(\vec{X}^{(i)}))_k +
 (1 - y_k^{(i)}) \times log(1 - h(\vec{X}^{(i)}))_k
 )
 - \frac{\lambda}{2}
-\sum_{j=2}^L
-\Vert \vec{W}^{(j)} \Vert ^2
+\sum_{l=2}^L
+\sum_{i=1}^{S_j}
+\sum_{j=1}^{S_{(j - 1)}}
+(w_{ij}^{(l)})^2
 )
 $$
 
 
 
-## 目标函数求导
+## 损失函数求导
 
 对于神经网络而言, 无论是线性回归还是逻辑回归, 梯度下降的核心问题依然是损失函数J的求导. 而神经网络的嵌套结构虽然使得其能够表征具有复杂多项式的目标函数, 但若不能有效地优化梯度下降的效率, 那神经网络依然不具备优势. 
 
@@ -69,8 +66,7 @@ $$
 $$
 \vec{Z}^{(j)} = 
 \vec{W}^{(j)} \cdot \vec{A}^{(j - 1)}\\
-z^{(j)} = 
-\sum_{i=0}^{S_{(j-1)}}w_{i}^{(j)}a_i^{(j-1)}
+z_i^{(j)} = w_{i}^{(j)}a_i^{(j-1)}
 $$
 
 由线性回归和逻辑回归的梯度下降求导可以得知, 无论是二项分布的逻辑回归问题或线性回归问题, 他们的偏微分都表示为:
@@ -79,13 +75,13 @@ $$
 \frac{\partial J(\vec{W})}{\partial w}
 = 
 (a^{(L)} - y)
-\frac{\partial z^{(L)}}{\partial w}
+\frac{\partial \vec{Z}^{(L)}}{\partial w}
 $$
 
 $$
-\frac{\partial z^{(L)}}{\partial w} =
-\frac{\partial}{\partial w}
-\sum_{i=0}^{S_{(L-1)}}w_{i}^{(L)}a_i^{(L-1)}
+\frac{\partial \vec{Z}^{(L)}}{\partial w} =
+\frac{\partial (\vec{W}^{(L)} \cdot \vec{A}^{(L-1)})}
+{\partial w}
 $$
 
 $$
@@ -95,7 +91,7 @@ w_i^{(L)}
 \frac
 {\partial a_i^{(L-1)}}{\partial w}
 + 
-\frac{\partial(w_0^{(L)}a_0^{(L)})}{\partial w}
+\frac{\partial(w_0^{(L)}a_0^{(L-1)})}{\partial w}
 $$
 
 $$
@@ -119,20 +115,28 @@ $$
 然而这种嵌套结构还是过于复杂了, 我们假设存在一个中间变量delta:
 
 $$
-\delta^{(L)} = a^{(L)} - y\\
-\delta^{(L - 1)} = \delta^{(L)}\vec{W}^{(L-1)} 
+\Delta^{(L)} = \vec{A}^{(L)} - y\\
+\delta^{(L)} = a^{(L)} - y
+$$
+
+$$
+\Delta^{(L - 1)} = \vec{W}^{(L-1)} 
 \cdot 
-g'(Z^{(L-1)})\\
+\frac{\partial \vec{A}^{(L-1)}}{\partial \vec{Z}^{(L-1)}}
+\cdot
+\Delta^{(L)}
+\\
+
 \delta^{(j - 1)} = \delta^{(j)}\vec{W}^{(j-1)} 
 \cdot 
-g'(Z^{(j-1)})\\
+\frac{\partial \vec{A}^{(j-1)}}{\partial \vec{Z}^{(j-1)}}\\
 $$
 
 因此对于第l层的第i个单元的第j个权重而言, 其偏微分可以简化为:
 
 $$
 \frac{\partial J(\vec{W})}{\partial w_{ij}^{(l)}}
-= a_j^{(l)} \delta_i^{(l+1)}
+= a_i^{(l)} \delta_i^{(l+1)}
 $$
 
 从以上的计算过程中我们可以看出, 在对神经网络的损失函数求取偏微分时, 有大量的重复运算可以优化.
@@ -150,6 +154,22 @@ $$
 ## 反向传播
 
 当我们通过正向传播获得了每个逻辑单元的激励值后, 每个单元的delta便可以通过相反方向依次计算得出.
+
+### 线性回归
+
+线性回归的神经网络中, 激活函数g均为一次函数, 因此:
+
+$$
+\delta^{(L)} = a^{(L)} - y\\
+\delta_i^{(L - 1)} = \delta^{(L)}w_i^{(L)}\\
+\delta_i^{(L-2)} = \delta^{(L-1)}w_i^{(L-1)}\\
+$$
+
+直到反向到达输入层:
+
+$$
+\delta_i^{(1)} = \delta^{(2)}w_i^{(2)}
+$$
 
 ### 逻辑回归
 
@@ -169,5 +189,22 @@ $$
 
 因此我们计算出了神经网络中每一个单元的delta, 用以进行下一步的梯度下降.
 
+## 梯度下降
 
+当我们通过反向传播计算出了每个节点的delta之后, 就可以通过梯度下降的公式对权重进行修正了, 假设我们需要对第l层的第i个节点的第w个权重进行梯度下降:
+
+$$
+w_{ij}^{(l)} := 
+w_{ij}^{(l)} - \alpha\frac
+{\partial J(\vec{W})}
+{\partial w_{ij}^{(l)}}
+$$
+
+### 线性回归
+
+$$
+w_{ij}^{(l)} := 
+w_{ij}^{(l)} - 
+\alpha a_j^{(l)} \delta_i^{(l+1)}
+$$
 

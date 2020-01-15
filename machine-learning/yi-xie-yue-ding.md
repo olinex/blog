@@ -25,7 +25,7 @@ X = \{x_0, x_1, x_2, x_3, ..., x_n\}
 $$
 
 $$
-\vec{X} = 
+X = 
 \left [
 \begin{matrix}
 x_0\\
@@ -61,14 +61,14 @@ $$
 当我们将训练集D视为一个矩阵时, 矩阵中的元素可以通过下标表示:
 
 $$
-\vec{D} = \left [
+D = \left [
 \begin{matrix}
 1 & 2 & 3\\
 4 & 5 & 6\\
 7 & 8 & 9
 \end{matrix}
 \right ]\\
-\vec{D}_{11} = 1, \vec{D}_{21} = 4
+D_{11} = 1, D_{21} = 4
 $$
 
 ## h \(hypothesis\)
@@ -84,19 +84,19 @@ $$
 代表了目标函数内输入值x的参数, 一般至少有 n + 1 个, 与X一起构建了目标函数h \(假设为n元一次函数, 且不存在交叉影响\):
 
 $$
-h(\vec{X}) = \theta_0 + \theta_1x_1 + \theta_2x_2 + ... + \theta_nx_n
+h(X) = \theta_0 + \theta_1x_1 + \theta_2x_2 + ... + \theta_nx_n
 $$
 
 为了使X与θ能够对称, 我们假设存在一个永远等于1的自变量x0, 表达式子如下:
 
 $$
-h(\vec{X}) = \theta_0x_0 + \theta_1x_1 + \theta_2x_2 + ... + \theta_nx_n
+h(X) = \theta_0x_0 + \theta_1x_1 + \theta_2x_2 + ... + \theta_nx_n
 $$
 
 当目标函数代入了样本后, 其表达式如下:
 
 $$
-h(\vec{X}^{(i)}) = \theta_0x_0^{(i)} + \theta_1x_1^{(i)} + \theta_2x_2^{(i)} + ... + \theta_nx_n^{(i)}
+h(X^{(i)}) = \theta_0x_0^{(i)} + \theta_1x_1^{(i)} + \theta_2x_2^{(i)} + ... + \theta_nx_n^{(i)}
 $$
 
 ## Θ \(Theta\)
@@ -108,7 +108,7 @@ $$
 $$
 
 $$
-\vec{\Theta} = \left [
+\Theta = \left [
 \begin{matrix}
 \theta_0\\
 \theta_1\\
@@ -123,13 +123,13 @@ $$
 代表了所有可能的目标函数的集合, 在实践中, 我们通过经验或理论, 总是能对目标函数h提出一种或多种假设, 例如假设目标函数为n元n次函数, 则会得到函数集H1:
 
 $$
-H_1 = \{h | h(\vec{X}) = \theta_0 + \theta_1x_1 + \theta_2x_1^2 + ... + \theta_nx_n^n \}
+H_1 = \{h | h(X) = \theta_0 + \theta_1x_1 + \theta_2x_1^2 + ... + \theta_nx_n^n \}
 $$
 
 或者我们假设目标函数为n元二次函数, 则会得到函数集H2:
 
 $$
-H_2 = \{h | h(\vec{X}) = \theta_0 + \theta_1x_1^2 + \theta_2x_1^2 + ... + \theta_nx_n^2 \}
+H_2 = \{h | h(X) = \theta_0 + \theta_1x_1^2 + \theta_2x_1^2 + ... + \theta_nx_n^2 \}
 $$
 
 ## J
@@ -137,7 +137,7 @@ $$
 代表了目标函数h的损失函数, 注意其自变量是目标函数的参数θ:
 
 $$
-J(\vec{\Theta}) = \frac{1}{m}\sum_{i=1}^mCost(h_\theta(\vec{X}^{(i)}), y^{(i)})
+J(\Theta) = \frac{1}{m}\sum_{i=1}^mCost(h(X^{(i)}), y^{(i)})
 $$
 
 其中, 线性回归和逻辑回归的损失函数在Cost部分并不相同.
