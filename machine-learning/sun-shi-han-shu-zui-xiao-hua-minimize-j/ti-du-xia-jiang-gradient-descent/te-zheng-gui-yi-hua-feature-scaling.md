@@ -13,15 +13,15 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 并且这类情况都有一个显著的特点: X内的某些特征值的取值范围远大于另外一些特征值. 从梯度下降的公式来看:
 
 $$
-\theta_n := \theta_n - \alpha\frac{\partial}{\partial\theta_n}J(\vec{\Theta})
+\theta_n := \theta_n - \alpha\frac{\partial}{\partial\theta_n}J(\Theta)
 $$
 
 x值会对θ的参数变化有不同程度的影响, 我们假设目标函数h为二元一次函数, 则他们的梯度下降算法为:
 
 $$
-\theta_0 :=\theta_0 - \alpha\frac{1}{m}\sum_{i=1}^m(h(\vec{X}^{(i)}) - y^{(i)})\\
-\theta_1 := \theta_1 - \alpha\frac{1}{m}\sum_{i=1}^m(h(\vec{X}^{(i)}) - y^{(i)})x_1^{(i)}\\
-\theta_2 := \theta_2 - \alpha\frac{1}{m}\sum_{i=1}^m(h(\vec{X}^{(i)}) - y^{(i)})x_2^{(i)}
+\theta_0 :=\theta_0 - \alpha\frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})\\
+\theta_1 := \theta_1 - \alpha\frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})x_1^{(i)}\\
+\theta_2 := \theta_2 - \alpha\frac{1}{m}\sum_{i=1}^m(h(X^{(i)}) - y^{(i)})x_2^{(i)}
 $$
 
 由此可以看出, x可能的取值范围越大, 对应的θ变化也越大, 也越不容易指向最优的参数集Θ. 因此, 我们需要对特征值进行一定变换, 来减少特征值的取值范围对梯度下降的影响. 这种特征值处理方式叫做特征归一化.
@@ -43,7 +43,7 @@ $$
 需要特别注意的是, 当我们通过特征归一化获得参数集Θ后, 是不能直接将其代入目标函数h内的. 在此之间, 目标函数需要进行一次转换, 我们以n元一次函数举例:
 
 $$
-h(\vec{X}) = \theta_0 + 
+h(X) = \theta_0 + 
 \theta_1f_1(x_1) + 
 \theta_2f_2(x_2) +
 ... +

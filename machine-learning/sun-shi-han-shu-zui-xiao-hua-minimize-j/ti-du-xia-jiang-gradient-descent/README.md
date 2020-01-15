@@ -40,7 +40,7 @@ $$
 在这里, 我们先给出这个方法的结论, 也就是梯度下降的核心算法:
 
 $$
-\theta_n := \theta_n - \alpha\frac{\partial}{\partial\theta_n}J(\vec{\Theta})
+\theta_n := \theta_n - \alpha\frac{\partial}{\partial\theta_n}J(\Theta)
 $$
 
 这个算法有以下几个细节需要强调:
@@ -50,8 +50,8 @@ $$
 3. 每次调整参数θ时, 每个参数θ都需要进行同步调整:
 
 $$
-temp0 := \theta_0 - \alpha\frac{\partial}{\partial\theta_0}J(\vec{\Theta})\\
-temp1 := \theta_1 - \alpha\frac{\partial}{\partial\theta_1}J(\vec{\Theta})\\
+temp0 := \theta_0 - \alpha\frac{\partial}{\partial\theta_0}J(\Theta)\\
+temp1 := \theta_1 - \alpha\frac{\partial}{\partial\theta_1}J(\Theta)\\
 \theta_0 := temp0\\
 \theta_1 := temp1\\
 $$
