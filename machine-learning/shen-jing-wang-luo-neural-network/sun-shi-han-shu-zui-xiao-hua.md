@@ -11,11 +11,11 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 当表征线性函数时, 损失函数为:
 
 $$
-J(\vec{W}) 
+J(W) 
 = \frac{1}{2m}
 (\sum_{i=1}^m
 (
-h(\vec{X}^{(i)})
+h(X^{(i)})
 - y^{(i)}
 )^2 + 
 \lambda
@@ -31,13 +31,13 @@ $$
 当使用神经网络表征逻辑回归时, 因为逻辑回归的不同分布, 需要将各个可能项的损失函数累加:
 
 $$
-J(\vec{W}) =
+J(W) =
 -\frac{1}{m}(
 \sum_{i=1}^m
 \sum_{k=1}^K
 (
-y_k^{(i)} \times log(h(\vec{X}^{(i)}))_k + 
-(1 - y_k^{(i)}) \times log(1 - h(\vec{X}^{(i)}))_k
+y_k^{(i)} \times log(h(X^{(i)}))_k + 
+(1 - y_k^{(i)}) \times log(1 - h(X^{(i)}))_k
 )
 - \frac{\lambda}{2}
 \sum_{l=2}^L
@@ -47,96 +47,116 @@ y_k^{(i)} \times log(h(\vec{X}^{(i)}))_k +
 )
 $$
 
-
-
 ## 损失函数求导
 
 对于神经网络而言, 无论是线性回归还是逻辑回归, 梯度下降的核心问题依然是损失函数J的求导. 而神经网络的嵌套结构虽然使得其能够表征具有复杂多项式的目标函数, 但若不能有效地优化梯度下降的效率, 那神经网络依然不具备优势. 
 
-而幸好地是, 神经网络的复杂层次嵌套结构使得梯度下降的效率大大提高, **为了简化问题, 我们假设神经网络为二项分布的逻辑回归问题或线性回归问题, 输出层有且仅有一个单元, 且仅有一个样本集**, 假设我们某个权重w求取损失函数的偏微分:
+而幸好地是, 神经网络的复杂层次嵌套结构使得梯度下降的效率大大提高, **为了简化问题, 我们假设有且仅有一个样本集**, 假设我们某个权重w求取损失函数的偏微分:
 
 $$
 \frac
-{\partial J(\vec{W})}
+{\partial J(W)}
 {\partial w}
 $$
 
 我们假设一个中间向量Z:
 
 $$
-\vec{Z}^{(j)} = 
-\vec{W}^{(j)} \cdot \vec{A}^{(j - 1)}\\
-z_i^{(j)} = w_{i}^{(j)}a_i^{(j-1)}
+Z^{(j)} = W^{(j)} \cdot A^{(j - 1)} =
+\sum_{i=1}^{S_{j}}(W_{i}^{(j)} \cdot A^{(j-1)})
+\\
+z_i^{(j)} = W_{i}^{(j)} \cdot A^{(j-1)}
 $$
 
-由线性回归和逻辑回归的梯度下降求导可以得知, 无论是二项分布的逻辑回归问题或线性回归问题, 他们的偏微分都表示为:
+$$
+z
+$$
+
+由线性回归和逻辑回归的梯度下降求导可以得知, 他们的偏微分都表示为:
 
 $$
-\frac{\partial J(\vec{W})}{\partial w}
+\frac{\partial J(W)}{\partial w}
 = 
-(a^{(L)} - y)
-\frac{\partial \vec{Z}^{(L)}}{\partial w}
+\frac{\partial Z^{(L)}}{\partial w}
+\cdot
+(A^{(L)} - Y)
 $$
 
 $$
-\frac{\partial \vec{Z}^{(L)}}{\partial w} =
-\frac{\partial (\vec{W}^{(L)} \cdot \vec{A}^{(L-1)})}
+\frac{\partial Z^{(L)}}{\partial w} =
+\sum_{i=1}^{S_{L}} \frac{\partial z_i^{(L)}}{\partial w}  
+=
+\sum_{i=1}^{S_{L}}\frac{\partial (W_i^{(L)} \cdot A^{(L-1)})}
 {\partial w}
 $$
 
 $$
-= 
-\sum_{i=1}^{S_{(L-1)}}
-w_i^{(L)}
+= \sum_{i=1}^{S_{L}}
+(
+W_i^{(L)}
+\frac{\partial A^{(L-1)}}{\partial Z^{(L-1)}}
+\frac{\partial Z^{(L-1)}}{\partial w}
+)
+$$
+
+$$
+= \sum_{i=1}^{S_{L}}\sum_{j=0}^{S_{(L-1)}}
+(
+w_{ij}^{(L)}
 \frac
-{\partial a_i^{(L-1)}}{\partial w}
-+ 
-\frac{\partial(w_0^{(L)}a_0^{(L-1)})}{\partial w}
+{\partial a_i^{(L-1)}}
+{\partial z_i^{(L-1)}}
+\frac
+{\partial z_i^{(L-1)}}
+{\partial w}
+)
 $$
 
-$$
-= \sum_{i=1}^{S_{(L-1)}}
-w_i^{(L)}
-\frac{\partial a_i^{(L-1)}}{\partial z_i^{(L-1)}}
-\frac{\partial z_i^{(L-1)}}{\partial w}
-$$
+由此可以得知:
 
 $$
-\frac{\partial z^{(j)}}{\partial w}
+\frac{\partial z_i^{(l)}}{\partial w}
 =
-\sum_{i=1}^{S_{(j-1)}}
-w_i^{(j)}
-\frac{\partial a_i^{(j-1)}}{\partial z_i^{(j-1)}}
-\frac{\partial z_i^{(j-1)}}{\partial w}
+\sum_{j=0}^{S_{(l-1)}}
+w_{ij}^{(l)}
+\frac{\partial a_i^{(l-1)}}{\partial z_i^{(l-1)}}
+\frac{\partial z_i^{(l-1)}}{\partial w}
 $$
+
+{% hint style="info" %}
+对于线性回归而言, 神经网络只有一个输出层和因变量, 因此矩阵A\(L\)和Y仅有一个元素
+{% endhint %}
 
 上述的这种嵌套结构, 可以通过反向传播算法, 有效地降低损失函数最小化时的计算量.
 
 然而这种嵌套结构还是过于复杂了, 我们假设存在一个中间变量delta:
 
 $$
-\Delta^{(L)} = \vec{A}^{(L)} - y\\
-\delta^{(L)} = a^{(L)} - y
+\Delta^{(L)} = A^{(L)} - Y\\
+\delta_i^{(L)} = a_i^{(L)} - y_i
 $$
 
 $$
-\Delta^{(L - 1)} = \vec{W}^{(L-1)} 
-\cdot 
-\frac{\partial \vec{A}^{(L-1)}}{\partial \vec{Z}^{(L-1)}}
-\cdot
-\Delta^{(L)}
-\\
+\Delta^{(L - 1)} = 
+(W^{(L-1)} \cdot \Delta^{(L)})
+\frac{\partial A^{(L-1)}}{\partial Z^{(L-1)}}\\
 
-\delta^{(j - 1)} = \delta^{(j)}\vec{W}^{(j-1)} 
-\cdot 
-\frac{\partial \vec{A}^{(j-1)}}{\partial \vec{Z}^{(j-1)}}\\
+\delta_i^{(L - 1)} = 
+((W_i^{(L-1)})^T \cdot\Delta^{(L)})
+\frac{\partial a_i^{(L-1)}}{\partial z_i^{(L-1)}}
+$$
+
+$$
+\delta_i^{(j)} = 
+((W_i^{(j)})^T \cdot \Delta^{(j+1)})
+\frac{\partial a_i^{(j)}}{\partial z_i^{(j)}}
 $$
 
 因此对于第l层的第i个单元的第j个权重而言, 其偏微分可以简化为:
 
 $$
 \frac{\partial J(\vec{W})}{\partial w_{ij}^{(l)}}
-= a_i^{(l)} \delta_i^{(l+1)}
+= a_j^{(l-1)} \delta_i^{(l)}
 $$
 
 从以上的计算过程中我们可以看出, 在对神经网络的损失函数求取偏微分时, 有大量的重复运算可以优化.
@@ -162,7 +182,7 @@ $$
 $$
 \delta^{(L)} = a^{(L)} - y\\
 \delta_i^{(L - 1)} = \delta^{(L)}w_i^{(L)}\\
-\delta_i^{(L-2)} = \delta^{(L-1)}w_i^{(L-1)}\\
+\delta_i^{(L-2)} = \Delta^{(L-1)}w_i^{(L-1)}\\
 $$
 
 直到反向到达输入层:
