@@ -62,14 +62,9 @@ $$
 我们假设一个中间向量Z:
 
 $$
-Z^{(j)} = W^{(j)} \cdot A^{(j - 1)} =
-\sum_{i=1}^{S_{j}}(W_{i}^{(j)} \cdot A^{(j-1)})
-\\
-z_i^{(j)} = W_{i}^{(j)} \cdot A^{(j-1)}
-$$
-
-$$
-z
+z_i^{(l)} = 
+W_{i}^{(l)} \cdot A^{(l-1)} = 
+\sum_{j=0}^{S_{(l-1)}}w_{ij}^{(l)}a_i^{(l-1)}
 $$
 
 由线性回归和逻辑回归的梯度下降求导可以得知, 他们的偏微分都表示为:
@@ -77,38 +72,36 @@ $$
 $$
 \frac{\partial J(W)}{\partial w}
 = 
-\frac{\partial Z^{(L)}}{\partial w}
-\cdot
-(A^{(L)} - Y)
-$$
-
-$$
-\frac{\partial Z^{(L)}}{\partial w} =
-\sum_{i=1}^{S_{L}} \frac{\partial z_i^{(L)}}{\partial w}  
-=
-\sum_{i=1}^{S_{L}}\frac{\partial (W_i^{(L)} \cdot A^{(L-1)})}
-{\partial w}
-$$
-
-$$
-= \sum_{i=1}^{S_{L}}
+\sum_{i=1}^{S_L}
 (
-W_i^{(L)}
-\frac{\partial A^{(L-1)}}{\partial Z^{(L-1)}}
-\frac{\partial Z^{(L-1)}}{\partial w}
+(a_i^{(L)} - y_i)
+\frac{\partial z_i^{(L)}}{\partial w}
+)
+$$
+
+我们对每一项z求w的偏导数:
+
+$$
+\frac
+{\partial z_i^{(L)}}
+{\partial w}  
+=
+\frac
+{\partial (W_i^{(L)} \cdot A^{(L-1)})}
+{\partial w}
+=
+\frac{\partial}{\partial w}
+(
+\sum_{j=0}^{S_{(L-1)}}w_{ij}^{(L)}a_i^{(L-1)}
 )
 $$
 
 $$
-= \sum_{i=1}^{S_{L}}\sum_{j=0}^{S_{(L-1)}}
+= \sum_{j=1}^{S_{(L-1)}}
 (
 w_{ij}^{(L)}
-\frac
-{\partial a_i^{(L-1)}}
-{\partial z_i^{(L-1)}}
-\frac
-{\partial z_i^{(L-1)}}
-{\partial w}
+\frac{\partial a_i^{(L-1)}}{\partial z_i^{(L-1)}}
+\frac{\partial z_i^{(L-1)}}{\partial w}
 )
 $$
 
@@ -117,14 +110,14 @@ $$
 $$
 \frac{\partial z_i^{(l)}}{\partial w}
 =
-\sum_{j=0}^{S_{(l-1)}}
+\sum_{j=1}^{S_{(l-1)}}
 w_{ij}^{(l)}
 \frac{\partial a_i^{(l-1)}}{\partial z_i^{(l-1)}}
 \frac{\partial z_i^{(l-1)}}{\partial w}
 $$
 
 {% hint style="info" %}
-对于线性回归而言, 神经网络只有一个输出层和因变量, 因此矩阵A\(L\)和Y仅有一个元素
+对任意的偏置单元求权重的偏微分都等于0
 {% endhint %}
 
 上述的这种嵌套结构, 可以通过反向传播算法, 有效地降低损失函数最小化时的计算量.
@@ -132,15 +125,10 @@ $$
 然而这种嵌套结构还是过于复杂了, 我们假设存在一个中间变量delta:
 
 $$
-\Delta^{(L)} = A^{(L)} - Y\\
 \delta_i^{(L)} = a_i^{(L)} - y_i
 $$
 
 $$
-\Delta^{(L - 1)} = 
-(W^{(L-1)} \cdot \Delta^{(L)})
-\frac{\partial A^{(L-1)}}{\partial Z^{(L-1)}}\\
-
 \delta_i^{(L - 1)} = 
 ((W_i^{(L-1)})^T \cdot\Delta^{(L)})
 \frac{\partial a_i^{(L-1)}}{\partial z_i^{(L-1)}}
