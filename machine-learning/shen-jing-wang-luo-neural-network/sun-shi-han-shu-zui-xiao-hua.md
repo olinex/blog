@@ -49,9 +49,7 @@ $$
 
 ## 损失函数求导
 
-对于神经网络而言, 无论是线性回归还是逻辑回归, 梯度下降的核心问题依然是损失函数J的求导. 而神经网络的嵌套结构虽然使得其能够表征具有复杂多项式的目标函数, 但若不能有效地优化梯度下降的效率, 那神经网络依然不具备优势. 
-
-而幸好地是, 神经网络的复杂层次嵌套结构使得梯度下降的效率大大提高, **为了简化问题, 我们假设有且仅有一个样本集**, 假设我们某个权重w求取损失函数的偏微分:
+对于神经网络而言, 无论是线性回归还是逻辑回归, 梯度下降的核心问题依然是损失函数J的求导. **为了简化问题, 我们假设有且仅有一个样本集**, 假设我们某个权重w求取损失函数的偏微分:
 
 $$
 \frac
@@ -79,8 +77,6 @@ $$
 )
 $$
 
-我们对每一项z求w的偏导数:
-
 $$
 \frac
 {\partial z_i^{(L)}}
@@ -92,7 +88,7 @@ $$
 =
 \frac{\partial}{\partial w}
 (
-\sum_{j=0}^{S_{(L-1)}}w_{ij}^{(L)}a_i^{(L-1)}
+\sum_{j=0}^{S_{(L-1)}}w_{ij}^{(L)}a_j^{(L-1)}
 )
 $$
 
@@ -100,32 +96,95 @@ $$
 = \sum_{j=1}^{S_{(L-1)}}
 (
 w_{ij}^{(L)}
-\frac{\partial a_i^{(L-1)}}{\partial z_i^{(L-1)}}
-\frac{\partial z_i^{(L-1)}}{\partial w}
+\frac{\partial a_j^{(L-1)}}{\partial z_j^{(L-1)}}
+\frac{\partial z_j^{(L-1)}}{\partial w}
 )
 $$
 
-由此可以得知:
+由此可以得知, 对于任意l层的第i个单元而言:
 
 $$
 \frac{\partial z_i^{(l)}}{\partial w}
 =
 \sum_{j=1}^{S_{(l-1)}}
 w_{ij}^{(l)}
-\frac{\partial a_i^{(l-1)}}{\partial z_i^{(l-1)}}
-\frac{\partial z_i^{(l-1)}}{\partial w}
+\frac{\partial a_j^{(l-1)}}{\partial z_j^{(l-1)}}
+\frac{\partial z_j^{(l-1)}}{\partial w}
 $$
 
 {% hint style="info" %}
 对任意的偏置单元求权重的偏微分都等于0
 {% endhint %}
 
-上述的这种嵌套结构, 可以通过反向传播算法, 有效地降低损失函数最小化时的计算量.
+因此我们可以逐层推导出:
+
+$$
+\frac{\partial J(W)}{\partial w} =
+\sum_{i=1}^{S_L}
+(
+(a_i^{(L)} - y_i)
+\frac{\partial z_i^{(L)}}{\partial w}
+)
+$$
+
+$$
+= 
+\sum_{i=1}^{S_L}
+\sum_{j=1}^{S_{(L-1)}}
+(
+(a_i^{(L)} - y_i)
+(
+w_{ij}^{(L)}
+\frac{\partial a_j^{(L-1)}}{\partial z_j^{(L-1)}}
+)
+\frac{\partial z_j^{(L-1)}}{\partial w}
+)
+$$
+
+$$
+= 
+\sum_{i=1}^{S_L}
+\sum_{j=1}^{S_{(L-1)}}
+\sum_{k=1}^{S_{(L-2)}}
+(
+(a_i^{(L)} - y_i)
+(
+w_{ij}^{(L)}
+\frac{\partial a_j^{(L-1)}}{\partial z_j^{(L-1)}}
+)
+)(
+w_{jk}^{(L-2)}
+\frac{\partial a_k^{(L-2)}}{\partial z_k^{(L-2)}}
+)
+\frac{\partial z_k^{(L-2)}}{\partial w}
+)
+$$
+
+对于线性回归而言:
+
+$$
+\frac{\partial a_i^{(l)}}{\partial z_i^{(l)}} = 1
+$$
+
+对于逻辑回归的sigmoid函数而言:
+
+$$
+\frac{\partial a_i^{(l)}}{\partial z_i^{(l)}} 
+= 
+a_i^{(l)}(1- a_i^{(l)})
+$$
+
+至此, 神经网络的损失函数J求导完毕. 我们可以通过上述的公式计算得出损失函数对任意权重w的偏微分. 神经网络的嵌套结构虽然使得其能够表征具有复杂多项式的目标函数, 但若不能有效地优化梯度下降的效率, 那神经网络依然不具备优势. 如果我们直接通过套用公式来运算, 将存在
+
+而幸好地是, 神经网络的复杂层次嵌套结构使得梯度下降的效率大大提高, 
+
+
 
 然而这种嵌套结构还是过于复杂了, 我们假设存在一个中间变量delta:
 
 $$
-\delta_i^{(L)} = a_i^{(L)} - y_i
+\delta_i^{(L)} = a_i^{(L)} - y_i \\
+\Delta^{(L)} = A^{(L)} - Y
 $$
 
 $$
