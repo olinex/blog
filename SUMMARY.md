@@ -96,6 +96,7 @@
   * [L-BFGS](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/l-bfgs.md)
   * [过拟合\(Overfitting\)](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/guo-ni-he-overfitting.md)
   * [欠拟合\(underfitting\)](machine-learning/sun-shi-han-shu-zui-xiao-hua-minimize-j/qian-ni-he-underfitting.md)
+* [模型选择\(Model Selection\)](machine-learning/mo-xing-xuan-ze-model-selection.md)
 * [线性回归\(Line Regression\)](machine-learning/xian-xing-hui-gui-line-regression.md)
 * [逻辑回归\(Logic Regression\)](machine-learning/luo-ji-hui-gui-logic-regression.md)
 * [神经网络\(Neural Network\)](machine-learning/shen-jing-wang-luo-neural-network/README.md)
