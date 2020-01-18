@@ -42,9 +42,9 @@ $$
 通过训练集D\(train\), 分别训练三个模型, 获得他们的参数集Θ
 
 $$
-minimizeJ(H_1, D_{(train)}) \to \Theta_1\\
-minimizeJ(H_2, D_{(train)}) \to \Theta_2\\
-minimizeJ(H_3, D_{(train)}) \to \Theta_3
+minimizeJ(H_1, D^{(train)}) \to \Theta_1\\
+minimizeJ(H_2, D^{(train)}) \to \Theta_2\\
+minimizeJ(H_3, D^{(train)}) \to \Theta_3
 $$
 
 ### 交叉验证
@@ -52,9 +52,9 @@ $$
 使用我们训练出来的参数集Θ与交叉验证集D\(cross validation\), 计算出各个模型的损失函数值:
 
 $$
-J(\Theta_1, D_{(cv)}) \to j_1\\
-J(\Theta_2, D_{(cv)}) \to j_2\\
-J(\Theta_3, D_{(cv)}) \to j_3
+J(\Theta_1, D^{(cv)}) \to j_1^{(cv)}\\
+J(\Theta_2, D^{(cv)}) \to j_2^{(cv)}\\
+J(\Theta_3, D^{(cv)}) \to j_3^{(cv)}
 $$
 
 根据最小的损失函数值, 我们能够找到对数据拟合做好的模型与参数集合Θ.
@@ -64,10 +64,28 @@ $$
 通过交叉验证之后, 找到的模型与参数集合我们并不能确保训练集和验证集的数据存在相同的倾向. 因此需要再进行一次测试:
 
 $$
-J(\Theta_1, D_{(test)}) \to j_1\\
-J(\Theta_2, D_{(test)}) \to j_2\\
-J(\Theta_3, D_{(test)}) \to j_3
+J(\Theta_1, D^{(test)}) \to j_1^{(test)}\\
+J(\Theta_2, D^{(test)}) \to j_2^{(test)}\\
+J(\Theta_3, D^{(test)}) \to j_3^{(test)}
 $$
 
 若测试出来的损失函数值依然符合验证的分布, 我们可以大概率地确保我们选择了一个相对正确的模型.
+
+## 过拟合与欠拟合
+
+通过交叉验证, 我们能够有效地找到合适的模型, 这个过程事实上就是在避免过拟合与欠拟合的发生. 假设我们有多个模型, 其中有的模型对应的函数次数过低, 函数集合H内, 并没有包含我们的目标函数, 这会导致欠拟合, 通常在训练集D\(test\)和交叉验证集D\(cv\)都会有很高的损失函数值且相似:
+
+$$
+j^{(test)} \approx j^{(cv)}
+$$
+
+我们假设有多个模型, 其中有的模型对应的的函数次数过高, 这回导致过拟合, 通常在训练集D\(test\)有较低的损失函数值, 在交叉验证集D\(cv\)则有较高的损失函数值:
+
+$$
+j^{(test)} \ll j^{(cv)}
+$$
+
+![&#x56FE;&#x7247;&#x6765;&#x81EA;&#x4E8E;&#x7F51;&#x7EDC; https://zhuanlan.zhihu.com/p/25720278](../.gitbook/assets/v2-a576135bb0e2c6e009c744158ce246e1_1200x500.jpg)
+
+
 
