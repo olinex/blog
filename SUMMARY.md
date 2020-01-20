@@ -105,6 +105,7 @@
   * [神经网络的表示](machine-learning/shen-jing-wang-luo-neural-network/shen-jing-wang-luo-de-biao-shi.md)
   * [损失函数最小化](machine-learning/shen-jing-wang-luo-neural-network/sun-shi-han-shu-zui-xiao-hua.md)
 * [支持向量机\(SVM\)](machine-learning/zhi-chi-xiang-liang-ji-svm.md)
+* [K均值聚类\(K-Means\)](machine-learning/k-jun-zhi-ju-lei-kmeans.md)
 
 ## algorithm
 
