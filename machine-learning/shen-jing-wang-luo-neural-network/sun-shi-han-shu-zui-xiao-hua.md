@@ -64,7 +64,7 @@ $$
 $$
 z_i^{(l)} = 
 W_{i}^{(l)} \cdot A^{(l-1)} = 
-\sum_{j=0}^{S_{(l-1)}}w_{ij}^{(l)}a_i^{(l-1)}
+\sum_{j=0}^{S_{(l-1)}}w_{ij}^{(l)}a_j^{(l-1)}
 $$
 
 由线性回归和逻辑回归的梯度下降求导可以得知, 他们的偏微分都表示为:
@@ -109,9 +109,11 @@ $$
 \frac{\partial z_i^{(l)}}{\partial w}
 =
 \sum_{j=1}^{S_{(l-1)}}
+(
 w_{ij}^{(l)}
 \frac{\partial a_j^{(l-1)}}{\partial z_j^{(l-1)}}
 \frac{\partial z_j^{(l-1)}}{\partial w}
+)
 $$
 
 {% hint style="info" %}
@@ -207,7 +209,7 @@ $$
 w_{ij}^{(L)}
 \frac{\partial a_j^{(L-1)}}{\partial z_j^{(L-1)}}
 )
-)(
+(
 w_{jk}^{(L-2)}
 \frac{\partial a_k^{(L-2)}}{\partial z_k^{(L-2)}}
 )
@@ -226,7 +228,7 @@ $$
 w_{ij}^{(L)}
 \frac{\partial a_j^{(L-1)}}{\partial z_j^{(L-1)}}
 )
-)(
+(
 w_{jk}^{(L-2)}
 \frac{\partial a_k^{(L-2)}}{\partial z_k^{(L-2)}}
 )
