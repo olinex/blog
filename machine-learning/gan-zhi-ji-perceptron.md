@@ -64,25 +64,83 @@ $$
 
 我们通过几何可以直观地感受到, 对于线性不可分样本集, PLA算法是不可能找到合理的权重向量的. 虽然我们知道线性可分的样本集一定存在最优的权重向量, 但是PLA算法一定能找到它吗? 这并不明显, 需要我们做进一步的证明.
 
-我们假设最优的权重向量为WF, 算法运行中的权重向量为Wf. 我们可以得知以下不等式:
+通过点到超平面的距离公式:
 
 $$
-y_iW_F^TX_i 
+\frac
+{|W^TX+b|}
+{\Vert W \Vert}
+$$
+
+我们假设空间中样本所代表的点到原点的最大距离为R, 到超平面的最小距离为γ, 最优的权重向量为Wk, 最多运行k次, 便能得到最优的权重向量, 我们可以得知以下不等式:
+
+$$
+\gamma = 
+\frac{min(yW_k^TX)}
+{\Vert W_k \Vert}
+$$
+
+$$
+y_iW_k^TX_i 
 \ge 
-min(yW_F^TX)
+min(yW_k^TX)
 \gt
 0
 $$
 
 $$
-W_F^T \cdot W_F
-= 
-W_F^T  \cdot (W_{(F-1)} + y_aX_a)
-\ge
-W_F^T  \cdot W_{(F-1)} + min(yW_F^TX)
-\gt
-W_F^T  \cdot W_{(F-1)}
+\frac{y_iW_k^TX_i}
+{\Vert W_k \Vert}
+\ge \gamma
+\gt 0
 $$
 
+$$
+W_k^T \cdot W_k
+= 
+W_k^T  \cdot (W_{(k-1)} + y_aX_a)
+\ge
+W_k^T  \cdot W_{(k-1)} + min(yW_k^TX)
+$$
 
+通过k次迭代后:
+
+$$
+W_k^T \cdot W_k
+= \Vert W_k \Vert^2
+\ge k \gamma \Vert W_k \Vert
+$$
+
+$$
+\Vert W_k \Vert \ge k\gamma
+$$
+
+又由向量相加的几何性质可以得知:
+
+$$
+\Vert W_k \Vert^2 = 
+\Vert W_{(k-1)} + y_aX_a \Vert^2 
+\le 
+\Vert W_{(k-1)} \Vert^2  + \Vert y_aX_a \Vert^2 
+= 
+\Vert W_{(k-1)} \Vert^2 + R^2
+$$
+
+通过k次迭代后:
+
+$$
+\Vert W_k \Vert^2 \le kR^2
+$$
+
+$$
+\sqrt{k}R \ge \Vert W_k \Vert \ge k \gamma
+$$
+
+最后可以推导出:
+
+$$
+k \le (\frac{R}{\gamma})^2
+$$
+
+由此可以证明, 在一定次数下, 且样本线性可分, 则PLA算法一定能找到最优的权重向量W.
 
