@@ -115,5 +115,33 @@ $$
 B(M,k) \le 2^M
 $$
 
-当M大于k时, M中任意的k个样本, 不能被k打散, 否则不满足断点k的要求, 
+当M大于k时, M中任意的k个样本, 不能被k打散, 否则不满足断点k的要求. 我们取任意其中一个样本i, 并找到这么α对M个样本的排列组合: 他们除了第i个样本的结果标签可以不同外, 别的样本的结果标签都要相同, 剩余的样本数量我们标记为β, 如下图所示:
+
+![&#x6765;&#x81EA;&#x4E8E;&#x7F51;&#x7EDC; https://blog.fukuball.com/lin-xuan-tian-jiao-shou-ji-qi-xue-xi-ji-shi-machine-learning-foundations-di-liu-jiang-xue-xi-bi-ji/](../.gitbook/assets/machine-learning-foundations-6-6.png)
+
+在橙色区域, 除了x4, 其余的x1, x2, x3 均成对相同, 在紫色区域, x1, x2, x3的排列组合都和橙色区域的不同, 否则会和紫色区域的排列组合重复, 应该被预先剔除掉. 那么对于任意的约束函数B, 都可以表示为:
+
+$$
+B(M, k) = 2\alpha + \beta
+$$
+
+我们首先观察在橙色区域的α种排列组合下, 他们不能够被k-1打散, 否则加上已经全排列的第i个样本, 也就是上图的x4, 则必然已经被k打散. 因此:
+
+$$
+\alpha \le B(M-1, k-1)
+$$
+
+同样的, 对于排除了第i个样本剩余的M-1个样本而言, 他们不能被k打散, 而由上述定义可以得知:
+
+$$
+\alpha + \beta \le \alpha \le B(M-1, k)
+$$
+
+由此我们可以得到约束函数B上限的递推形式:
+
+$$
+B(M, k) \le B(M-1,k) + B(M-1,k-1)
+$$
+
+
 
