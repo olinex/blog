@@ -9,6 +9,7 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 ```bash
 sudo groupadd zookeeper
 sudo useradd -M -s /bin/false -g zookeeper zookeeper
+cp /opt/apache-zookeeper-3.5.6-bin/conf/zoo_sample.cfg /opt/apache-zookeeper-3.5.6-bin/conf/zoo.cfg
 sudo chown zookeeper:zookeeper -R /opt/apache-zookeeper-3.5.6-bin/
 sudo chmod 750 -R /opt/apache-zookeeper-3.5.6-bin/
 sudo chown zookeeper:zookeeper -R /var/zookeeper

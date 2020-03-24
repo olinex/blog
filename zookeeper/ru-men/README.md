@@ -14,6 +14,12 @@ description: '本文章由olinex翻译, 转载请在页面开头标明出处'
 ZooKeeper依赖Java环境, 需要安装相应版本的java-openjdk
 {% endhint %}
 
+#### Centos
+
+```bash
+yum install java-1.8.0-openjdk  java-1.8.0-openjdk-devel
+```
+
 ### 独立运行
 
 在独立模式下设置ZooKeeper服务器非常简单. 该服务包含在一个单独的JAR文件中.
