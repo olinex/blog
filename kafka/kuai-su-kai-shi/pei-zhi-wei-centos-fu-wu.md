@@ -11,6 +11,7 @@ description: '本文章由olinex原创, 转载请在页面开头标明出处'
 ```bash
 sudo groupadd kafka
 sudo useradd -M -s /bin/false -g kafka kafka
+cp /opt/kafka_2.13-2.4.0/server.properties /opt/kafka_2.13-2.4.0/kafka.properties
 sudo chown kafka:kafka -R /opt/kafka_2.13-2.4.0/
 sudo chmod 750 -R /opt/kafka_2.13-2.4.0/
 ```
@@ -33,7 +34,7 @@ SyslogIdentifier=kafka
 Type=simpleforking
 User=kafka
 Group=kafka
-ExecStart=/opt/kafka_2.13-2.4.0/bin/kafka-server-start.sh /opt/kafka_2.13-2.4.0/config/server.properties
+ExecStart=/opt/kafka_2.13-2.4.0/bin/kafka-server-start.sh /opt/kafka_2.13-2.4.0/config/kafka.properties
 ExecStop=/opt/kafka_2.13-2.4.0/bin/kafka-server-stop.sh
 
 [Install]
