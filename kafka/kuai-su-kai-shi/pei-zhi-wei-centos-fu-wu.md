@@ -35,7 +35,7 @@ Type=simpleforking
 User=kafka
 Group=kafka
 ExecStart=/opt/kafka_2.13-2.4.0/bin/kafka-server-start.sh /opt/kafka_2.13-2.4.0/config/kafka.properties
-ExecStop=/opt/kafka_2.13-2.4.0/bin/kafka-server-stop.sh
+ExecStop=/opt/kafka_2.13-2.4.0/bin/kafka-server-stop.sh /opt/kafka_2.13-2.4.0/config/kafka.properties
 
 [Install]
 WantedBy=default.target
