@@ -211,5 +211,7 @@ $$
 \Omega(M, h, \delta) = \sqrt{\frac{8}{M}ln(\frac{4(2M)^{d_{vc}}}{\delta})}
 $$
 
+## 噪音\(Noise\)
+
 
 
