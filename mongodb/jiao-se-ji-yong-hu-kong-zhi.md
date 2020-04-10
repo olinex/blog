@@ -11,7 +11,7 @@ MongoDB的用户是有数据库从属的. 也就是说, 如果我们创建了两
 ### 查看所有用户
 
 ```text
-user admin
+use admin
 db.auth('<admin-username>', '<admin-password>')
 db.system.users.find()
 ```
@@ -19,7 +19,7 @@ db.system.users.find()
 ### 创建用户管理员
 
 ```text
-user admin
+use admin
 db.createUser({
     user: "<username>",
     pwd: "<password>"
@@ -32,7 +32,7 @@ db.createUser({
 ### 创建高级管理员
 
 ```text
-user admin
+use admin
 db.createUser({
     user: "<username>",
     pwd: "<password>"
@@ -46,7 +46,7 @@ db.createUser({
 ### 创建普通用户
 
 ```text
-user <db>
+use <db>
 db.createUser({
     user: "<username>",
     pwd: "<password>"
@@ -55,8 +55,6 @@ db.createUser({
     ]
 })
 ```
-
-## 角色
 
 
 
