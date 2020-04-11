@@ -58,7 +58,7 @@ mount -a && mount
 
 ```bash
 # 需在所有的节点执行
-firewall-cmd --zone=public --add-port=24007-24008/tcp --permanent
+firewall-cmd --add-service=glusterfs --permanent
 firewall-cmd --reload
 ```
 
