@@ -119,3 +119,7 @@
 
 * [集群部署](kubernetes/ji-qun-bu-shu.md)
 
+## Glusterfs
+
+* [安装](glusterfs/an-zhuang.md)
+
