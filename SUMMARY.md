@@ -123,3 +123,7 @@
 
 * [安装](glusterfs/an-zhuang.md)
 
+## jenkins
+
+* [安装](jenkins/an-zhuang.md)
+
