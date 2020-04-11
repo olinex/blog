@@ -71,13 +71,24 @@ gluster peer probe node002
 gluster peer probe node003
 ```
 
-### 创建分布式卷
+### 创建卷
 
 ```bash
 # 需在所有的节点执行
 mkdir /bricks/brick1/gv0
 # 任意节点执行即可
+# 创建复制卷
 gluster volume create gv0 replica 2 \
+node001:/bricks/brick1/gv0 \
+node002:/bricks/brick1/gv0 \
+node003:/bricks/brick1/gv0
+# 创建分布式卷
+gluster volume create gv0 transport tcp \
+node001:/bricks/brick1/gv0 \
+node002:/bricks/brick1/gv0 \
+node003:/bricks/brick1/gv0
+# 创建分布式复制卷
+gluster volume create gv0 replica 2 transport tcp \
 node001:/bricks/brick1/gv0 \
 node002:/bricks/brick1/gv0 \
 node003:/bricks/brick1/gv0
