@@ -35,6 +35,10 @@
   * [Docker File](docker/can-kao-shou-ce/docker-file.md)
 * [框架搭建](docker/kuang-jia-da-jian.md)
 
+## Kubernetes
+
+* [集群部署](kubernetes/ji-qun-bu-shu.md)
+
 ## ZooKeeper
 
 * [简介](zookeeper/jian-jie.md)
@@ -43,6 +47,14 @@
   * [配置为CentOS服务](zookeeper/ru-men/pei-zhi-wei-centos-fu-wu.md)
   * [配置为Windows服务](zookeeper/ru-men/pei-zhi-wei-windows-fu-wu.md)
 * [ACL权限](zookeeper/acl-quan-xian.md)
+
+## Glusterfs
+
+* [安装](glusterfs/an-zhuang.md)
+
+## jenkins
+
+* [安装](jenkins/an-zhuang.md)
 
 ## nginx
 
@@ -114,16 +126,4 @@
 
 * [排序](algorithm/pai-xu/README.md)
   * [插入排序](algorithm/pai-xu/cha-ru-pai-xu.md)
-
-## Kubernetes
-
-* [集群部署](kubernetes/ji-qun-bu-shu.md)
-
-## Glusterfs
-
-* [安装](glusterfs/an-zhuang.md)
-
-## jenkins
-
-* [安装](jenkins/an-zhuang.md)
 
