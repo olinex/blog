@@ -16,6 +16,8 @@
 
 ## elasticsearch
 
+---
+
 * [DSL查询](dsl-cha-xun.md)
 
 ## docker
@@ -35,10 +37,6 @@
   * [Docker File](docker/can-kao-shou-ce/docker-file.md)
 * [框架搭建](docker/kuang-jia-da-jian.md)
 
-## Kubernetes
-
-* [集群部署](kubernetes/ji-qun-bu-shu.md)
-
 ## ZooKeeper
 
 * [简介](zookeeper/jian-jie.md)
@@ -55,6 +53,14 @@
 ## jenkins
 
 * [安装](jenkins/an-zhuang.md)
+
+## dnsmasq
+
+* [安装](dnsmasq/an-zhuang.md)
+
+## Kubernetes
+
+* [集群部署](kubernetes/ji-qun-bu-shu.md)
 
 ## nginx
 
