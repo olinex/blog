@@ -60,6 +60,7 @@
 
 ## Kubernetes
 
+* [字典](kubernetes/zi-dian.md)
 * [集群部署](kubernetes/ji-qun-bu-shu.md)
 
 ## nginx
